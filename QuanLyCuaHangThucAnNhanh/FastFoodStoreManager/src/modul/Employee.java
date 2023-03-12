@@ -1,6 +1,6 @@
 package modul;
 
-public abstract class Employee {
+public abstract class Employee implements Observer {
 	protected Person person;
 	protected String academicLevel;
 

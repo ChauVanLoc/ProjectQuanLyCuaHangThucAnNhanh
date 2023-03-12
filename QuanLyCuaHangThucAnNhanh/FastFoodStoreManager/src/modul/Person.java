@@ -12,23 +12,38 @@ public class Person {
 	private String sex;
 	private Address address;
 	private String phone;
+	private Subject subject;
 	private Account account;
 	protected List<Order> orders;
 
-	public Person(String name, String phone) {
+//	dành riêng cho customer. Lý do: Không thể bắt customer nhập quá nhiều thông tin
+//	khi đăng kí tài khoản sẽ làm cho customer nản ko đk nửa. Customer thích thì có thể
+//	cập nhật riêng trong hồ sơ
+	public Person(String name, String phone, Subject subject) {
 		this.name = name;
 		this.phone = phone;
+		this.subject = subject;
 		this.orders = new ArrayList<>();
 	}
 
-	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String phone) {
+	// dành riêng cho nhân viên. Lý do: Nhân viên là người làm việc cần phải có đầy
+	// đủ in4
+	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String phone,
+			Subject subject) {
 		this.cccd = cccd;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.sex = sex;
 		this.address = address;
 		this.phone = phone;
+		this.subject = subject;
 		this.orders = new ArrayList<>();
+	}
+	
+	
+//	Dành riêng cho admin - có ai quản lý admin nửa đâu nên không cần phải khởi tạo
+//	thông tin ban đầu. Nếu thích thì admin có thể tự cập nhật trong phần in4
+	public Person() {
 	}
 
 	public String getId() {
@@ -101,6 +116,14 @@ public class Person {
 
 	public void setOrders(List<Order> orders) {
 		this.orders = orders;
+	}
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 
 }
