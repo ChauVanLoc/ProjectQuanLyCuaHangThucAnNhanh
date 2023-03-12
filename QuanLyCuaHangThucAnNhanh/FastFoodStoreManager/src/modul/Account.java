@@ -13,9 +13,9 @@ public abstract class Account {
 	private Date expireDate; // nếu là customer thì bằng null còn nhân viên thì có ngày hết hợp đồng
 
 	// constructor này vừa tạo account vừa tạo thông tin cá nhân khách hàng
-	public Account(String email, String password, String phone) {
+	public Account(String email, String password, String phone, Subject subject) {
 		// mặc định ban đầu khách hàng luôn là regular
-		new RegularCustomer(password, phone);
+		new RegularCustomer(password, phone, subject);
 		this.email = email;
 		this.password = password;
 		this.status = true;
