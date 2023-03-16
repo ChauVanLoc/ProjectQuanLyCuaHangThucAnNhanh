@@ -1,10 +1,10 @@
-package modul;
+package models;
 
 import java.util.Date;
 
 import constant.Rule;
 
-public abstract class Account {
+public class Account {
 	private String email;
 	private String password;
 	private boolean status; // trạng thái true (sử dụng), false (khóa tài khoản)
@@ -15,13 +15,14 @@ public abstract class Account {
 	// constructor này vừa tạo account vừa tạo thông tin cá nhân khách hàng
 	public Account(String email, String password, String phone, Subject subject) {
 		// mặc định ban đầu khách hàng luôn là regular
-		new RegularCustomer(password, phone, subject);
+		new RegularCustomer(password, phone, subject, this);
 		this.email = email;
 		this.password = password;
 		this.status = true;
-		this.rule = Rule.getCustomer();
+		this.rule = Rule.CUSTOMER;
 		this.createdDate = new Date();
 		this.expireDate = null;
+		subject.addAccount(this);
 	}
 
 	// constructor này vừa tạo account cho nhân viên
@@ -80,6 +81,10 @@ public abstract class Account {
 
 	public void setExpireDate(Date expireDate) {
 		this.expireDate = expireDate;
+	}
+	
+	public static boolean validateEmail(String email) {
+		
 	}
 
 }

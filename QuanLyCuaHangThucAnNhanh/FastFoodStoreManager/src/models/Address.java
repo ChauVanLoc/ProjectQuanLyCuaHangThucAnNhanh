@@ -1,4 +1,4 @@
-package modul;
+package models;
 
 public class Address {
 	private String road; // tên đường

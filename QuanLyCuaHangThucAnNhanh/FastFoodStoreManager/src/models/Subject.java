@@ -1,4 +1,4 @@
-package modul;
+package models;
 
 public interface Subject {
 	public void addObserver(Observer o);
