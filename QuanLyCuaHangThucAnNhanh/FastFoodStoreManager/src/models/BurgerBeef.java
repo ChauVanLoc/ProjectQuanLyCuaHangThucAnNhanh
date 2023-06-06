@@ -1,4 +1,4 @@
-package modul;
+package models;
 
 public class BurgerBeef extends Food{
 
