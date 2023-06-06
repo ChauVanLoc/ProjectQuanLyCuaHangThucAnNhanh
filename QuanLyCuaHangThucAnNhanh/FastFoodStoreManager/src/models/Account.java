@@ -83,8 +83,8 @@ public class Account {
 		this.expireDate = expireDate;
 	}
 	
-	public static boolean validateEmail(String email) {
-		
-	}
+//	public static boolean validateEmail(String email) {
+//		
+//	}
 
 }

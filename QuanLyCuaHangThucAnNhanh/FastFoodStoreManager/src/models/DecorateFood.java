@@ -1,4 +1,4 @@
-package modul;
+package models;
 
 public abstract class DecorateFood{
 	private Food food;

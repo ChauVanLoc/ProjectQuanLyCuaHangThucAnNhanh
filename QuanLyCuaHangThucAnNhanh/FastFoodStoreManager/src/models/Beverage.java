@@ -1,4 +1,4 @@
-package modul;
+package models;
 
 public abstract class Beverage {
 	private Product product;

@@ -162,5 +162,7 @@ public class Admin implements Subject {
 
 		return result;
 	}
-
+	public static void main(String[] args) {
+		System.out.println("sssssssss");
+	}
 }
