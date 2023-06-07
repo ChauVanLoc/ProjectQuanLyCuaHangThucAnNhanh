@@ -1,5 +1,5 @@
-package modul;
+package modul.order;
 
 public class Order {
-	
+
 }

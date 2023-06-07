@@ -34,5 +34,4 @@ public class Address {
 	public void setProvineOrCity(String provineOrCity) {
 		this.provineOrCity = provineOrCity;
 	}
-
 }
