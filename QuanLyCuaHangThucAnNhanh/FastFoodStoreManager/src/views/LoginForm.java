@@ -1,29 +1,30 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
-import java.awt.Insets;
 import java.awt.RenderingHints;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
-import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-import javax.swing.border.MatteBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import constant.Colors;
+import constant.Fonts;
 
 public class LoginForm extends JFrame {
 
@@ -32,6 +33,10 @@ public class LoginForm extends JFrame {
 	private JTextField tf_pass;
 	private JTextField tf_email;
 	private JTextField textField;
+	private JLabel lb_email;
+	private JLabel lb_password;
+	private PanelCustom passwordPanelCustom;
+	private PanelCustom emailPanelCustom;
 
 	/**
 	 * Launch the application.
@@ -54,8 +59,6 @@ public class LoginForm extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginForm() {
-		int width = this.screenSize.width;
-		int height = this.screenSize.height;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, this.screenSize.width, this.screenSize.height);
 		contentPane = new JPanel() {
@@ -82,7 +85,7 @@ public class LoginForm extends JFrame {
 				graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 				graphics.setColor(getBackground());
-				graphics.fillRoundRect(0, 0, width - 1, height - 1, arcs.width, arcs.height);// paint background
+				graphics.fillRoundRect(0, 0, width - 1, height - 1, 15, 15);// paint background
 			}
 		};
 		panel.setOpaque(false);
@@ -93,84 +96,68 @@ public class LoginForm extends JFrame {
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Login to your account");
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 40));
+		lblNewLabel.setFont(Fonts.tahoma_bold_40);
 		lblNewLabel.setBounds(81, 60, 485, 53);
 		panel.add(lblNewLabel);
 
 		JLabel lblNewLabel_1 = new JLabel("Welcome back");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_1.setFont(Fonts.tahoma_plain_25);
 		lblNewLabel_1.setBounds(81, 20, 187, 41);
 		panel.add(lblNewLabel_1);
 
-		JLabel lblNewLabel_2 = new JLabel("Email");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_2.setBounds(81, 141, 82, 31);
-		panel.add(lblNewLabel_2);
-
-		JPanel panel_email = new JPanelRounded(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
-		panel_email.setBounds(81, 192, 606, 59);
-		panel.add(panel_email);
-		panel_email.setOpaque(false);
-
-		tf_email = new JTextField();
-		tf_email.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tf_email.setColumns(10);
-		tf_email.setBorder(null);
-		tf_email.setBounds(81 + 20, 192 + 5, 606 - 40, 59 - 10);
-		panel.add(tf_email);
-
-		JLabel lblNewLabel_2_1 = new JLabel("Password");
-		lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_2_1.setBounds(81, 259 + 20, 119, 31);
-		panel.add(lblNewLabel_2_1);
-
-		JPanel panel_pass = new JPanelRounded(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
-		panel_pass.setBounds(81, 308 + 20, 606, 59);
-		panel.add(panel_pass);
-		panel_pass.setOpaque(false);
-
-		tf_pass = new JTextField();
-		tf_pass.setBorder(null);
-		tf_pass.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		tf_pass.setBounds(81 + 20, 308 + 5 + 20, 606 - 40, 59 - 10);
-		panel.add(tf_pass);
-		tf_pass.setColumns(10);
-
-		JLabel lblNewLabel_2_1_1 = new JLabel("Forgot password?");
-		lblNewLabel_2_1_1.setForeground(new Color(112, 161, 255));
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.ITALIC, 17));
-		lblNewLabel_2_1_1.setBounds(524, 392, 187, 31);
-		panel.add(lblNewLabel_2_1_1);
-
-		JPanel panel_login = new JPanelRounded(15, 15, new Color(112, 161, 255), new Color(223, 228, 234)).getP();
-		panel_login.setBounds(81, 474-10-10-10, 606, 59);
-		panel_login.setOpaque(false);
-		panel_login.setLayout(null);
-		panel.add(panel_login);
+		lb_email = new JLabel("Email");
+		lb_email.setFont(Fonts.tahoma_plain_25);
+		lb_email.setBounds(81, 141, 82, 31);
+		panel.add(lb_email);
 		
-		JButton btn_login = new JButton("Login now");
-		btn_login.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		lb_email.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				emailPanelCustom.getPs().requestFocus();
 			}
 		});
-		btn_login.setBorder(null);
-		btn_login.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btn_login.setForeground(new Color(255, 255, 255));
-		btn_login.setBackground(new Color(112, 161, 255));
-		btn_login.setFocusPainted(false);
-		btn_login.setBounds(81+20, 474-5-10-10, 606 - 40, 59 - 10);
-		panel.add(btn_login);
+
+		emailPanelCustom = new PanelCustom(81, 188, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		JPanel emailPanel = emailPanelCustom.createTextFiel(38, Fonts.tahoma_plain_18);
+		panel.add(emailPanel);
 		
+		lb_password = new JLabel("Password");
+		lb_password.setFont(Fonts.tahoma_plain_25);
+		lb_password.setBounds(81, 270, 149, 31);
+		panel.add(lb_password);
+		
+		passwordPanelCustom = new PanelCustom(81, 318, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		JPanel passwordPanel = passwordPanelCustom.createPasswordTextFiel(38, Fonts.tahoma_plain_18);
+		panel.add(passwordPanel);
+		
+		lb_password.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				passwordPanelCustom.getPs().requestFocus();
+			}
+		});
+
+		JLabel lb_forgot_password = new JLabel("Forgot password?");
+		lb_forgot_password.setForeground(new Color(112, 161, 255));
+		lb_forgot_password.setFont(new Font("Tahoma", Font.ITALIC, 17));
+		lb_forgot_password.setBounds(524, 392, 187, 31);
+		panel.add(lb_forgot_password);
+
 		JLabel lblNewLabel_3 = new JLabel("Bạn chưa có tài khoản?");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		lblNewLabel_3.setBounds(223, 518, 199, 28);
 		panel.add(lblNewLabel_3);
 		
-		JLabel lblNewLabel_3_1 = new JLabel("Đăng ký ngay");
-		lblNewLabel_3_1.setForeground(new Color(238, 77, 45));
-		lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3_1.setBounds(422, 518, 130, 28);
-		panel.add(lblNewLabel_3_1);
+		PanelCustom panelLoginCustom = new PanelCustom(81, 447, 606, 59, 15, new Color(223, 228, 234), Colors.blue);
+		JPanel loginPanel = panelLoginCustom.createButton("Login", Fonts.tahoma_bold_20, new Color(255, 255, 255));
+		panel.add(loginPanel);
+		
+		JLabel lb_register_now = new JLabel("Đăng ký ngay");
+		lb_register_now.setForeground(new Color(238, 77, 45));
+		lb_register_now.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		lb_register_now.setBounds(422, 518, 130, 28);
+		lb_register_now.setCursor(new Cursor(12));
+		panel.add(lb_register_now);
 
 	}
 }
