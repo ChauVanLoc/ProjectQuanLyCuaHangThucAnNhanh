@@ -94,7 +94,7 @@ public class RegisterForm extends JFrame {
 		lblNewLabel_2.setBounds(81, 141, 82, 31);
 		panel.add(lblNewLabel_2);
 
-		JPanel panel_email = new JPanelRounded(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
+		JPanel panel_email = new PanelCustom(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
 		panel_email.setBounds(81, 192, 606, 59);
 		panel.add(panel_email);
 		panel_email.setOpaque(false);
@@ -111,7 +111,7 @@ public class RegisterForm extends JFrame {
 		lblNewLabel_2_1.setBounds(81, 259 + 20, 119, 31);
 		panel.add(lblNewLabel_2_1);
 
-		JPanel panel_pass = new JPanelRounded(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
+		JPanel panel_pass = new PanelCustom(15, 15, new Color(255, 255, 255), new Color(223, 228, 234)).getP();
 		panel_pass.setBounds(81, 308 + 20, 606, 59);
 		panel.add(panel_pass);
 		panel_pass.setOpaque(false);
@@ -129,7 +129,7 @@ public class RegisterForm extends JFrame {
 		lblNewLabel_2_1_1.setBounds(524, 392, 187, 31);
 		panel.add(lblNewLabel_2_1_1);
 
-		JPanel panel_login = new JPanelRounded(15, 15, new Color(112, 161, 255), new Color(223, 228, 234)).getP();
+		JPanel panel_login = new PanelCustom(15, 15, new Color(112, 161, 255), new Color(223, 228, 234)).getP();
 		panel_login.setBounds(81, 474 - 10 - 10 - 10, 606, 59);
 		panel_login.setOpaque(false);
 		panel_login.setLayout(null);
