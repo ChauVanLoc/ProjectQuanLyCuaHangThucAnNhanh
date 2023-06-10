@@ -46,7 +46,7 @@ public class Main extends JFrame {
 		register = new Register();
 		JPanel registerPanel = register.createRegister(contentPane, cardLayout);
 		contentPane.add(registerPanel, Frame.register);
-
+		
 		cardLayout.show(contentPane, Frame.login);
 		setContentPane(contentPane);
 	}
