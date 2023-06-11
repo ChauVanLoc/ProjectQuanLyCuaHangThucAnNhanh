@@ -1,5 +1,8 @@
 package models;
 
+import models.person.Account;
+import models.person.Order;
+
 public interface Subject {
 	public void addObserver(Observer o);
 
