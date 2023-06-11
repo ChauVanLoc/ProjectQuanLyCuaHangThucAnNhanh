@@ -5,6 +5,15 @@ import java.util.Date;
 import java.util.List;
 
 import constant.Rule;
+import models.person.Account;
+import models.person.Address;
+import models.person.Order;
+import models.person.Person;
+import models.person.employee.Cashier;
+import models.person.employee.CleaningStaff;
+import models.person.employee.KitchenStaff;
+import models.person.employee.Security;
+import models.person.employee.Shipper;
 
 public class Admin implements Subject {
 	private Person person;
