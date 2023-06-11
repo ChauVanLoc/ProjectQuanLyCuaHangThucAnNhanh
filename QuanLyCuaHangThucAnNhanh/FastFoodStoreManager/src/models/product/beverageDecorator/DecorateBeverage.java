@@ -3,7 +3,12 @@ package models.product.beverageDecorator;
 import models.product.beverage.Beverage;
 
 public abstract class DecorateBeverage {
-	private Beverage beverage;
+	protected Beverage beverage;
+	
+	public DecorateBeverage(Beverage beverage) {
+		this.beverage = beverage;
+	}
+
 
 	public Beverage getBeverage() {
 		return beverage;
@@ -14,4 +19,6 @@ public abstract class DecorateBeverage {
 	}
 
 	public abstract double charge();
+
+	public abstract String getDescription();
 }

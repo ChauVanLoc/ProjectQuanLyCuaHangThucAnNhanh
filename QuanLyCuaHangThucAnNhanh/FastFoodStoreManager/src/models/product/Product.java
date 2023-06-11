@@ -11,7 +11,6 @@ public class Product {
 	private float quantitySold;
 	private float price;
 	private String addressImage;
-	private String description;
 	private List<Rate> rates;
 	private Subject subject;
 
@@ -36,7 +35,7 @@ public class Product {
 	}
 
 	public Product(String id, String name, float quantity, float quantitySold, float price, String addressImage,
-			String description, List<Rate> rates, Subject subject) {
+			List<Rate> rates, Subject subject) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -44,7 +43,6 @@ public class Product {
 		this.quantitySold = quantitySold;
 		this.price = price;
 		this.addressImage = addressImage;
-		this.description = description;
 		this.rates = rates;
 		this.subject = subject;
 	}
@@ -79,14 +77,6 @@ public class Product {
 
 	public void setAddressImage(String addressImage) {
 		this.addressImage = addressImage;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
 	}
 
 	public List<Rate> getRates() {

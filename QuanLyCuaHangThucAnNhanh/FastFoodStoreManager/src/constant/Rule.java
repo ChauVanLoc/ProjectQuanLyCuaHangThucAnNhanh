@@ -9,4 +9,8 @@ public class Rule {
 	public static final int SECURITY = 5;
 	public static final int KITCHEN = 6;
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> refs/remotes/origin/main

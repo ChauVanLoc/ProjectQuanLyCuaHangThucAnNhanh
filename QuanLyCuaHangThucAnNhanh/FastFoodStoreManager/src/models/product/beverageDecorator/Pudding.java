@@ -1,11 +1,21 @@
 package models.product.beverageDecorator;
 
+import models.product.beverage.Beverage;
+
 public class Pudding extends DecorateBeverage {
+
+	public Pudding(Beverage beverage) {
+		super(beverage);
+	}
 
 	@Override
 	public double charge() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0.2 + beverage.charge();
+	}
+
+	@Override
+	public String getDescription() {
+		return beverage.getDescription() + ", Pudding";
 	}
 
 }

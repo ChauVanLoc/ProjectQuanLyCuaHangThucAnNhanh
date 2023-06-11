@@ -1,11 +1,16 @@
 package models.product.beverage;
 
+import models.product.Product;
+
 public class CarbonateSoftDrink extends Beverage {
+	public CarbonateSoftDrink(Product product) {
+		super(product);
+		description = "CarbonateSoftDrink";
+	}
 
 	@Override
 	public double charge() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0.5;
 	}
 
 }

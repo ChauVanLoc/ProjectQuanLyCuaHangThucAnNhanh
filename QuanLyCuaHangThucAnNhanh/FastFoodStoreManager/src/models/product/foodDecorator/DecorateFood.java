@@ -3,8 +3,11 @@ package models.product.foodDecorator;
 import models.product.food.Food;
 
 public abstract class DecorateFood {
-	private Food food;
-
+	protected Food food;
+	
+	public DecorateFood(Food food) {
+		this.food = food;
+	}
 	public Food getFood() {
 		return food;
 	}
@@ -14,4 +17,6 @@ public abstract class DecorateFood {
 	}
 
 	public abstract double charge();
+	
+	public abstract String getDescription();
 }

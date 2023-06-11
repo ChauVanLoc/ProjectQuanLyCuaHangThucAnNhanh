@@ -2,16 +2,15 @@ package models.product.food;
 
 import models.product.Product;
 
-public class FriedChicken extends Food {
-
-	public FriedChicken(Product product) {
+public class Burger extends Food {
+	public Burger(Product product) {
 		super(product);
-		description = "Fried Chicken";
+		description = "Burger";
 	}
 
 	@Override
 	public double charge() {
-		return 2.5;
+		return 2.0;
 	}
 
 }

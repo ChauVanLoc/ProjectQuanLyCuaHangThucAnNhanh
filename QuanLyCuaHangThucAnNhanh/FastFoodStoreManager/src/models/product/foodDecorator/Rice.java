@@ -2,9 +2,9 @@ package models.product.foodDecorator;
 
 import models.product.food.Food;
 
-public class Shrimp extends DecorateFood {
+public class Rice extends DecorateFood {
 
-	public Shrimp(Food food) {
+	public Rice(Food food) {
 		super(food);
 		// TODO Auto-generated constructor stub
 	}
@@ -18,7 +18,7 @@ public class Shrimp extends DecorateFood {
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
-		return food.getDescription() + ", Shrimp";
+		return food.getDescription() + ", Rice";
 	}
 
 }

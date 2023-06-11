@@ -1,11 +1,16 @@
 package models.product.beverage;
 
+import models.product.Product;
+
 public class Mixed extends Beverage {
+	public Mixed(Product product) {
+		super(product);
+		description = "Mixed";
+	}
 
 	@Override
 	public double charge() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 0.95;
 	}
 
 }

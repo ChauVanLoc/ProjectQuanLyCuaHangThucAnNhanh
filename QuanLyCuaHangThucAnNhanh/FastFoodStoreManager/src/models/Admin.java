@@ -5,6 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import constant.Rule;
+<<<<<<< HEAD
+import models.employee.Cashier;
+import models.employee.Chef;
+import models.employee.CleaningStaff;
+import models.employee.Guard;
+import models.employee.Shipper;
+=======
 import models.person.Account;
 import models.person.Address;
 import models.person.Order;
@@ -14,6 +21,7 @@ import models.person.employee.CleaningStaff;
 import models.person.employee.KitchenStaff;
 import models.person.employee.Security;
 import models.person.employee.Shipper;
+>>>>>>> refs/remotes/origin/main
 
 public class Admin implements Subject {
 	private Person person;
@@ -104,11 +112,11 @@ public class Admin implements Subject {
 			break;
 		}
 		case Rule.SECURITY: {
-			new Security(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
+			new Guard(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
 			break;
 		}
 		case Rule.KITCHEN: {
-			new KitchenStaff(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
+			new Chef(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
 			break;
 		}
 		default:
