@@ -2,6 +2,8 @@ package models.person;
 
 import java.util.Date;
 
+import models.Subject;
+
 public class Person {
 	private String id;
 	private String cccd;
@@ -103,9 +105,9 @@ public class Person {
 		this.subject = subject;
 	}
 	
-	public static boolean login(String email, String password) {
-		if
-		return this.account.validateAccount(email, password);
-	}
+//	public static boolean login(String email, String password) {
+//		if
+//		return this.account.validateAccount(email, password);
+//	}
 
 }

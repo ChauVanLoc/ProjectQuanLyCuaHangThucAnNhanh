@@ -1,24 +1,28 @@
 package models;
 
-import models.person.Account;
 import models.person.Order;
 
 public interface Subject {
-	public void addObserver(Observer o);
+	void addProduct(ProductObserver p);
 
-	public void removeObserver(Observer o);
+	void deleteProduct(ProductObserver p);
 
-	public void notifyObservers();
+	void addCustomer(CustomerObserver p);
 
-	public void addOrder(Order o);
+	void deleteCustomer(CustomerObserver p);
 
-	public void removeOrder(Order o);
+	void addEmployee(EmployeeObserver p);
 
-	public void notifyOrder();
+	void deleteEmployee(EmployeeObserver p);
 
-	public void addAccount(Account o);
+	void updateEmployee();
 
-	public void removeAccount(Account o);
+	void addOrder(Order o);
 
-	public void notifyAccount();
+	void deleteOrder(Order o);
+
+	void addDecorator(ProductObserver p);
+
+	void deleteDecorator(ProductObserver p);
+
 }

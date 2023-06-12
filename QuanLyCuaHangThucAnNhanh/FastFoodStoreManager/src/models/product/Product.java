@@ -7,13 +7,12 @@ import models.Subject;
 public class Product {
 	private String id;
 	private String name;
-	private float quantity;
-	private float quantitySold;
-	private float price;
+	private int quantity;
+	private int quantitySold;
+	private double price;
 	private String addressImage;
 	private String description;
 	private List<Rate> rates;
-	private Subject subject;
 
 	public String getId() {
 		return id;
@@ -35,41 +34,36 @@ public class Product {
 		super();
 	}
 
-	public Product(String id, String name, float quantity, float quantitySold, float price, String addressImage,
-			String description, List<Rate> rates, Subject subject) {
-		super();
+	public Product(String id, String name, int quantity, double price, String addressImage, String description) {
 		this.id = id;
 		this.name = name;
 		this.quantity = quantity;
-		this.quantitySold = quantitySold;
 		this.price = price;
 		this.addressImage = addressImage;
 		this.description = description;
-		this.rates = rates;
-		this.subject = subject;
 	}
 
-	public float getQuantity() {
+	public int getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(float quantity) {
+	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
 
-	public float getQuantitySold() {
+	public int getQuantitySold() {
 		return quantitySold;
 	}
 
-	public void setQuantitySold(float quantitySold) {
+	public void setQuantitySold(int quantitySold) {
 		this.quantitySold = quantitySold;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 
@@ -97,11 +91,22 @@ public class Product {
 		this.rates = rates;
 	}
 
-	public Subject getSubject() {
-		return subject;
+	public void increaseAmount(int amount) {
+		setQuantity(getQuantity() + amount);
 	}
 
-	public void setSubject(Subject subject) {
-		this.subject = subject;
+	public void decreaseAmount(int amount) {
+		setQuantity(getQuantity() - amount);
+	}
+
+	public void update(String id, String name, int quantity, int quantitySold, double price, String addressImage,
+			String description) {
+		setId(id);
+		setName(name);
+		setQuantity(quantity);
+		setQuantitySold(quantitySold);
+		setPrice(price);
+		setAddressImage(addressImage);
+		setDescription(description);
 	}
 }
