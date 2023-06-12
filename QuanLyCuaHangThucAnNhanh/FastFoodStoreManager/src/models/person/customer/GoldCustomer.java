@@ -13,11 +13,6 @@ public class GoldCustomer extends CustomerObserver {
 	}
 
 	@Override
-	public void update() {
-
-	}
-
-	@Override
 	public void upgradeCustomer(int score, CustomerObserver cus) {
 		if (score >= Score.TARGET_DIAMOND) {
 			cus = new SilverCustomer(cus);

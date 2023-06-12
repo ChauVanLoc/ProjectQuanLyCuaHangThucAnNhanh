@@ -25,4 +25,6 @@ public class ManageEmployee {
 	public void updateEmployee() {
 
 	}
+	
+//	public EmployeeObserver createEmployee(int rule, )
 }

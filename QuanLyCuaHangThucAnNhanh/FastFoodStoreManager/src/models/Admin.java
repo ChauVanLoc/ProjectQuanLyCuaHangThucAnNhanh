@@ -1,5 +1,6 @@
 package models;
 
+import constant.Password;
 import models.person.Order;
 
 public class Admin implements Subject {
@@ -14,6 +15,10 @@ public class Admin implements Subject {
 		this.manageOrder = new ManageOrder();
 		this.manageProduct = new ManageProduct();
 	}
+
+//	public int login(String email, String password) {
+//		
+//	}
 
 //	------------------------------------------------------------------
 //	------------------ Product ---------------------------------------
@@ -56,7 +61,7 @@ public class Admin implements Subject {
 	public void deleteCustomer(CustomerObserver p) {
 		this.manageCustomer.deleteCustomer(p);
 	}
-
+	
 //	------------------------------------------------------------------
 //	------------------ Employee --------------------------------------
 //	------------------------------------------------------------------
@@ -74,6 +79,10 @@ public class Admin implements Subject {
 	@Override
 	public void updateEmployee() {
 		this.manageEmployee.updateEmployee();
+	}
+
+	public String changeDefaultPassword(String newDefaultPassword) {
+		return Password.changeDefaultPassword(newDefaultPassword);
 	}
 
 //	------------------------------------------------------------------

@@ -17,7 +17,7 @@ public class ManageCustomer {
 	public List<CustomerObserver> getCustomer() {
 		return cuss;
 	}
-	
+
 	public void changeScore(String type, int targetScore) {
 		Score.changeScore(type, targetScore);
 	}
@@ -30,10 +30,6 @@ public class ManageCustomer {
 		this.cuss.remove(o);
 	}
 
-	public void updateCustomer() {
-
-	}
-
 	public int login(String email, String password) {
 		for (CustomerObserver c : cuss) {
 			return c.login(email, password);
@@ -43,6 +39,10 @@ public class ManageCustomer {
 
 	public CustomerObserver register(String name, String email, String password, String phone, Subject sub) {
 		return new NewCustomer(name, phone, email, password, sub);
+	}
+
+	public CustomerObserver forgotPassword(String email) {
+		return null;
 	}
 
 }

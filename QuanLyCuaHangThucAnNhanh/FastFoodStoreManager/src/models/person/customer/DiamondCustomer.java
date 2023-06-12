@@ -13,16 +13,12 @@ public class DiamondCustomer extends CustomerObserver {
 	}
 
 	@Override
-	public void update() {
-
+	public int calScore(Order order) {
+		return (int) (order.getTotal() * Score.STRATEGY_DIAMOND);
 	}
 
 	@Override
 	public void upgradeCustomer(int score, CustomerObserver cus) {
-	}
 
-	@Override
-	public int calScore(Order order) {
-		return (int) (order.getTotal() * Score.STRATEGY_DIAMOND);
 	}
 }
