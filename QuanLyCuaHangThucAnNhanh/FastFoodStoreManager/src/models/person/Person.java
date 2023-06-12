@@ -2,6 +2,7 @@ package models.person;
 
 import java.util.Date;
 
+import models.CustomerObserver;
 import models.Subject;
 
 public class Person {
@@ -15,10 +16,12 @@ public class Person {
 	private Account account;
 	private Subject subject;
 
-	public Person(String name, String phone, String email, String password) {
+	public Person(String name, String phone, String email, String password, Subject subject, CustomerObserver cus) {
 		this.name = name;
 		this.phone = phone;
 		this.account = new Account(email, password);
+		this.subject = subject;
+		this.subject.addCustomer(cus);
 	}
 
 	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String phone) {
@@ -104,10 +107,16 @@ public class Person {
 	public void setSubject(Subject subject) {
 		this.subject = subject;
 	}
-	
-//	public static boolean login(String email, String password) {
-//		if
-//		return this.account.validateAccount(email, password);
-//	}
+
+	public int login(String email, String password) {
+		return this.account.validateAccount(email, password);
+	}
+
+	@Override
+	public String toString() {
+		return "Person [id=" + id + ", cccd=" + cccd + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", sex="
+				+ sex + ", address=" + address + ", phone=" + phone + ", account=" + account + ", subject=" + subject
+				+ "]";
+	}
 
 }

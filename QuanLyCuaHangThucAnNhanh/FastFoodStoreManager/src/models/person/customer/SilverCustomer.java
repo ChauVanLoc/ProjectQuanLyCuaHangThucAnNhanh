@@ -1,27 +1,26 @@
 package models.person.customer;
 
-import java.util.ArrayList;
-
+import constant.Score;
 import models.CustomerObserver;
-import models.person.Person;
 
 public class SilverCustomer extends CustomerObserver {
-	public SilverCustomer(Person person) {
-		super.person = person;
-//		super.person.setSubject(person.getSubject());
-//		super.person.getSubject().addObserver(this);
-		super.deliveryAddress = new ArrayList<>();
-	}
-
-	@Override
-	public int calScore() {
-		// TODO Auto-generated method stub
-		return 0;
+	public SilverCustomer(CustomerObserver cus) {
+		super.person = cus.getPerson();
+		super.deliveryAddress = cus.getDeliveryAddress();
+		super.orders = cus.getOrders();
+		super.score = cus.getScore();
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void upgradeCustomer(int score, CustomerObserver cus) {
+		if (score > Score.UP_TO_GOLD) {
+			cus = new SilverCustomer(cus);
+			cus.decreaseScore(Score.UP_TO_GOLD);
+		}
 	}
 }

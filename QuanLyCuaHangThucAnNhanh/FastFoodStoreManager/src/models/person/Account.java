@@ -16,7 +16,7 @@ public class Account {
 		this.email = email;
 		this.password = password;
 		this.status = true;
-		this.rule = Rule.CUSTOMER;
+		this.rule = Rule.NEW_CUSTOMER;
 		this.createdDate = new Date();
 		this.expireDate = null;
 	}
@@ -85,14 +85,14 @@ public class Account {
 	public boolean checkFormatPassword(String password) {
 		return true;
 	}
-	
-	public boolean validateAccount(String email, String password) {
+
+	public int validateAccount(String email, String password) {
 		if (checkFormatEmail(email) && checkFormatPassword(password)) {
 			if (this.email.equals(email) && this.password.equals(password)) {
-				return true;
+				return this.rule;
 			}
 		}
-		return false;
+		return Rule.UNAUTHORIZED;
 	}
 
 }
