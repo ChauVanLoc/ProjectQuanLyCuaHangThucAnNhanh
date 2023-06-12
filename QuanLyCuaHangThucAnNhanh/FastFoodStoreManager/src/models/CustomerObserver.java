@@ -1,5 +1,6 @@
 package models;
 
+import java.util.Date;
 import java.util.List;
 
 import models.person.Address;
@@ -23,6 +24,10 @@ public abstract class CustomerObserver {
 
 	public Person getPerson() {
 		return person;
+	}
+
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public List<Address> getDeliveryAddress() {
@@ -57,13 +62,27 @@ public abstract class CustomerObserver {
 		return order;
 	}
 
-	public abstract void update();
+	public Order cancelOrder(String note, Order order) {
+		order.cancel(note);
+		return order;
+	}
+
+	public CustomerObserver updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
+		this.setPerson(this.person.updateInfor(cccd, name, dob, sex, phone, email));
+		return this;
+	}
 
 	public int login(String email, String password) {
 		return this.person.login(email, password);
 	}
 
+	public CustomerObserver changePassword(String currentPassword, String newPassword) {
+		this.setPerson(this.person.changePassword(currentPassword, newPassword));
+		return this;
+	}
+
 	public abstract void upgradeCustomer(int score, CustomerObserver cus);
 
 	public abstract int calScore(Order order);
+
 }

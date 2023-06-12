@@ -4,16 +4,16 @@ import java.util.Date;
 
 import constant.Password;
 import constant.Rule;
+import models.EmployeeObserver;
+import models.Subject;
+import models.person.Address;
 import models.person.Person;
 
 public class KitchenStaff extends EmployeeObserver {
-	public KitchenStaff(String cccd, String name, Date dateOfBirth, Date expiredDate, String sex, Address address, String email,
-			String phone, String academicLevel, Subject subject) {
-		super.person = new Person(cccd, name, dateOfBirth, sex, address, phone);
+	public KitchenStaff(String cccd, String name, Date dateOfBirth, Date expiredDate, String sex, Address address,
+			String email, String phone, String academicLevel, int rule, Subject subject) {
+		super.person = new Person(cccd, name, dateOfBirth, sex, address, email, phone, rule, expiredDate, subject,
+				this);
 		setAcademicLevel(academicLevel);
-		super.person.setSubject(subject);
-		super.person.getSubject().addObserver(this);
-		super.person.setAccount(new Account(email, Password.DEFAULT, Rule.KITCHEN, expiredDate));
-		super.person.getSubject().addAccount(super.person.getAccount());
 	}
 }

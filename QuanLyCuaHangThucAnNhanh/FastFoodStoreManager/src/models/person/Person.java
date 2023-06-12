@@ -2,7 +2,9 @@ package models.person;
 
 import java.util.Date;
 
+import constant.Password;
 import models.CustomerObserver;
+import models.EmployeeObserver;
 import models.Subject;
 
 public class Person {
@@ -24,13 +26,17 @@ public class Person {
 		this.subject.addCustomer(cus);
 	}
 
-	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String phone) {
+	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String email, String phone,
+			int rule, Date expiredDate, Subject subject, EmployeeObserver emp) {
 		this.cccd = cccd;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.sex = sex;
 		this.address = address;
 		this.phone = phone;
+		this.account = new Account(email, Password.DEFAULT_PASSWORD, rule, expiredDate);
+		this.subject = subject;
+		this.subject.addEmployee(emp);
 	}
 
 	public Person() {
@@ -108,8 +114,25 @@ public class Person {
 		this.subject = subject;
 	}
 
+	public Person updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
+		setCccd(cccd);
+		setName(name);
+		setDateOfBirth(dob);
+		setSex(sex);
+		setPhone(phone);
+		this.account.setEmail(email);
+		return this;
+	}
+
 	public int login(String email, String password) {
 		return this.account.validateAccount(email, password);
+	}
+
+	public Person changePassword(String currentPassword, String newPassword) {
+		if (this.getAccount().getPassword().equalsIgnoreCase(currentPassword)) {
+			this.getAccount().setPassword(newPassword);
+		}
+		return this;
 	}
 
 	@Override
