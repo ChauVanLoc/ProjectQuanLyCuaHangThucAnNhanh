@@ -7,7 +7,7 @@ import constant.Rule;
 import models.Subject;
 import models.person.Person;
 
-public class Cashier extends Employee {
+public class Cashier extends EmployeeObserver {
 	public Cashier(String cccd, String name, Date dateOfBirth, Date expiredDate, String sex, Address address,
 			String email, String phone, String academicLevel, Subject subject) {
 		super.person = new Person(cccd, name, dateOfBirth, sex, address, phone);

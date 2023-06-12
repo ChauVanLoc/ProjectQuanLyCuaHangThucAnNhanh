@@ -1,26 +1,12 @@
 package models.product.food;
 
+import models.ProductObserver;
+import models.Subject;
 import models.product.Product;
 
-public abstract class Food {
-	private Product product;
+public abstract class Food extends ProductObserver {
 
-	public Food(Product product) {
-		super();
-		this.product = product;
-	}
+	@Override
+	public abstract double cost();
 
-	public Food() {
-		super();
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public abstract double charge();
 }

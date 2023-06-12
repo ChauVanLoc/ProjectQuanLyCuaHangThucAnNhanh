@@ -79,15 +79,11 @@ public class Account {
 	}
 
 	public boolean checkFormatEmail(String email) {
-		boolean result = false;
-
-		return result;
+		return true;
 	}
 
 	public boolean checkFormatPassword(String password) {
-		boolean result = false;
-
-		return result;
+		return true;
 	}
 	
 	public boolean validateAccount(String email, String password) {

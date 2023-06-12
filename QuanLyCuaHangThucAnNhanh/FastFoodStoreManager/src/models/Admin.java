@@ -1,177 +1,93 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import constant.Rule;
-import models.person.Account;
-import models.person.Address;
 import models.person.Order;
-import models.person.Person;
-import models.person.employee.Cashier;
-import models.person.employee.CleaningStaff;
-import models.person.employee.KitchenStaff;
-import models.person.employee.Security;
-import models.person.employee.Shipper;
 
 public class Admin implements Subject {
-	private Person person;
-	private List<Observer> observers;
-	private List<Order> orders;
-	private List<Account> accounts;
+	private ManageOrder manageOrder;
+	private ManageCustomer manageCustomer;
+	private ManageEmployee manageEmployee;
+	private ManageProduct manageProduct;
 
 	public Admin() {
-		this.person = new Person();
-		this.observers = new ArrayList<>();
-		this.orders = new ArrayList<>();
-		this.accounts = new ArrayList<>();
+		this.manageCustomer = new ManageCustomer();
+		this.manageEmployee = new ManageEmployee();
+		this.manageOrder = new ManageOrder();
+		this.manageProduct = new ManageProduct();
 	}
 
-	public Person getPerson() {
-		return person;
-	}
+//	------------------------------------------------------------------
+//	------------------ Product ---------------------------------------
+//	------------------------------------------------------------------
 
-	public void setPerson(Person person) {
-		this.person = person;
-	}
-
-	public List<Observer> getObservers() {
-		return observers;
-	}
-
-	public void setObservers(List<Observer> observers) {
-		this.observers = observers;
-	}
-
-	public List<Order> getOrders() {
-		return orders;
-	}
-
-	public void setOrders(List<Order> orders) {
-		this.orders = orders;
-	}
-
-	public List<Account> getAccount() {
-		return accounts;
-	}
-
-	public void setAccount(List<Account> accounts) {
-		this.accounts = accounts;
-	}
-
-	// Thao tac voi Observer
 	@Override
-	public void addObserver(Observer o) {
-		observers.add(o);
+	public void addProduct(ProductObserver p) {
+		this.manageProduct.addProduct(p);
 	}
 
 	@Override
-	public void removeObserver(Observer o) {
-		observers.remove(o);
+	public void deleteProduct(ProductObserver p) {
+		this.manageProduct.deleteProduct(p);
+	}
+
+//	------------------------------------------------------------------
+//	------------------ Decorator ---------------------------------------
+//	------------------------------------------------------------------
+
+	@Override
+	public void addDecorator(ProductObserver p) {
+		this.manageProduct.addProduct(p);
 	}
 
 	@Override
-	public void notifyObservers() {
-
+	public void deleteDecorator(ProductObserver p) {
+		this.manageProduct.deleteProduct(p);
 	}
 
-	public List<Observer> getAllEmployee() {
-		List<Observer> result = new ArrayList<>();
+//	------------------------------------------------------------------
+//	------------------ Customer --------------------------------------
+//	------------------------------------------------------------------
 
-		return result;
+	@Override
+	public void addCustomer(CustomerObserver p) {
+		this.manageCustomer.addCustomer(p);
 	}
 
-	public List<Observer> getAllCustomer() {
-		List<Observer> result = new ArrayList<>();
-
-		return result;
+	@Override
+	public void deleteCustomer(CustomerObserver p) {
+		this.manageCustomer.deleteCustomer(p);
 	}
 
-	public void createEmployee(String cccd, String name, int rule, Date dateOfBirth, Date expiredDate, String sex,
-			Address address, String email, String phone, String academicLevel, Subject subject) {
-		switch (rule) {
-		case Rule.CASHIER: {
-			new Cashier(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
-			break;
-		}
-		case Rule.SHIPPER: {
-			new Shipper(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
-			break;
-		}
-		case Rule.CLEANING: {
-			new CleaningStaff(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
-			break;
-		}
-		case Rule.SECURITY: {
-			new Security(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
-			break;
-		}
-		case Rule.KITCHEN: {
-			new KitchenStaff(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, academicLevel, subject);
-			break;
-		}
-		default:
-			throw new IllegalArgumentException("Unexpected value: " + rule);
-		}
+//	------------------------------------------------------------------
+//	------------------ Employee --------------------------------------
+//	------------------------------------------------------------------
+
+	@Override
+	public void addEmployee(EmployeeObserver p) {
+		this.manageEmployee.addEmployee(p);
 	}
 
-	// Thao tac voi Order
+	@Override
+	public void deleteEmployee(EmployeeObserver p) {
+		this.manageEmployee.deleteEmployee(p);
+	}
+
+	@Override
+	public void updateEmployee() {
+		this.manageEmployee.updateEmployee();
+	}
+
+//	------------------------------------------------------------------
+//	------------------ Order -----------------------------------------
+//	------------------------------------------------------------------
+
 	@Override
 	public void addOrder(Order o) {
-		orders.add(o);
+		this.manageOrder.addOrder(o);
 	}
 
 	@Override
-	public void removeOrder(Order o) {
-		orders.remove(o);
+	public void deleteOrder(Order o) {
+		this.manageOrder.deleteOrder(o);
 	}
 
-	@Override
-	public void notifyOrder() {
-
-	}
-
-	public List<Observer> getAllOrderOfEmployee() {
-		List<Observer> result = new ArrayList<>();
-
-		return result;
-	}
-
-	public List<Observer> getAllOrderOfCustomer() {
-		List<Observer> result = new ArrayList<>();
-
-		return result;
-	}
-
-	// thoa tac voi Account
-	@Override
-	public void addAccount(Account o) {
-		accounts.add(o);
-	}
-
-	@Override
-	public void removeAccount(Account o) {
-		accounts.remove(o);
-	}
-
-	@Override
-	public void notifyAccount() {
-
-	}
-
-	public List<Observer> getAllAccountOfEmployee() {
-		List<Observer> result = new ArrayList<>();
-
-		return result;
-	}
-
-	public List<Observer> getAllAccountOfCustomer() {
-		List<Observer> result = new ArrayList<>();
-
-		return result;
-	}
-	public static void main(String[] args) {
-		System.out.println("sssssssss");
-	}
 }

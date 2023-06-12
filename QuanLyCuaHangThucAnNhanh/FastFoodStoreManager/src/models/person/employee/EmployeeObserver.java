@@ -1,9 +1,8 @@
 package models.person.employee;
 
-import models.Observer;
 import models.person.Person;
 
-public abstract class Employee implements Observer {
+public abstract class EmployeeObserver {
 	protected Person person;
 	protected String academicLevel;
 
