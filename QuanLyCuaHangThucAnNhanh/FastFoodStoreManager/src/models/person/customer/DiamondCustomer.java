@@ -1,6 +1,8 @@
 package models.person.customer;
 
+import constant.Score;
 import models.CustomerObserver;
+import models.person.Order;
 
 public class DiamondCustomer extends CustomerObserver {
 	public DiamondCustomer(CustomerObserver cus) {
@@ -17,5 +19,10 @@ public class DiamondCustomer extends CustomerObserver {
 
 	@Override
 	public void upgradeCustomer(int score, CustomerObserver cus) {
+	}
+
+	@Override
+	public int calScore(Order order) {
+		return (int) (order.getTotal() * Score.STRATEGY_DIAMOND);
 	}
 }
