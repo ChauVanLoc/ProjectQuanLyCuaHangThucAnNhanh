@@ -2,6 +2,7 @@ package models.person.customer;
 
 import constant.Score;
 import models.CustomerObserver;
+import models.person.Order;
 
 public class SilverCustomer extends CustomerObserver {
 	public SilverCustomer(CustomerObserver cus) {
@@ -18,9 +19,14 @@ public class SilverCustomer extends CustomerObserver {
 
 	@Override
 	public void upgradeCustomer(int score, CustomerObserver cus) {
-		if (score > Score.UP_TO_GOLD) {
+		if (score >= Score.TARGET_GOLD) {
 			cus = new SilverCustomer(cus);
-			cus.decreaseScore(Score.UP_TO_GOLD);
+			cus.decreaseScore(Score.TARGET_GOLD);
 		}
+	}
+
+	@Override
+	public int calScore(Order order) {
+		return (int) (order.getTotal() * Score.STRATEGY_SILVER);
 	}
 }

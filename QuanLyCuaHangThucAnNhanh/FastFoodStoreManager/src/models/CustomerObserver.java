@@ -36,7 +36,7 @@ public abstract class CustomerObserver {
 	public void incrementScore(int score) {
 		setScore(getScore() + score);
 	}
-	
+
 	public void decreaseScore(int score) {
 		setScore(getScore() - score);
 	}
@@ -49,11 +49,21 @@ public abstract class CustomerObserver {
 		return order;
 	}
 
+	public Order orderWithDiscount(List<ProductObserver> products, Address adress) {
+		Order order = new Order(products, adress, this, this.subject, this.score);
+		this.orders.add(order);
+		incrementScore(order.score());
+		upgradeCustomer(getScore(), this);
+		return order;
+	}
+
 	public abstract void update();
 
 	public int login(String email, String password) {
 		return this.person.login(email, password);
 	}
-	
+
 	public abstract void upgradeCustomer(int score, CustomerObserver cus);
+
+	public abstract int calScore(Order order);
 }

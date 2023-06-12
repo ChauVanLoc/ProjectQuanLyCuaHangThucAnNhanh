@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import constant.Score;
 import models.CustomerObserver;
 import models.Subject;
+import models.person.Order;
 import models.person.Person;
 
 public class NewCustomer extends CustomerObserver {
@@ -23,10 +24,15 @@ public class NewCustomer extends CustomerObserver {
 
 	@Override
 	public void upgradeCustomer(int score, CustomerObserver cus) {
-		if (score > Score.UP_TO_SILVER) {
+		if (score >= Score.TARGET_SILVER) {
 			cus = new SilverCustomer(cus);
-			cus.decreaseScore(Score.UP_TO_SILVER);
+			cus.decreaseScore(Score.TARGET_SILVER);
 		}
+	}
+
+	@Override
+	public int calScore(Order order) {
+		return (int) (order.getTotal() * Score.STRATEGY_NEW);
 	}
 
 }

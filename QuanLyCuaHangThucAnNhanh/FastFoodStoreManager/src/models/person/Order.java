@@ -14,6 +14,7 @@ public class Order {
 	private Date created;
 	private Address address;
 	private CustomerObserver cus;
+	private int discount = 0;
 
 	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub) {
 		this.cus = cus;
@@ -22,6 +23,20 @@ public class Order {
 		for (ProductObserver p : this.products) {
 			total += p.cost();
 		}
+		this.address = adress;
+		sub.addOrder(this);
+	}
+	
+	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, int score) {
+		this.cus = cus;
+		this.products = pros;
+		this.created = new Date();
+		for (ProductObserver p : this.products) {
+			total += p.cost();
+		}
+		total = total - score;
+		discount = score;
+		cus.decreaseScore(score);
 		this.address = adress;
 		sub.addOrder(this);
 	}
@@ -47,7 +62,7 @@ public class Order {
 	}
 
 	public int score() {
-		return (int) this.total / 20;
+		return this.cus.calScore(this);
 	}
 
 	@Override
