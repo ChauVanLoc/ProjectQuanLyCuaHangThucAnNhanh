@@ -91,8 +91,8 @@ public class LoginForm extends JFrame {
 		};
 		panel.setOpaque(false);
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(this.screenSize.width * 1 / 4, this.screenSize.height * 1 / 6, this.screenSize.width * 2 / 4,
-				this.screenSize.height * 4 / 6);
+		panel.setBounds(320, 120, 706,
+				563);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
