@@ -1,10 +1,12 @@
-package models;
+package models.manage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import constant.Rule;
 import constant.Score;
+import models.CustomerObserver;
+import models.Subject;
 import models.person.customer.NewCustomer;
 
 public class ManageCustomer {
