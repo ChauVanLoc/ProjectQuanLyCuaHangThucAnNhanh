@@ -103,4 +103,9 @@ public class Admin implements Subject {
 		this.manageOrder.deleteOrder(o);
 	}
 
+	@Override
+	public Order payment(Order order) {
+		return this.manageOrder.payment(order);
+	}
+
 }

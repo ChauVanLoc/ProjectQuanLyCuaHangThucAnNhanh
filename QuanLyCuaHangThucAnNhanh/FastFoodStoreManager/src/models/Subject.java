@@ -21,6 +21,8 @@ public interface Subject {
 
 	void deleteOrder(Order o);
 
+	Order payment(Order order);
+
 	void addDecorator(ProductObserver p);
 
 	void deleteDecorator(ProductObserver p);
