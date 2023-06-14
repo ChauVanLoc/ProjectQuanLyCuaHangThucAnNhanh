@@ -3,9 +3,12 @@ package models;
 import java.util.Date;
 import java.util.List;
 
+import constant.OrderStatus;
 import models.person.Address;
 import models.person.Order;
 import models.person.Person;
+import models.person.customer.GatewayPayment;
+import models.person.customer.ShopXu;
 
 public abstract class CustomerObserver {
 	protected Person person;
@@ -13,6 +16,7 @@ public abstract class CustomerObserver {
 	protected List<Address> deliveryAddress;
 	protected List<Order> orders;
 	protected Subject subject;
+	protected GatewayPayment gateway;
 
 	public int getScore() {
 		return score;
@@ -46,20 +50,34 @@ public abstract class CustomerObserver {
 		setScore(getScore() - score);
 	}
 
-	public Order order(List<ProductObserver> products, Address adress) {
+	public Order order(List<ProductObserver> products, Address adress, boolean isPay) {
 		Order order = new Order(products, adress, this, this.subject);
+		if (isPay && this.gateway.sucessPayment(order.getTotal())) {
+			order.setStatus(OrderStatus.success);
+			incrementScore(order.score());
+			upgradeCustomer(getScore(), this);
+		} else {
+			order.setStatus(OrderStatus.waiting_transaction);
+		}
 		this.orders.add(order);
-		incrementScore(order.score());
-		upgradeCustomer(getScore(), this);
 		return order;
 	}
 
-	public Order orderWithDiscount(List<ProductObserver> products, Address adress) {
+	public Order orderWithDiscount(List<ProductObserver> products, Address adress, boolean isPay) {
 		Order order = new Order(products, adress, this, this.subject, this.score);
+		if (isPay && this.gateway.sucessPayment(order.getTotal())) {
+			order.setStatus(OrderStatus.success);
+			incrementScore(order.score());
+			upgradeCustomer(getScore(), this);
+		} else {
+			order.setStatus(OrderStatus.waiting_transaction);
+		}
 		this.orders.add(order);
-		incrementScore(order.score());
-		upgradeCustomer(getScore(), this);
 		return order;
+	}
+
+	public Order payment(Order order) {
+		return this.subject.payment(order);
 	}
 
 	public Order cancelOrder(String note, Order order) {

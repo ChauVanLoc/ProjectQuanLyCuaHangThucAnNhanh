@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import constant.GenerateId;
+import constant.OrderStatus;
 import models.CustomerObserver;
 import models.EmployeeObserver;
 import models.ProductObserver;
 import models.Subject;
 
 public class Order {
+	private String id;
 	private List<ProductObserver> products = new ArrayList<>();
 	private double total = 0;
 	private Date created;
@@ -18,7 +21,7 @@ public class Order {
 	private EmployeeObserver emp;
 	private int discount = 0;
 	private String note;
-	private boolean status;
+	private String status;
 
 	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub) {
 		this.cus = cus;
@@ -29,9 +32,9 @@ public class Order {
 		}
 		this.address = adress;
 		sub.addOrder(this);
-		this.status = true;
+		this.id = GenerateId.generateId();
 	}
-	
+
 	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, int score) {
 		this.cus = cus;
 		this.products = pros;
@@ -44,9 +47,9 @@ public class Order {
 		cus.decreaseScore(score);
 		this.address = adress;
 		sub.addOrder(this);
-		this.status = true;
+		this.id = GenerateId.generateId();
 	}
-	
+
 	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, EmployeeObserver emp) {
 		this.cus = cus;
 		this.products = pros;
@@ -56,11 +59,12 @@ public class Order {
 		}
 		this.address = adress;
 		sub.addOrder(this);
-		this.status = true;
 		this.emp = emp;
+		this.id = GenerateId.generateId();
 	}
 
-	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, EmployeeObserver emp, int score) {
+	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, EmployeeObserver emp,
+			int score) {
 		this.cus = cus;
 		this.products = pros;
 		this.created = new Date();
@@ -72,8 +76,8 @@ public class Order {
 		cus.decreaseScore(score);
 		this.address = adress;
 		sub.addOrder(this);
-		this.status = true;
 		this.emp = emp;
+		this.id = GenerateId.generateId();
 	}
 
 	public List<ProductObserver> getProducts() {
@@ -104,11 +108,11 @@ public class Order {
 		return discount;
 	}
 
-	public boolean isStatus() {
+	public String isStatus() {
 		return status;
 	}
 
-	private void setStatus(boolean status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 
@@ -117,8 +121,15 @@ public class Order {
 	}
 
 	public void cancel(String note) {
-		setStatus(false);
+		setStatus(OrderStatus.cancel);
 		setNote(note);
+	}
+
+	public boolean equal(Order order) {
+		if (this.id.equals(order.id)) {
+			return true;
+		}
+		return false;
 	}
 
 	@Override
