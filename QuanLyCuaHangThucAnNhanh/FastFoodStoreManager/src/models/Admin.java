@@ -1,6 +1,10 @@
 package models;
 
 import constant.Password;
+import models.manage.ManageCustomer;
+import models.manage.ManageEmployee;
+import models.manage.ManageOrder;
+import models.manage.ManageProduct;
 import models.person.Order;
 
 public class Admin implements Subject {

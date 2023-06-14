@@ -1,7 +1,9 @@
-package models;
+package models.manage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.EmployeeObserver;
 
 public class ManageEmployee {
 	private List<EmployeeObserver> cuss;
@@ -25,6 +27,6 @@ public class ManageEmployee {
 	public void updateEmployee() {
 
 	}
-	
+
 //	public EmployeeObserver createEmployee(int rule, )
 }

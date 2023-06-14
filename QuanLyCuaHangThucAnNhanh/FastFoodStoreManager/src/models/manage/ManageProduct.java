@@ -1,7 +1,9 @@
-package models;
+package models.manage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import models.ProductObserver;
 
 public class ManageProduct {
 	private List<ProductObserver> products;
