@@ -6,10 +6,10 @@ import java.util.List;
 
 import constant.GenerateId;
 import constant.OrderStatus;
-import models.CustomerObserver;
-import models.EmployeeObserver;
 import models.ProductObserver;
 import models.Subject;
+import models.person.customer.Customer;
+import models.person.employee.Employee;
 
 public class Order {
 	private String id;
@@ -17,13 +17,13 @@ public class Order {
 	private double total = 0;
 	private Date created;
 	private Address address;
-	private CustomerObserver cus;
-	private EmployeeObserver emp;
+	private Customer cus;
+	private Employee emp;
 	private int discount = 0;
 	private String note;
 	private String status;
 
-	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub) {
+	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub) {
 		this.cus = cus;
 		this.products = pros;
 		this.created = new Date();
@@ -35,7 +35,7 @@ public class Order {
 		this.id = GenerateId.generateId();
 	}
 
-	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, int score) {
+	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, int score) {
 		this.cus = cus;
 		this.products = pros;
 		this.created = new Date();
@@ -50,7 +50,7 @@ public class Order {
 		this.id = GenerateId.generateId();
 	}
 
-	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, EmployeeObserver emp) {
+	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, Employee emp) {
 		this.cus = cus;
 		this.products = pros;
 		this.created = new Date();
@@ -63,7 +63,7 @@ public class Order {
 		this.id = GenerateId.generateId();
 	}
 
-	public Order(List<ProductObserver> pros, Address adress, CustomerObserver cus, Subject sub, EmployeeObserver emp,
+	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, Employee emp,
 			int score) {
 		this.cus = cus;
 		this.products = pros;
@@ -96,7 +96,7 @@ public class Order {
 		return address;
 	}
 
-	public CustomerObserver getCus() {
+	public Customer getCus() {
 		return cus;
 	}
 

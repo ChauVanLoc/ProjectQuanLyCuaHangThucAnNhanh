@@ -1,21 +1,21 @@
-package models;
+package models.person.customer;
 
 import java.util.Date;
 import java.util.List;
 
 import constant.OrderStatus;
+import models.PersonObserver;
+import models.ProductObserver;
+import models.Subject;
 import models.person.Address;
 import models.person.Order;
 import models.person.Person;
-import models.person.customer.GatewayPayment;
-import models.person.customer.ShopXu;
 
-public abstract class CustomerObserver {
+public abstract class Customer extends PersonObserver {
 	protected Person person;
 	protected int score;
 	protected List<Address> deliveryAddress;
 	protected List<Order> orders;
-	protected Subject subject;
 	protected GatewayPayment gateway;
 
 	public int getScore() {
@@ -85,7 +85,7 @@ public abstract class CustomerObserver {
 		return order;
 	}
 
-	public CustomerObserver updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
+	public Customer updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
 		this.setPerson(this.person.updateInfor(cccd, name, dob, sex, phone, email));
 		return this;
 	}
@@ -94,12 +94,12 @@ public abstract class CustomerObserver {
 		return this.person.login(email, password);
 	}
 
-	public CustomerObserver changePassword(String currentPassword, String newPassword) {
+	public Customer changePassword(String currentPassword, String newPassword) {
 		this.setPerson(this.person.changePassword(currentPassword, newPassword));
 		return this;
 	}
 
-	public abstract void upgradeCustomer(int score, CustomerObserver cus);
+	public abstract void upgradeCustomer(int score, Customer cus);
 
 	public abstract int calScore(Order order);
 

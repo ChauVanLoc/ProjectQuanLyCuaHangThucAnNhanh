@@ -6,6 +6,8 @@ import models.manage.ManageEmployee;
 import models.manage.ManageOrder;
 import models.manage.ManageProduct;
 import models.person.Order;
+import models.person.customer.Customer;
+import models.person.employee.Employee;
 
 public class Admin implements Subject {
 	private ManageOrder manageOrder;
@@ -57,12 +59,12 @@ public class Admin implements Subject {
 //	------------------------------------------------------------------
 
 	@Override
-	public void addCustomer(CustomerObserver p) {
+	public void addCustomer(Customer p) {
 		this.manageCustomer.addCustomer(p);
 	}
 
 	@Override
-	public void deleteCustomer(CustomerObserver p) {
+	public void deleteCustomer(Customer p) {
 		this.manageCustomer.deleteCustomer(p);
 	}
 	
@@ -71,12 +73,12 @@ public class Admin implements Subject {
 //	------------------------------------------------------------------
 
 	@Override
-	public void addEmployee(EmployeeObserver p) {
+	public void addEmployee(Employee p) {
 		this.manageEmployee.addEmployee(p);
 	}
 
 	@Override
-	public void deleteEmployee(EmployeeObserver p) {
+	public void deleteEmployee(Employee p) {
 		this.manageEmployee.deleteEmployee(p);
 	}
 

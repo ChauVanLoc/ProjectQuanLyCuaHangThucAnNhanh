@@ -1,5 +1,6 @@
 package models;
 
+import models.person.customer.Customer;
 import models.person.customer.NewCustomer;
 import models.person.customer.SilverCustomer;
 import models.product.beverage.Juice;
@@ -24,7 +25,7 @@ public class Test {
 //		
 //		System.out.println(pudding.cost());
 		
-		CustomerObserver c1 = new NewCustomer("a", "09838338", "locchau.220401", "abcd", admin);
+		Customer c1 = new NewCustomer("a", "09838338", "locchau.220401", "abcd", admin);
 		System.out.println(c1.person.toString());
 		
 		c1 = new SilverCustomer(c1);

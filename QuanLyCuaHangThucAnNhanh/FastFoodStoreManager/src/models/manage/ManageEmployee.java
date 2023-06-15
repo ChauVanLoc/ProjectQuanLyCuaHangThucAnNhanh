@@ -3,24 +3,24 @@ package models.manage;
 import java.util.ArrayList;
 import java.util.List;
 
-import models.EmployeeObserver;
+import models.person.employee.Employee;
 
 public class ManageEmployee {
-	private List<EmployeeObserver> cuss;
+	private List<Employee> cuss;
 
 	public ManageEmployee() {
 		this.cuss = new ArrayList<>();
 	}
 
-	public List<EmployeeObserver> getEmployee() {
+	public List<Employee> getEmployee() {
 		return cuss;
 	}
 
-	public void addEmployee(EmployeeObserver o) {
+	public void addEmployee(Employee o) {
 		this.cuss.add(o);
 	}
 
-	public void deleteEmployee(EmployeeObserver o) {
+	public void deleteEmployee(Employee o) {
 		this.cuss.remove(o);
 	}
 

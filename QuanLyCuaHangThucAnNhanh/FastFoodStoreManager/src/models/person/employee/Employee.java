@@ -1,14 +1,10 @@
-package models;
+package models.person.employee;
 
 import constant.Salary;
+import models.PersonObserver;
 import models.person.Person;
-import models.person.employee.Cashier;
-import models.person.employee.ISalary;
-import models.person.employee.KitchenStaff;
-import models.person.employee.Shipper;
-import models.person.employee.TimeWork;
 
-public abstract class EmployeeObserver {
+public abstract class Employee extends PersonObserver {
 	protected Person person;
 	protected String academicLevel;
 	protected TimeWork timeWork;

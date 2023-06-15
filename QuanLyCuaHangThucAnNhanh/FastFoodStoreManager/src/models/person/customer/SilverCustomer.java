@@ -1,19 +1,20 @@
 package models.person.customer;
 
 import constant.Score;
-import models.CustomerObserver;
+import models.PersonObserver;
 import models.person.Order;
 
-public class SilverCustomer extends CustomerObserver {
-	public SilverCustomer(CustomerObserver cus) {
-		super.person = cus.getPerson();
-		super.deliveryAddress = cus.getDeliveryAddress();
-		super.orders = cus.getOrders();
-		super.score = cus.getScore();
+public class SilverCustomer extends Customer {
+	public SilverCustomer(PersonObserver cus) {
+		super.person = ((Customer) cus).getPerson();
+		super.subject = cus.getSubject();
+		super.deliveryAddress = ((Customer) cus).getDeliveryAddress();
+		super.orders = ((Customer) cus).getOrders();
+		super.score = ((Customer) cus).getScore();
 	}
 
 	@Override
-	public void upgradeCustomer(int score, CustomerObserver cus) {
+	public void upgradeCustomer(int score, Customer cus) {
 		if (score >= Score.TARGET_GOLD) {
 			cus = new SilverCustomer(cus);
 			cus.decreaseScore(Score.TARGET_GOLD);
