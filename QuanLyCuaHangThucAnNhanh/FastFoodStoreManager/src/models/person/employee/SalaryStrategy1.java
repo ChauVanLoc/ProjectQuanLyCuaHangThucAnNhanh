@@ -7,7 +7,7 @@ public class SalaryStrategy1 implements ISalary {
 	@Override
 	public double salary(Employee emp) {
 		double totalSalary = 0;
-		for (TimeSheet t : emp.getTimeWork().getTimeSheeats()) {
+		for (TimeSheet t : emp.getLatestTimeWork().getTimeSheeats()) {
 			if (t.getIsLate()) {
 				totalSalary += emp.salaryByPosition() - Salary.fee_late;
 			}

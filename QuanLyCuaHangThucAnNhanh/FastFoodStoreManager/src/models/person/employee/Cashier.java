@@ -1,5 +1,6 @@
 package models.person.employee;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import constant.Password;
@@ -16,5 +17,6 @@ public class Cashier extends Employee {
 		super.subject.addEmployee(this);
 		setAcademicLevel(academicLevel);
 		super.iSalary = iSalary;
+		super.notifications = new ArrayList<>();
 	}
 }

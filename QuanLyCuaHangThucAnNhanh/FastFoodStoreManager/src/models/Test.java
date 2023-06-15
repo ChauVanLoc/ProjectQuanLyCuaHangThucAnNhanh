@@ -9,7 +9,7 @@ import models.product.beverageDecorator.Pudding;
 
 public class Test {
 	public static void main(String[] args) {
-		Subject admin = new Admin();
+		Subject admin = new Center();
 
 //		ProductObserver orange = new Juice("1", "orange", 3, 16, "", "Mo ta", admin);
 //
