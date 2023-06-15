@@ -1,9 +1,8 @@
 package models.person.employee;
 
+import java.util.ArrayList;
 import java.util.Date;
 
-import constant.Password;
-import constant.Rule;
 import models.Subject;
 import models.person.Address;
 import models.person.Person;
@@ -16,5 +15,6 @@ public class Shipper extends Employee {
 		super.subject.addEmployee(this);
 		setAcademicLevel(academicLevel);
 		super.iSalary = iSalary;
+		super.notifications = new ArrayList<>();
 	}
 }

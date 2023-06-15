@@ -1,5 +1,7 @@
 package models.person.employee;
 
+import java.util.List;
+
 import constant.Salary;
 import models.PersonObserver;
 import models.person.Person;
@@ -7,7 +9,7 @@ import models.person.Person;
 public abstract class Employee extends PersonObserver {
 	protected Person person;
 	protected String academicLevel;
-	protected TimeWork timeWork;
+	protected List<TimeWork> timeWork;
 	protected ISalary iSalary;
 
 	public String getAcademicLevel() {
@@ -18,8 +20,16 @@ public abstract class Employee extends PersonObserver {
 		this.academicLevel = academicLevel;
 	}
 
-	public TimeWork getTimeWork() {
+	public void setTimeWork(List<TimeWork> timeWork) {
+		this.timeWork = timeWork;
+	}
+
+	public List<TimeWork> getTimeWork() {
 		return timeWork;
+	}
+
+	public TimeWork getLatestTimeWork() {
+		return this.timeWork.get(this.timeWork.size() - 1);
 	}
 
 	public double salary() {
@@ -35,5 +45,9 @@ public abstract class Employee extends PersonObserver {
 			return Salary.salary_of_shipeer;
 		}
 		return 0;
+	}
+
+	public void attendance() {
+
 	}
 }
