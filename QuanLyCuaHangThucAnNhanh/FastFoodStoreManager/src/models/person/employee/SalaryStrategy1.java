@@ -1,12 +1,11 @@
 package models.person.employee;
 
 import constant.Salary;
-import models.EmployeeObserver;
 
 public class SalaryStrategy1 implements ISalary {
 
 	@Override
-	public double salary(EmployeeObserver emp) {
+	public double salary(Employee emp) {
 		double totalSalary = 0;
 		for (TimeSheet t : emp.getTimeWork().getTimeSheeats()) {
 			if (t.getIsLate()) {

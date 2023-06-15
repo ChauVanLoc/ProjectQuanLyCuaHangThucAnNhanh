@@ -3,9 +3,9 @@ package models.person;
 import java.util.Date;
 
 import constant.Password;
-import models.CustomerObserver;
-import models.EmployeeObserver;
 import models.Subject;
+import models.person.customer.Customer;
+import models.person.employee.Employee;
 
 public class Person {
 	private String id;
@@ -16,18 +16,15 @@ public class Person {
 	private Address address;
 	private String phone;
 	private Account account;
-	private Subject subject;
 
-	public Person(String name, String phone, String email, String password, Subject subject, CustomerObserver cus) {
+	public Person(String name, String phone, String email, String password) {
 		this.name = name;
 		this.phone = phone;
 		this.account = new Account(email, password);
-		this.subject = subject;
-		this.subject.addCustomer(cus);
 	}
 
 	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String email, String phone,
-			int rule, Date expiredDate, Subject subject, EmployeeObserver emp) {
+			int rule, Date expiredDate) {
 		this.cccd = cccd;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
@@ -35,8 +32,6 @@ public class Person {
 		this.address = address;
 		this.phone = phone;
 		this.account = new Account(email, Password.DEFAULT_PASSWORD, rule, expiredDate);
-		this.subject = subject;
-		this.subject.addEmployee(emp);
 	}
 
 	public Person() {
@@ -106,14 +101,6 @@ public class Person {
 		this.account = account;
 	}
 
-	public Subject getSubject() {
-		return subject;
-	}
-
-	public void setSubject(Subject subject) {
-		this.subject = subject;
-	}
-
 	public Person updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
 		setCccd(cccd);
 		setName(name);
@@ -137,9 +124,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", cccd=" + cccd + ", name=" + name + ", dateOfBirth=" + dateOfBirth + ", sex="
-				+ sex + ", address=" + address + ", phone=" + phone + ", account=" + account + ", subject=" + subject
-				+ "]";
+		return null;
 	}
 
 }

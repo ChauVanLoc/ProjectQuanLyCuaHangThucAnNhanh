@@ -5,18 +5,18 @@ import java.util.List;
 
 import constant.Rule;
 import constant.Score;
-import models.CustomerObserver;
 import models.Subject;
+import models.person.customer.Customer;
 import models.person.customer.NewCustomer;
 
 public class ManageCustomer {
-	private List<CustomerObserver> cuss;
+	private List<Customer> cuss;
 
 	public ManageCustomer() {
 		this.cuss = new ArrayList<>();
 	}
 
-	public List<CustomerObserver> getCustomer() {
+	public List<Customer> getCustomer() {
 		return cuss;
 	}
 
@@ -24,26 +24,26 @@ public class ManageCustomer {
 		Score.changeScore(type, targetScore);
 	}
 
-	public void addCustomer(CustomerObserver o) {
+	public void addCustomer(Customer o) {
 		this.cuss.add(o);
 	}
 
-	public void deleteCustomer(CustomerObserver o) {
+	public void deleteCustomer(Customer o) {
 		this.cuss.remove(o);
 	}
 
 	public int login(String email, String password) {
-		for (CustomerObserver c : cuss) {
+		for (Customer c : cuss) {
 			return c.login(email, password);
 		}
 		return Rule.UNAUTHORIZED;
 	}
 
-	public CustomerObserver register(String name, String email, String password, String phone, Subject sub) {
+	public Customer register(String name, String email, String password, String phone, Subject sub) {
 		return new NewCustomer(name, phone, email, password, sub);
 	}
 
-	public CustomerObserver forgotPassword(String email) {
+	public Customer forgotPassword(String email) {
 		return null;
 	}
 

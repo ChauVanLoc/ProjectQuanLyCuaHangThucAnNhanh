@@ -1,19 +1,21 @@
 package models;
 
 import models.person.Order;
+import models.person.customer.Customer;
+import models.person.employee.Employee;
 
 public interface Subject {
 	void addProduct(ProductObserver p);
 
 	void deleteProduct(ProductObserver p);
 
-	void addCustomer(CustomerObserver p);
+	void addCustomer(Customer p);
 
-	void deleteCustomer(CustomerObserver p);
+	void deleteCustomer(Customer p);
 
-	void addEmployee(EmployeeObserver p);
+	void addEmployee(Employee p);
 
-	void deleteEmployee(EmployeeObserver p);
+	void deleteEmployee(Employee p);
 
 	void updateEmployee();
 

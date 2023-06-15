@@ -8,7 +8,8 @@ public class ShopXu implements GatewayPayment {
 
 	@Override
 	public boolean sucessPayment(double amount) {
-		if (this.amount > amount) {
+		if (this.amount >= amount) {
+			this.amount -= amount;
 			return true;
 		}
 		return false;
