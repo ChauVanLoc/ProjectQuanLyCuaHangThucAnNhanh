@@ -261,11 +261,6 @@ public class Profile extends JPanel {
         scrollPaneListMonth.setViewportView(listMonth);
         scrollPaneListYear.setViewportView(listYear);
 		
-		JButton btnUpdate = new JButton("UPDATE");
-		btnUpdate.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnUpdate.setBounds(10, 504, 150, 30);
-		panel_3.add(btnUpdate);
-		
 		JButton btnSave = new JButton("SAVE");
 		btnSave.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnSave.setBounds(290, 504, 150, 30);

@@ -113,7 +113,7 @@ public class HomePage extends JFrame {
         });
 		btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnMenu.setBackground(Color.WHITE);
-		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/menuIcon.png");
+		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/menu.png");
 		btnMenu.setIcon(iconMenu);
 		btnMenu.setBounds(0, 0, 78, 70);
 		menu.add(btnMenu);
@@ -126,7 +126,7 @@ public class HomePage extends JFrame {
 			}
 		});
 		btnHistory.setBackground(Color.WHITE);
-		ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/HistoryIcon.png");
+		ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/icon/history.png");
 		btnHistory.setIcon(iconHistory);
 		btnHistory.setBounds(0, 95, 78, 70);
 		menu.add(btnHistory);
@@ -139,27 +139,14 @@ public class HomePage extends JFrame {
 			}
 		});
 		btnFrofile.setBackground(Color.WHITE);
-		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/FrofileIcon.png");
+		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/icon/man.png");
 		btnFrofile.setIcon(iconFrofile);
 		btnFrofile.setBounds(0, 195, 78, 70);
 		menu.add(btnFrofile);
 		
-		JButton btnStats = new JButton();
-        btnStats.addMouseListener(new PanelButtonMouseAdapter(panelStats) {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                menuClicked(panelStats);
-            }
-        });
-		btnStats.setBackground(Color.WHITE);
-		ImageIcon iconStats = new ImageIcon("../FastFoodStoreManager/img/StatsIcon.png");
-		btnStats.setIcon(iconStats);
-		btnStats.setBounds(0, 291, 78, 70);
-		menu.add(btnStats);
-		
 		JButton btnLogOut = new JButton();
 		btnLogOut.setBackground(Color.WHITE);
-		ImageIcon iconLogOut = new ImageIcon("../FastFoodStoreManager/img/exitIcon.png");
+		ImageIcon iconLogOut = new ImageIcon("../FastFoodStoreManager/img/icon/logout.png");
 		btnLogOut.setIcon(iconLogOut);
 		btnLogOut.setBounds(0, 488, 78, 70);
 		menu.add(btnLogOut);
@@ -181,12 +168,6 @@ public class HomePage extends JFrame {
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
 		menu.add(lblNewLabel_4_2);
-		
-		JLabel lblNewLabel_4_3 = new JLabel("Stats");
-		lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4_3.setBounds(0, 360, 78, 14);
-		menu.add(lblNewLabel_4_3);
 	}
 	
     public void menuClicked(JPanel selectedPanel) {
