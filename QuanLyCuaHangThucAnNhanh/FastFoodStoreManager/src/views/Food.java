@@ -30,7 +30,7 @@ public class Food extends JPanel {
 	 * Create the panel.
 	 */
 	public Food() {
-		setBounds(0, 0, 900, 548);
+		setBounds(0, 0, 900, 586);
 		setLayout(null);
 		setVisible(true);
 
@@ -38,7 +38,7 @@ public class Food extends JPanel {
 		scrollPaneFood.setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
 		scrollPaneFood.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPaneFood.setEnabled(false);
-		scrollPaneFood.setBounds(0, 0, 560, 548);
+		scrollPaneFood.setBounds(0, 0, 560, 586);
 		add(scrollPaneFood);
 
 		JPanel panel = new JPanel();
@@ -110,7 +110,7 @@ public class Food extends JPanel {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.ITALIC, 15));
 
 		JSpinner spinner = new JSpinner();
-		spinner.setBounds(109, 0, 61, 26);
+		spinner.setBounds(99, 2, 61, 26);
 		panel_7.add(spinner);
 		spinner.setFont(new Font("Tahoma", Font.BOLD, 15));
 		spinner.setModel(new SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
@@ -642,7 +642,7 @@ public class Food extends JPanel {
 
 		JScrollPane scrollPaneFoodTopping = new JScrollPane();
 		scrollPaneFoodTopping.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPaneFoodTopping.setBounds(560, 0, 340, 548);
+		scrollPaneFoodTopping.setBounds(560, 0, 340, 586);
 		add(scrollPaneFoodTopping);
 
 		JLabel lblNewLabel_15 = new JLabel("TOPPING");

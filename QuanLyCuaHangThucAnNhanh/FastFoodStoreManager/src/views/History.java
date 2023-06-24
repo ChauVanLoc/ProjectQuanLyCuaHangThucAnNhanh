@@ -17,19 +17,19 @@ public class History extends JPanel {
 	private JTable tableHistory;
 
 	public History() {
-		setBounds(0, 0, 1184, 570);
+		setBounds(0, 0, 1230, 619);
 		setLayout(null);
 
 		JPanel panel = new JPanel();
 		panel.setLocation(0, 0);
-		panel.setSize(1184, 570);
+		panel.setSize(1230, 619);
 		panel.setBackground(new Color(0, 128, 128));
 		add(panel);
 		panel.setLayout(null);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
-		panel_1.setBounds(0, 135, 1184, 435);
+		panel_1.setBounds(0, 135, 1230, 484);
 		panel.add(panel_1);
 		panel_1.setFont(new Font("Tahoma", Font.BOLD, 17));
 		panel_1.setLayout(null);
@@ -40,7 +40,7 @@ public class History extends JPanel {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		scrollPane.setBounds(0, 0, 1179, 435);
+		scrollPane.setBounds(0, 0, 1230, 484);
 		panel_1.add(scrollPane);
 
 		tableHistory = new JTable(data, columnNames);
@@ -52,7 +52,7 @@ public class History extends JPanel {
 		JPanel panel_2 = new JPanel();
 		panel_2.setBackground(Color.LIGHT_GRAY);
 		panel_2.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_2.setBounds(0, 0, 1184, 130);
+		panel_2.setBounds(0, 0, 1230, 134);
 		panel.add(panel_2);
 		GridBagLayout gbl_panel_2 = new GridBagLayout();
 		gbl_panel_2.columnWidths = new int[] { 236, 236, 236, 236, 236 };

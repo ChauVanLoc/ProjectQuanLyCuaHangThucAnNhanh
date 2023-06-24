@@ -37,7 +37,7 @@ public class HomePage extends JFrame {
 
 	public HomePage() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1350, 750);
+		setBounds(0, 0, 1350, 732);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(0, 128, 128));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -50,18 +50,20 @@ public class HomePage extends JFrame {
 		setContentPane(contentPane);
 
 		panelMenu = new Content();
-		panelMenu.setBounds(0, 0, 1224, 631);
+		panelMenu.setBounds(0, 0, 1232, 631);
 		panelHistory = new History();
+		panelHistory.setBounds(0, 0, 1232, 631);
 		panelProfile = new Profile();
+		panelProfile.setBounds(0, 0, 1232, 631);
 
 		JPanel menu = new JPanel();
 		menu.setLayout(null);
 		menu.setBackground(Color.WHITE);
-		menu.setBounds(20, 73, 78, 630);
+		menu.setBounds(10, 66, 78, 616);
 		contentPane.add(menu);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(104, 73, 1184, 570);
+		panel.setBounds(94, 66, 1232, 630);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -82,7 +84,7 @@ public class HomePage extends JFrame {
 		JLabel lblNewLabel_3 = new JLabel("FAST FOOD STORE");
 		lblNewLabel_3.setForeground(Color.YELLOW);
 		lblNewLabel_3.setFont(new Font("Juice ITC", Font.BOLD, 60));
-		lblNewLabel_3.setBounds(412, 5, 403, 68);
+		lblNewLabel_3.setBounds(459, 5, 403, 68);
 		contentPane.add(lblNewLabel_3);
 
 		JButton btnMenu = new JButton();

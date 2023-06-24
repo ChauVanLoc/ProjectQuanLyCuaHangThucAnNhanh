@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Content extends JPanel {
 
@@ -37,13 +39,15 @@ public class Content extends JPanel {
 	}
 
 	public Content() {
-		setBounds(0, 0, 1190, 619);
+		setBounds(0, 0, 1230, 619);
 		this.setBackground(new Color(0, 128, 128));
 		this.setBorder(new EmptyBorder(5, 5, 5, 5));
 		this.setLayout(null);
 
 		panelFood = new Food();
+		panelFood.setBounds(0, 0, 900, 586);
 		panelBeverage = new Beverage();
+		panelBeverage.setBounds(0, 0, 900, 586);
 		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/menuIcon.png");
 		ImageIcon iconCart = new ImageIcon("../FastFoodStoreManager/img/cartIcon.png");
 		ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/HistoryIcon.png");
@@ -52,7 +56,7 @@ public class Content extends JPanel {
 		ImageIcon iconLogOut = new ImageIcon("../FastFoodStoreManager/img/exitIcon.png");
 
 		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 22, 900, 548);
+		panelMain.setBounds(0, 33, 900, 586);
 		this.add(panelMain);
 		panelMain.setLayout(null);
 		ImageIcon img = new ImageIcon("../FastFoodStoreManager/img/logo.png");
@@ -61,7 +65,7 @@ public class Content extends JPanel {
 		ImageIcon logoImg = new ImageIcon(resizedImage);
 
 		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(910, 0, 274, 619);
+		panel_1.setBounds(910, 0, 320, 619);
 		this.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -138,7 +142,7 @@ public class Content extends JPanel {
 		JButton btnNewButton = new JButton("ORDER");
 		btnNewButton.setForeground(new Color(255, 0, 0));
 		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnNewButton.setBounds(133, 522, 141, 48);
+		btnNewButton.setBounds(133, 561, 141, 48);
 		panel_1.add(btnNewButton);
 
 		JButton btnFood = new JButton("FOOD");
@@ -149,10 +153,14 @@ public class Content extends JPanel {
 			}
 		});
 		btnFood.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnFood.setBounds(0, 0, 89, 23);
+		btnFood.setBounds(0, 0, 132, 33);
 		this.add(btnFood);
 
 		JButton btnBeverage = new JButton("BEVERAGE");
+		btnBeverage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnBeverage.addMouseListener(new PanelButtonMouseAdapter(panelBeverage) {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -160,7 +168,7 @@ public class Content extends JPanel {
 			}
 		});
 		btnBeverage.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnBeverage.setBounds(88, 0, 122, 23);
+		btnBeverage.setBounds(130, 0, 132, 33);
 		this.add(btnBeverage);
 
 		// add thuc don
@@ -173,7 +181,6 @@ public class Content extends JPanel {
 	public void menuClicked(JPanel selectedPanel) {
 		panelFood.setVisible(false);
 		panelBeverage.setVisible(false);
-
 		selectedPanel.setVisible(true);
 	}
 

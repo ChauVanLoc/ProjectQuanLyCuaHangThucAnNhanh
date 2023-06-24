@@ -29,11 +29,11 @@ public class Beverage extends JPanel {
 	 * Create the panel.
 	 */
 	public Beverage() {
-		setBounds(0, 0, 900, 548);
+		setBounds(0, 0, 900, 586);
 		setLayout(null);
 
 		JScrollPane scrollPaneBeverage = new JScrollPane();
-		scrollPaneBeverage.setBounds(0, 0, 560, 548);
+		scrollPaneBeverage.setBounds(0, 0, 560, 586);
 		add(scrollPaneBeverage);
 
 		JPanel panel = new JPanel();
@@ -351,7 +351,7 @@ public class Beverage extends JPanel {
 
 		JScrollPane scrollPaneBeverageTopping = new JScrollPane();
 		scrollPaneBeverageTopping.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPaneBeverageTopping.setBounds(560, 0, 340, 548);
+		scrollPaneBeverageTopping.setBounds(560, 0, 340, 586);
 		add(scrollPaneBeverageTopping);
 
 		JLabel lblNewLabel_15 = new JLabel("TOPPING");
