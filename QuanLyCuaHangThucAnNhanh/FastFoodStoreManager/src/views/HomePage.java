@@ -28,7 +28,6 @@ public class HomePage extends JFrame {
 	private Menu panelMenu;
 	private History panelHistory;
 	private Profile panelProfile;
-	private Stats panelStats;
 
 	/**
 	 * Launch the application.
@@ -68,7 +67,6 @@ public class HomePage extends JFrame {
 		panelMenu = new Menu();
 		panelHistory = new History();
 		panelProfile = new Profile();
-		panelStats = new Stats();
 		
 		
 		
@@ -87,7 +85,6 @@ public class HomePage extends JFrame {
 		panel.add(panelMenu);
 		panel.add(panelHistory);
 		panel.add(panelProfile);
-		panel.add(panelStats);
 		
 		JLabel lblNewLabel_2 = new JLabel();
         ImageIcon img = new ImageIcon("../FastFoodStoreManager/img/logo.png");
@@ -113,7 +110,7 @@ public class HomePage extends JFrame {
         });
 		btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
 		btnMenu.setBackground(Color.WHITE);
-		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/menu.png");
+		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
 		btnMenu.setIcon(iconMenu);
 		btnMenu.setBounds(0, 0, 78, 70);
 		menu.add(btnMenu);
@@ -139,7 +136,7 @@ public class HomePage extends JFrame {
 			}
 		});
 		btnFrofile.setBackground(Color.WHITE);
-		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/icon/man.png");
+		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/icon/profile.png");
 		btnFrofile.setIcon(iconFrofile);
 		btnFrofile.setBounds(0, 195, 78, 70);
 		menu.add(btnFrofile);
@@ -168,13 +165,18 @@ public class HomePage extends JFrame {
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
 		menu.add(lblNewLabel_4_2);
+		
+		CircleButtonExample circleButton = new CircleButtonExample("Click");
+		circleButton.setIcon(iconFrofile);
+		circleButton.setBackground(Color.BLUE);
+		circleButton.setBounds(1082, 5, 53, 53);
+		contentPane.add(circleButton);
 	}
 	
     public void menuClicked(JPanel selectedPanel) {
         panelMenu.setVisible(false);
         panelHistory.setVisible(false);
         panelProfile.setVisible(false);
-        panelStats.setVisible(false);
 
         selectedPanel.setVisible(true);
     }
