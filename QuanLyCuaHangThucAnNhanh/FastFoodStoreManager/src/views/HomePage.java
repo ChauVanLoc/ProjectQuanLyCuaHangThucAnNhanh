@@ -43,7 +43,7 @@ public class HomePage extends JFrame {
 		getContentPane().add(primary_panel);
 		primary_panel.setLayout(null);
 
-		JPanel nav_panel = new Navigate();
+		JPanel nav_panel = new Navigate(jp_content, cardLayout);
 		nav_panel.setBounds(10, 0, 78, 619);
 		primary_panel.add(nav_panel);
 
@@ -54,6 +54,10 @@ public class HomePage extends JFrame {
 
 		JPanel content_panel = new Content();
 		jp_content.add(content_panel, "Menu");
+		
+		JPanel history_panel = new History();
+		jp_content.add(history_panel, "History");
+		cardLayout.show(jp_content, "History");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.desktop);

@@ -1,7 +1,11 @@
 package views;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.SystemColor;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -15,22 +19,41 @@ public class Navigate extends JPanel {
 	private JButton btnProfile;
 	private JButton btnLogOut;
 
-	public Navigate() {
+	public Navigate(JPanel panel, CardLayout cardLayout) {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
 
 		btnMenu = new JButton();
+		btnMenu.setBackground(Color.WHITE);
+		btnMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayout.show(panel, "Menu");
+				btnMenu.setBackground(SystemColor.scrollbar);
+				btnHistory.setBackground(Color.WHITE);
+				btnProfile.setBackground(Color.WHITE);
+			}
+		});
 		btnMenu.setBorder(null);
 		btnMenu.setFocusPainted(false);
 		btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
-		btnMenu.setBackground(Color.WHITE);
 		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
 		btnMenu.setIcon(iconMenu);
 		btnMenu.setBounds(0, 0, 78, 70);
 		add(btnMenu);
+		cardLayout.show(panel, "Menu");
 
 		btnHistory = new JButton();
+		btnHistory.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayout.show(panel, "History");
+				btnMenu.setBackground(Color.WHITE);
+				btnHistory.setBackground(SystemColor.scrollbar);
+				btnProfile.setBackground(Color.WHITE);
+			}
+		});
 		btnHistory.setBorder(null);
 		btnHistory.setFocusPainted(false);
 		btnHistory.setBackground(Color.WHITE);
@@ -40,6 +63,15 @@ public class Navigate extends JPanel {
 		add(btnHistory);
 
 		btnProfile = new JButton();
+		btnProfile.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayout.show(panel, "Profile");
+				btnMenu.setBackground(Color.WHITE);
+				btnHistory.setBackground(Color.WHITE);
+				btnProfile.setBackground(SystemColor.scrollbar);
+			}
+		});
 		btnProfile.setBorder(null);
 		btnProfile.setFocusPainted(false);
 		btnProfile.setBackground(Color.WHITE);
