@@ -2,6 +2,7 @@ package views;
 
 import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagLayout;
 import java.awt.Image;
@@ -19,11 +20,24 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JToggleButton;
+import java.awt.SystemColor;
+import javax.swing.JScrollPane;
 
 public class Content extends JPanel {
 
 	private Food panelFood;
 	private Beverage panelBeverage;
+	private JButton btn_food;
+	private JButton btn_beverage;
+	private JLabel lblNewLabel;
+	private JPanel panel;
+	private JLabel lblNewLabel_1;
+	private JPanel panel_1;
+	private JLabel lblNewLabel_2;
+	private JButton btnNewButton;
+	private JLabel lblNewLabel_3;
+	private JScrollPane scrollPane;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -39,172 +53,70 @@ public class Content extends JPanel {
 	}
 
 	public Content() {
+		setBackground(SystemColor.desktop);
 		setBounds(0, 0, 1230, 619);
-		this.setBackground(new Color(0, 128, 128));
-		this.setBorder(new EmptyBorder(5, 5, 5, 5));
-		this.setLayout(null);
-
-		panelFood = new Food();
-		panelFood.setBounds(0, 0, 900, 586);
-		panelBeverage = new Beverage();
-		panelBeverage.setBounds(0, 0, 900, 586);
-		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/menuIcon.png");
-		ImageIcon iconCart = new ImageIcon("../FastFoodStoreManager/img/cartIcon.png");
-		ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/HistoryIcon.png");
-		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/FrofileIcon.png");
-		ImageIcon iconStats = new ImageIcon("../FastFoodStoreManager/img/StatsIcon.png");
-		ImageIcon iconLogOut = new ImageIcon("../FastFoodStoreManager/img/exitIcon.png");
-
-		JPanel panelMain = new JPanel();
-		panelMain.setBounds(0, 33, 900, 586);
-		this.add(panelMain);
-		panelMain.setLayout(null);
-		ImageIcon img = new ImageIcon("../FastFoodStoreManager/img/logo.png");
-		Image image = img.getImage();
-		Image resizedImage = image.getScaledInstance(68, 51, Image.SCALE_SMOOTH);
-		ImageIcon logoImg = new ImageIcon(resizedImage);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setBounds(910, 0, 320, 619);
-		this.add(panel_1);
-		panel_1.setLayout(null);
-
-		JLabel lblNewLabel_6 = new JLabel("CART");
-		lblNewLabel_6.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 25));
-		lblNewLabel_6.setBounds(0, 0, 274, 40);
-		panel_1.add(lblNewLabel_6);
-
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 37, 274, 435);
-		panel_1.add(panel);
+		setLayout(null);
+		
+		btn_food = new JButton("Food");
+		btn_food.setFocusPainted(false);
+		btn_food.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn_food.setBounds(0, 0, 127, 32);
+		add(btn_food);
+		
+		btn_beverage = new JButton("Beverage");
+		btn_beverage.setFocusPainted(false);
+		btn_beverage.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btn_beverage.setBounds(126, 0, 127, 32);
+		add(btn_beverage);
+		
+		Food food = new Food();
+		food.setBounds(0, 32, 885, 585);
+		add(food);
+		
+		lblNewLabel = new JLabel("Decorate");
+		lblNewLabel.setForeground(SystemColor.textHighlightText);
+		lblNewLabel.setBackground(SystemColor.textText);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(537, 0, 347, 30);
+		add(lblNewLabel);
+		
+		panel = new JPanel();
+		panel.setBackground(SystemColor.controlLtHighlight);
+		panel.setBounds(894, 0, 336, 619);
+		add(panel);
 		panel.setLayout(null);
-
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxNewCheckBox.setBounds(6, 57, 177, 23);
-		panel.add(chckbxNewCheckBox);
-
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("New check box");
-		chckbxNewCheckBox_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxNewCheckBox_1.setBounds(6, 111, 127, 23);
-		panel.add(chckbxNewCheckBox_1);
-
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("New check box");
-		chckbxNewCheckBox_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		chckbxNewCheckBox_2.setBounds(6, 169, 127, 23);
-		panel.add(chckbxNewCheckBox_2);
-
-		JSpinner spinner = new JSpinner();
-		spinner.setFont(new Font("Tahoma", Font.BOLD, 15));
-		spinner.setBounds(189, 58, 42, 20);
-		panel.add(spinner);
-
-		JButton btnNewButton_1 = new JButton("OK");
-		btnNewButton_1.setMargin(new Insets(0, 0, 0, 0));
-		btnNewButton_1.setForeground(new Color(255, 0, 0));
-		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnNewButton_1.setBounds(240, 57, 34, 23);
-		panel.add(btnNewButton_1);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBounds(0, 0, 274, 34);
-		panel.add(panel_3);
-		GridBagLayout gbl_panel_3 = new GridBagLayout();
-		gbl_panel_3.columnWidths = new int[] { 90, 90, 90 };
-		gbl_panel_3.rowHeights = new int[] { 35 };
-		gbl_panel_3.columnWeights = new double[] { 0.0, 0.0, 0.0 };
-		gbl_panel_3.rowWeights = new double[] { 0.0 };
-		panel_3.setLayout(gbl_panel_3);
-
-		JPanel panel_2 = new JPanel();
-		panel_2.setBounds(0, 471, 274, 48);
-		panel_1.add(panel_2);
-		panel_2.setLayout(null);
-
-		JLabel lblNewLabel_7 = new JLabel("Total");
-		lblNewLabel_7.setBounds(10, 11, 51, 25);
-		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_7.setHorizontalAlignment(SwingConstants.LEFT);
-		panel_2.add(lblNewLabel_7);
-
-		JLabel lblNewLabel_8 = new JLabel("$");
-		lblNewLabel_8.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_8.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_8.setBounds(246, 11, 28, 25);
-		panel_2.add(lblNewLabel_8);
-
-		JLabel lblNewLabel_11 = new JLabel("total cost");
-		lblNewLabel_11.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel_11.setBounds(71, 11, 175, 25);
-		panel_2.add(lblNewLabel_11);
-
-		JButton btnNewButton = new JButton("ORDER");
-		btnNewButton.setForeground(new Color(255, 0, 0));
-		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
-		btnNewButton.setBounds(133, 561, 141, 48);
-		panel_1.add(btnNewButton);
-
-		JButton btnFood = new JButton("FOOD");
-		btnFood.addMouseListener(new PanelButtonMouseAdapter(panelFood) {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				menuClicked(panelFood);
-			}
-		});
-		btnFood.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnFood.setBounds(0, 0, 132, 33);
-		this.add(btnFood);
-
-		JButton btnBeverage = new JButton("BEVERAGE");
-		btnBeverage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		btnBeverage.addMouseListener(new PanelButtonMouseAdapter(panelBeverage) {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				menuClicked(panelBeverage);
-			}
-		});
-		btnBeverage.setFont(new Font("Tahoma", Font.BOLD, 15));
-		btnBeverage.setBounds(130, 0, 132, 33);
-		this.add(btnBeverage);
-
-		// add thuc don
-		panelMain.add(panelFood);
-		panelMain.add(panelBeverage);
-
-		menuClicked(panelFood);
-	}
-
-	public void menuClicked(JPanel selectedPanel) {
-		panelFood.setVisible(false);
-		panelBeverage.setVisible(false);
-		selectedPanel.setVisible(true);
-	}
-
-	public class PanelButtonMouseAdapter extends MouseAdapter {
-		JPanel panel;
-
-		public PanelButtonMouseAdapter(JPanel panel) {
-			this.panel = panel;
-		}
-
-		public void mouseEntered(MouseEvent e) {
-			panel.setBackground(new Color(0, 128, 128));
-		}
-
-		public void mouseExited(MouseEvent e) {
-			panel.setBackground(new Color(0, 128, 128));
-		}
-
-		public void mousePressed(MouseEvent e) {
-			panel.setBackground(new Color(0, 128, 128));
-		}
-
-		public void mouseReleased(MouseEvent e) {
-			panel.setBackground(new Color(0, 128, 128));
-		}
+		
+		lblNewLabel_1 = new JLabel("Order Information");
+		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 24));
+		lblNewLabel_1.setBounds(0, 10, 336, 42);
+		panel.add(lblNewLabel_1);
+		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(0, 55, 336, 447);
+		panel.add(scrollPane);
+		
+		panel_1 = new JPanel();
+		scrollPane.setViewportView(panel_1);
+		
+		lblNewLabel_2 = new JLabel("Total");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_2.setBounds(24, 519, 66, 27);
+		panel.add(lblNewLabel_2);
+		
+		btnNewButton = new JButton("Pay");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setBounds(24, 556, 286, 42);
+		panel.add(btnNewButton);
+		
+		lblNewLabel_3 = new JLabel("10$");
+		lblNewLabel_3.setHorizontalAlignment(SwingConstants.RIGHT);
+		lblNewLabel_3.setHorizontalTextPosition(SwingConstants.RIGHT);
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel_3.setBounds(135, 519, 146, 27);
+		panel.add(lblNewLabel_3);
 	}
 }
