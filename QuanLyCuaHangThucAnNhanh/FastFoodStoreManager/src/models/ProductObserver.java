@@ -25,4 +25,9 @@ public abstract class ProductObserver {
 	public void setProductObserver(ProductObserver productObserver) {
 		this.productObserver = productObserver;
 	}
+
+	public Product getProduct() {
+		return product;
+	}
+
 }
