@@ -58,6 +58,7 @@ public class Calendar extends JFrame {
 		        }
 		    }
 		});
+		System.out.println(calendar.getCalendar());
 	}
 	public void createUI(JPanel contentPane) {
 		

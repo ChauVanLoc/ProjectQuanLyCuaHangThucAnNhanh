@@ -1,33 +1,18 @@
 package views;
 
-import java.awt.Color;
 import java.awt.EventQueue;
-import java.awt.FlowLayout;
 import java.awt.Font;
-import java.awt.GridBagLayout;
-import java.awt.Image;
-import java.awt.Insets;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.SystemColor;
 
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSpinner;
-import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JToggleButton;
-import java.awt.SystemColor;
 import javax.swing.JScrollPane;
+import javax.swing.SwingConstants;
 
 public class Content extends JPanel {
 
 	private Food panelFood;
-	private Beverage panelBeverage;
 	private JButton btn_food;
 	private JButton btn_beverage;
 	private JLabel lblNewLabel;

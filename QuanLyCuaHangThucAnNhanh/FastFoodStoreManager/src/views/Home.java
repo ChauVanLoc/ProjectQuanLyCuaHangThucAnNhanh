@@ -4,15 +4,15 @@ import java.awt.CardLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class HomePage extends JFrame {
+import models.PersonObserver;
+
+public class Home extends JFrame {
 
 	private CardLayout cardLayout;
 	private JPanel jp_content;
@@ -22,7 +22,7 @@ public class HomePage extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					HomePage frame = new HomePage();
+					Home frame = new Home(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,18 +31,18 @@ public class HomePage extends JFrame {
 		});
 	}
 
-	public HomePage() {
+	public Home(PersonObserver person) {
 		setTitle("Fast Food Store");
 		setResizable(false);
 		cardLayout = new CardLayout();
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, 1350, 743);
+		setBounds(0, 0, 1350, 756);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 
 		JPanel primary_panel = new JPanel();
 		primary_panel.setBackground(SystemColor.desktop);
-		primary_panel.setBounds(0, 77, 1336, 633);
+		primary_panel.setBounds(0, 85, 1336, 634);
 		getContentPane().add(primary_panel);
 		primary_panel.setLayout(null);
 
@@ -51,7 +51,7 @@ public class HomePage extends JFrame {
 		primary_panel.add(jp_content);
 		jp_content.setLayout(cardLayout);
 		
-		JPanel nav_panel = new Navigate(jp_content, cardLayout);
+		JPanel nav_panel = new Navigate(jp_content, cardLayout, person);
 		nav_panel.setBounds(10, 0, 78, 619);
 		primary_panel.add(nav_panel);
 
@@ -64,22 +64,33 @@ public class HomePage extends JFrame {
 		JPanel profile_panel = new Profile();
 		jp_content.add(profile_panel, "Profile");
 		
+		JPanel work_panel = new Work();
+		jp_content.add(work_panel, "Work");
+		
+		JPanel work_person = new PersonManage();
+		jp_content.add(work_person, "Person");
+		
 		cardLayout.show(jp_content, "Menu");
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(SystemColor.desktop);
-		panel.setBounds(0, 0, 1336, 79);
+		panel.setBounds(0, 0, 1336, 86);
 		getContentPane().add(panel);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("FAST FOOD STORE");
 		lblNewLabel.setForeground(SystemColor.text);
-		lblNewLabel.setBounds(0, 0, 1336, 79);
+		lblNewLabel.setBounds(0, 10, 1336, 69);
 		panel.add(lblNewLabel);
 		lblNewLabel.setBackground(SystemColor.desktop);
 		lblNewLabel.setHorizontalTextPosition(SwingConstants.CENTER);
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setFont(new Font("Viner Hand ITC", Font.BOLD, 40));
+		
+		JLabel lb_logo = new JLabel();
+		lb_logo.setBounds(10, 10, 78, 69);
+		panel.add(lb_logo);
+		lb_logo.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/logo.png", 80, 80));
 
 	}
 }
