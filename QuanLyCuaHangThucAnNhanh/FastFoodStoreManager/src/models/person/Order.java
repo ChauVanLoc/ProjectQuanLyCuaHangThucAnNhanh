@@ -6,6 +6,7 @@ import java.util.List;
 
 import constant.GenerateId;
 import constant.OrderStatus;
+import models.PersonObserver;
 import models.ProductObserver;
 import models.Subject;
 import models.person.customer.Customer;
@@ -16,68 +17,46 @@ public class Order {
 	private List<ProductObserver> products = new ArrayList<>();
 	private double total = 0;
 	private Date created;
-	private Address address;
-	private Customer cus;
-	private Employee emp;
+	private Address address = null;
+	private PersonObserver customer;
+	private PersonObserver employee;
 	private int discount = 0;
 	private String note;
 	private String status;
 
-	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub) {
-		this.cus = cus;
-		this.products = pros;
+	public Order(List<ProductObserver> products, Address adress, PersonObserver customer, Subject sub, int score) {
+		this.id = GenerateId.generateId();
 		this.created = new Date();
+		this.address = adress;
+		this.customer = customer;
+		this.products = products;
 		for (ProductObserver p : this.products) {
 			total += p.cost();
 		}
-		this.address = adress;
-		sub.addOrder(this);
-		this.id = GenerateId.generateId();
-	}
-
-	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, int score) {
-		this.cus = cus;
-		this.products = pros;
-		this.created = new Date();
-		for (ProductObserver p : this.products) {
-			total += p.cost();
+		if (score > 0) {
+			total = total - score;
+			this.discount = score;
 		}
-		total = total - score;
-		this.discount = score;
-		cus.decreaseScore(score);
-		this.address = adress;
+		((Customer) customer).decreaseScore(score);
 		sub.addOrder(this);
-		this.id = GenerateId.generateId();
 	}
 
-	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, Employee emp) {
-		this.cus = cus;
-		this.products = pros;
-		this.created = new Date();
-		for (ProductObserver p : this.products) {
-			total += p.cost();
-		}
-		this.address = adress;
-		sub.addOrder(this);
-		this.emp = emp;
-		this.id = GenerateId.generateId();
-	}
-
-	public Order(List<ProductObserver> pros, Address adress, Customer cus, Subject sub, Employee emp,
+	public Order(List<ProductObserver> products, PersonObserver customer, PersonObserver employee, Subject sub,
 			int score) {
-		this.cus = cus;
-		this.products = pros;
+		this.id = GenerateId.generateId();
 		this.created = new Date();
+		this.customer = customer;
+		this.employee = employee;
+		this.products = products;
 		for (ProductObserver p : this.products) {
 			total += p.cost();
 		}
-		total = total - score;
-		this.discount = score;
-		cus.decreaseScore(score);
-		this.address = adress;
+		if (this.customer != null && score > 0) {
+			total = total - score;
+			this.discount = score;
+		}
+		((Customer) customer).decreaseScore(score);
 		sub.addOrder(this);
-		this.emp = emp;
-		this.id = GenerateId.generateId();
 	}
 
 	public List<ProductObserver> getProducts() {
@@ -96,12 +75,12 @@ public class Order {
 		return address;
 	}
 
-	public Customer getCus() {
-		return cus;
+	public PersonObserver getCustomer() {
+		return customer;
 	}
 
 	public int score() {
-		return this.cus.calScore(this);
+		return ((Customer) this.customer).calScore(this);
 	}
 
 	public int getDiscount() {

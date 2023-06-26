@@ -13,6 +13,7 @@ public class Person {
 	private String name;
 	private Date dateOfBirth;
 	private String sex;
+	private String image;
 	private Address address;
 	private String phone;
 	private Account account;
@@ -99,6 +100,14 @@ public class Person {
 
 	public void setAccount(Account account) {
 		this.account = account;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public Person updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {

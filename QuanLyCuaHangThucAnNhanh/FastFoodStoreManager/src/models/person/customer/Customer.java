@@ -50,25 +50,12 @@ public abstract class Customer extends PersonObserver {
 		setScore(getScore() - score);
 	}
 
-	public Order order(List<ProductObserver> products, Address adress, boolean isPay) {
-		Order order = new Order(products, adress, this, this.subject);
-		if (isPay && this.gateway.sucessPayment(order.getTotal())) {
+	public Order order(List<ProductObserver> products, Address adress, int score) {
+		Order order = new Order(products, adress, this, subject, score);
+		if (score >= 0 && this.gateway.sucessPayment(order.getTotal())) {
 			order.setStatus(OrderStatus.success);
 			incrementScore(order.score());
-			upgradeCustomer(getScore(), this);
-		} else {
-			order.setStatus(OrderStatus.waiting_transaction);
-		}
-		this.orders.add(order);
-		return order;
-	}
-
-	public Order orderWithDiscount(List<ProductObserver> products, Address adress, boolean isPay) {
-		Order order = new Order(products, adress, this, this.subject, this.score);
-		if (isPay && this.gateway.sucessPayment(order.getTotal())) {
-			order.setStatus(OrderStatus.success);
-			incrementScore(order.score());
-			upgradeCustomer(getScore(), this);
+			upgradeCustomer(this.score, this);
 		} else {
 			order.setStatus(OrderStatus.waiting_transaction);
 		}
@@ -87,6 +74,11 @@ public abstract class Customer extends PersonObserver {
 
 	public Customer updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
 		this.setPerson(this.person.updateInfor(cccd, name, dob, sex, phone, email));
+		return this;
+	}
+
+	public Customer updateAvatar(String image) {
+		this.person.setImage(image);
 		return this;
 	}
 
