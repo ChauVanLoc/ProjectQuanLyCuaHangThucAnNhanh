@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import java.awt.Cursor;
 
 public class Navigate extends JPanel {
 	private JButton btnMenu;
@@ -25,7 +26,8 @@ public class Navigate extends JPanel {
 		setLayout(null);
 
 		btnMenu = new JButton();
-		btnMenu.setBackground(Color.WHITE);
+		btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMenu.setBackground(SystemColor.scrollbar);
 		btnMenu.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -45,6 +47,7 @@ public class Navigate extends JPanel {
 		cardLayout.show(panel, "Menu");
 
 		btnHistory = new JButton();
+		btnHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHistory.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -63,6 +66,7 @@ public class Navigate extends JPanel {
 		add(btnHistory);
 
 		btnProfile = new JButton();
+		btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnProfile.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -81,6 +85,7 @@ public class Navigate extends JPanel {
 		add(btnProfile);
 
 		btnLogOut = new JButton();
+		btnLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogOut.setBorder(null);
 		btnLogOut.setFocusPainted(false);
 		btnLogOut.setBackground(Color.WHITE);
