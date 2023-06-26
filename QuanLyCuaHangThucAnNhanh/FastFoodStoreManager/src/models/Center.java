@@ -42,6 +42,16 @@ public class Center implements Subject {
 		this.manageProduct.deleteProduct(p);
 	}
 
+	@Override
+	public ProductObserver createNewProduct() {
+		return null;
+	}
+
+	@Override
+	public ProductObserver updateProduct() {
+		return null;
+	}
+
 //	------------------------------------------------------------------
 //	------------------ Decorator ---------------------------------------
 //	------------------------------------------------------------------
@@ -54,6 +64,11 @@ public class Center implements Subject {
 	@Override
 	public void deleteDecorator(ProductObserver p) {
 		this.manageProduct.deleteProduct(p);
+	}
+
+	@Override
+	public ProductObserver updateDecorator() {
+		return null;
 	}
 
 //	------------------------------------------------------------------
@@ -120,6 +135,26 @@ public class Center implements Subject {
 	public Vourcher createVourcher(String title, String content, String code, double cost, Date startDate,
 			Date expiredDate) {
 		return new Vourcher(code, cost, startDate, expiredDate);
+	}
+
+	@Override
+	public Notification createNotification() {
+		return null;
+	}
+
+	@Override
+	public void sendToAll() {
+
+	}
+
+	@Override
+	public void sendToAllEmployee() {
+
+	}
+
+	@Override
+	public void sendToAllCustomer() {
+
 	}
 
 }
