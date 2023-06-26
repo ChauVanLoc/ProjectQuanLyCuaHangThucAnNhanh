@@ -2,6 +2,7 @@ package views;
 
 import java.awt.CardLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
@@ -12,15 +13,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.Cursor;
+
+import models.Admin;
+import models.PersonObserver;
 
 public class Navigate extends JPanel {
 	private JButton btnMenu;
 	private JButton btnHistory;
 	private JButton btnProfile;
 	private JButton btnLogOut;
+	private JButton btnPerson;
+	private JButton btnWork;
+	private JLabel lblNewLabel_4_3;
+	private JLabel lblNewLabel_4_4;
 
-	public Navigate(JPanel panel, CardLayout cardLayout) {
+	public Navigate(JPanel panel, CardLayout cardLayout, PersonObserver person) {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
@@ -35,6 +42,8 @@ public class Navigate extends JPanel {
 				btnMenu.setBackground(SystemColor.scrollbar);
 				btnHistory.setBackground(Color.WHITE);
 				btnProfile.setBackground(Color.WHITE);
+				btnPerson.setBackground(Color.WHITE);
+				btnWork.setBackground(Color.WHITE);
 			}
 		});
 		btnMenu.setBorder(null);
@@ -55,6 +64,8 @@ public class Navigate extends JPanel {
 				btnMenu.setBackground(Color.WHITE);
 				btnHistory.setBackground(SystemColor.scrollbar);
 				btnProfile.setBackground(Color.WHITE);
+				btnPerson.setBackground(Color.WHITE);
+				btnWork.setBackground(Color.WHITE);
 			}
 		});
 		btnHistory.setBorder(null);
@@ -74,6 +85,8 @@ public class Navigate extends JPanel {
 				btnMenu.setBackground(Color.WHITE);
 				btnHistory.setBackground(Color.WHITE);
 				btnProfile.setBackground(SystemColor.scrollbar);
+				btnPerson.setBackground(Color.WHITE);
+				btnWork.setBackground(Color.WHITE);
 			}
 		});
 		btnProfile.setBorder(null);
@@ -94,7 +107,7 @@ public class Navigate extends JPanel {
 		btnLogOut.setBounds(0, 546, 78, 70);
 		add(btnLogOut);
 
-		JLabel lblNewLabel_4 = new JLabel("Menu");
+		JLabel lblNewLabel_4 = new JLabel(person instanceof Admin ? "Order" : "Menu");
 		lblNewLabel_4.setEnabled(false);
 		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
@@ -114,6 +127,62 @@ public class Navigate extends JPanel {
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
 		add(lblNewLabel_4_2);
+
+//		if (!(person instanceof Admin)) {
+			btnPerson = new JButton();
+			btnPerson.setFocusPainted(false);
+			btnPerson.setBorder(null);
+			btnPerson.setBackground(Color.WHITE);
+			btnPerson.setBounds(0, 295, 78, 70);
+			add(btnPerson);
+			btnPerson.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
+
+			lblNewLabel_4_3 = new JLabel("Person");
+			lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4_3.setEnabled(false);
+			lblNewLabel_4_3.setBounds(0, 366, 78, 14);
+			add(lblNewLabel_4_3);
+
+			btnPerson.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "Person");
+					btnMenu.setBackground(Color.WHITE);
+					btnHistory.setBackground(Color.WHITE);
+					btnProfile.setBackground(Color.WHITE);
+					btnPerson.setBackground(SystemColor.scrollbar);
+					btnWork.setBackground(Color.WHITE);
+				}
+			});
+
+			btnWork = new JButton();
+			btnWork.setFocusPainted(false);
+			btnWork.setBorder(null);
+			btnWork.setBackground(Color.WHITE);
+			btnWork.setBounds(0, 396, 78, 70);
+			add(btnWork);
+			btnWork.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/work.png", 70, 70));
+
+			lblNewLabel_4_4 = new JLabel("Work");
+			lblNewLabel_4_4.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4_4.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4_4.setEnabled(false);
+			lblNewLabel_4_4.setBounds(0, 470, 78, 14);
+			add(lblNewLabel_4_4);
+
+			btnWork.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "Work");
+					btnMenu.setBackground(Color.WHITE);
+					btnHistory.setBackground(Color.WHITE);
+					btnProfile.setBackground(Color.WHITE);
+					btnPerson.setBackground(Color.WHITE);
+					btnWork.setBackground(SystemColor.scrollbar);
+				}
+			});
+//		}
 	}
 
 }
