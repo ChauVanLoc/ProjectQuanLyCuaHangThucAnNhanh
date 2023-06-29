@@ -10,8 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import constant.Frame;
+import models.Subject;
 
-public class Main extends JFrame {
+public class MainView extends JFrame {
 
 	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JPanel contentPane;
@@ -19,22 +20,22 @@ public class Main extends JFrame {
 	private Login login;
 	private Register register;
 
-	public static void main(String[] args) {
+	public void display() {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Main frame = new Main();
-					frame.setVisible(true);
+					setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
 			}
 		});
 	}
-
-	public Main() {
+	
+	public MainView(Subject subject) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(0, 0, screenSize.width, screenSize.height);
+		setBounds(0, 0, 1350, 756);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		cardLayout = new CardLayout();
 		contentPane.setLayout(cardLayout);
@@ -47,7 +48,7 @@ public class Main extends JFrame {
 		JPanel registerPanel = register.createRegister(contentPane, cardLayout);
 		contentPane.add(registerPanel, Frame.register);
 		
-		cardLayout.show(contentPane, Frame.login);
+		cardLayout.show(contentPane, Frame.register);
 		setContentPane(contentPane);
 	}
 
