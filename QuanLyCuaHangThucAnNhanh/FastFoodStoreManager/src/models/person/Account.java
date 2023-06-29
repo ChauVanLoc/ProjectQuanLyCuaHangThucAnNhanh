@@ -8,7 +8,6 @@ public class Account {
 	private String email;
 	private String password;
 	private boolean status;
-	private int rule;
 	private Date createdDate;
 	private Date expireDate;
 
@@ -16,7 +15,6 @@ public class Account {
 		this.email = email;
 		this.password = password;
 		this.status = true;
-		this.rule = Rule.NEW_CUSTOMER;
 		this.createdDate = new Date();
 		this.expireDate = null;
 	}
@@ -25,7 +23,6 @@ public class Account {
 		this.email = email;
 		this.password = password;
 		this.status = true;
-		this.rule = rule;
 		this.createdDate = new Date();
 		this.expireDate = expireDate;
 	}
@@ -62,14 +59,6 @@ public class Account {
 		this.status = status;
 	}
 
-	public int getRule() {
-		return rule;
-	}
-
-	public void setRule(int rule) {
-		this.rule = rule;
-	}
-
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -96,9 +85,7 @@ public class Account {
 
 	public boolean validateAccount(String email, String password) {
 		if (checkFormatEmail(email) && checkFormatPassword(password)) {
-			if (this.email.equals(email) && this.password.equals(password)) {
-				return true;
-			}
+			return this.email.equals(email) && this.password.equals(password);
 		}
 		return false;
 	}

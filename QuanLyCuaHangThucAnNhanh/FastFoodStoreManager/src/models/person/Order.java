@@ -31,7 +31,6 @@ public class Order {
 		if (score > 0) {
 			total -= score;
 			this.discount = score;
-			((Customer) customer).decreaseScore(score);
 		}
 		customer.getOrders().add(this);
 		sub.addOrder(this);
@@ -47,7 +46,6 @@ public class Order {
 		if (customer != null) {
 			if (score > 0) {
 				total -= score;
-				((Customer) customer).decreaseScore(score);
 				this.discount = score;
 			}
 			customer.getOrders().add(this);

@@ -31,6 +31,7 @@ public class Center implements Subject {
 		List<PersonObserver> list = new ArrayList<>();
 		list.addAll(this.manageCustomer.getCustomer());
 		list.addAll(this.manageEmployee.getEmployee());
+		list.addAll(this.manageEmployee.getAdmin());
 		for (PersonObserver o : list) {
 			if (o.getPerson().getAccount().validateAccount(email, password)) {
 				return o;
@@ -57,17 +58,6 @@ public class Center implements Subject {
 	public void deleteProduct(ProductObserver p) {
 		this.manageProduct.deleteProduct(p);
 	}
-
-	@Override
-	public ProductObserver createNewProduct() {
-		return null;
-	}
-
-	@Override
-	public ProductObserver updateProduct() {
-		return null;
-	}
-
 //	------------------------------------------------------------------
 //	------------------ Decorator ---------------------------------------
 //	------------------------------------------------------------------
@@ -82,65 +72,50 @@ public class Center implements Subject {
 		this.manageProduct.deleteProduct(p);
 	}
 
-	@Override
-	public ProductObserver updateDecorator() {
-		return null;
-	}
-
 //	------------------------------------------------------------------
 //	------------------ Customer --------------------------------------
 //	------------------------------------------------------------------
 
-//	@Override
-//	public void addCustomer(Customer p) {
-//		this.manageCustomer.addCustomer(p);
-//	}
-//
-//	@Override
-//	public void deleteCustomer(Customer p) {
-//		this.manageCustomer.deleteCustomer(p);
-//	}
+	@Override
+	public void addCustomer(PersonObserver p) {
+		this.manageCustomer.addCustomer(p);
+	}
+
+	@Override
+	public void deleteCustomer(PersonObserver p) {
+		this.manageCustomer.deleteCustomer(p);
+	}
 
 //	------------------------------------------------------------------
 //	------------------ Employee --------------------------------------
 //	------------------------------------------------------------------
 
-//	@Override
-//	public void addEmployee(Employee p) {
-//		this.manageEmployee.addEmployee(p);
-//	}
-//
-//	@Override
-//	public void deleteEmployee(Employee p) {
-//		this.manageEmployee.deleteEmployee(p);
-//	}
-//
-//	@Override
-//	public void updateEmployee() {
-//		this.manageEmployee.updateEmployee();
-//	}
+	@Override
+	public void addEmployee(PersonObserver p) {
+		this.manageEmployee.addEmployee(p);
+	}
 
-//	public String changeDefaultPassword(String newDefaultPassword) {
-//		return Password.changeDefaultPassword(newDefaultPassword);
-//	}
-
+	@Override
+	public void deleteEmployee(PersonObserver p) {
+		this.manageEmployee.deleteEmployee(p);
+	}
+	
+	@Override
+	public void addAdmin(PersonObserver p) {
+		this.manageEmployee.addAdmin(p);
+	}
 //	------------------------------------------------------------------
 //	------------------ Order -----------------------------------------
 //	------------------------------------------------------------------
 
-//	@Override
-//	public void addOrder(Order o) {
-//		this.manageOrder.addOrder(o);
-//	}
+	@Override
+	public void addOrder(Order o) {
+		this.manageOrder.addOrder(o);
+	}
 
 	@Override
 	public void deleteOrder(Order o) {
 		this.manageOrder.deleteOrder(o);
-	}
-
-	@Override
-	public Order payment(Order order) {
-		return this.manageOrder.payment(order);
 	}
 
 //	------------------------------------------------------------------
@@ -156,63 +131,6 @@ public class Center implements Subject {
 	@Override
 	public Notification createNotification() {
 		return null;
-	}
-
-	@Override
-	public void sendToAll() {
-
-	}
-
-	@Override
-	public void sendToAllEmployee() {
-
-	}
-
-	@Override
-	public void sendToAllCustomer() {
-
-	}
-
-	@Override
-	public void addCustomer(PersonObserver p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteCustomer(PersonObserver p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public PersonObserver updateCustomer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addEmployee(PersonObserver p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void deleteEmployee(PersonObserver p) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public PersonObserver updateEmployee() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void addOrder(Order o) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

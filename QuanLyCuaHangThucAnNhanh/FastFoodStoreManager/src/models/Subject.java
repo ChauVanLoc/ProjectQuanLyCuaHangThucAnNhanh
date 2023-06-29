@@ -15,17 +15,11 @@ public interface Subject {
 
 	void deleteProduct(ProductObserver p);
 
-	ProductObserver createNewProduct();
-
-	ProductObserver updateProduct();
-
 // -------------------Customer---------------------------------
 
 	void addCustomer(PersonObserver p);
 
 	void deleteCustomer(PersonObserver p);
-
-	PersonObserver updateCustomer();
 
 //-------------------Employee---------------------------------
 
@@ -33,15 +27,12 @@ public interface Subject {
 
 	void deleteEmployee(PersonObserver p);
 
-	PersonObserver updateEmployee();
-
+	void addAdmin(PersonObserver p);
 //-------------------Order---------------------------------
 
 	void addOrder(Order o);
 
 	void deleteOrder(Order o);
-
-	Order payment(Order order);
 
 //-------------------Decorator---------------------------------
 
@@ -49,17 +40,10 @@ public interface Subject {
 
 	void deleteDecorator(ProductObserver p);
 
-	ProductObserver updateDecorator();
-
 //-------------------Notification---------------------------------
 
 	Notification createNotification();
 
 	Vourcher createVourcher(String title, String content, String code, double cost, Date startDate, Date expiredDate);
 
-	void sendToAll();
-
-	void sendToAllEmployee();
-
-	void sendToAllCustomer();
 }

@@ -3,30 +3,40 @@ package models.manage;
 import java.util.ArrayList;
 import java.util.List;
 
+import models.PersonObserver;
 import models.person.employee.Employee;
 
 public class ManageEmployee {
-	private List<Employee> cuss;
+	private List<PersonObserver> employees;
+	private List<PersonObserver> admins;
 
 	public ManageEmployee() {
-		this.cuss = new ArrayList<>();
+		this.employees = new ArrayList<>();
+		this.admins = new ArrayList<>();
 	}
 
-	public List<Employee> getEmployee() {
-		return cuss;
+	public List<PersonObserver> getEmployee() {
+		return employees;
+	}
+	
+	public List<PersonObserver> getAdmin() {
+		return admins;
 	}
 
-	public void addEmployee(Employee o) {
-		this.cuss.add(o);
+	public void addEmployee(PersonObserver o) {
+		this.employees.add(o);
 	}
 
-	public void deleteEmployee(Employee o) {
-		this.cuss.remove(o);
+	public void deleteEmployee(PersonObserver o) {
+		this.employees.remove(o);
 	}
 
 	public void updateEmployee() {
 
 	}
 
-//	public EmployeeObserver createEmployee(int rule, )
+	public void addAdmin(PersonObserver o) {
+		this.admins.add(o);
+	}
+
 }
