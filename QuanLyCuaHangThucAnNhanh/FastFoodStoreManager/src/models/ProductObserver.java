@@ -5,25 +5,37 @@ import models.product.Product;
 public abstract class ProductObserver {
 	protected Product product;
 	protected Subject subject;
-	protected ProductObserver productObserver;
 
-	public abstract double cost();
+	public double cost() {
+		return this.product.getPrice();
+	};
 
-	public void update(String id, String name, int quantity, int quantitySold, double price, String addressImage,
-			String description) {
-		this.product.update(id, name, quantity, quantitySold, price, addressImage, description);
+	public String getName() {
+		return this.product.getName();
+	}
+
+	public void update(String name, double price, String addressImage) {
+		this.product.update(name, price, addressImage);
 	}
 
 	public void increaseAmount(int amount) {
-		this.product.increaseAmount(amount);
+		this.product.increaseQuantity(amount);
 	}
 
 	public void descreaseAmount(int amount) {
-		this.product.decreaseAmount(amount);
+		this.product.decreaseQuantity(amount);
+	}
+	
+	public void buyAmount(int amount) {
+		this.product.buyAmount(amount);
 	}
 
-	public void setProductObserver(ProductObserver productObserver) {
-		this.productObserver = productObserver;
+	public void cancelAmount(int amount) {
+		this.product.cancelAmount(amount);
+	}
+	
+	public void createRating(double rating, String content, PersonObserver personObserver) {
+		this.product.createRating(rating, content, personObserver);
 	}
 
 	public Product getProduct() {

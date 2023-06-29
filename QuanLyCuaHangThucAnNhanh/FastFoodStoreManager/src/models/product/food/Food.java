@@ -6,7 +6,4 @@ import models.product.Product;
 
 public abstract class Food extends ProductObserver {
 
-	@Override
-	public abstract double cost();
-
 }

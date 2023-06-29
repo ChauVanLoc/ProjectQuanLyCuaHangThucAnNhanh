@@ -1,8 +1,10 @@
 package models.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import models.Subject;
+import constant.GenerateId;
+import models.PersonObserver;
 
 public class Product {
 	private String id;
@@ -11,7 +13,6 @@ public class Product {
 	private int quantitySold;
 	private double price;
 	private String addressImage;
-	private String description;
 	private List<Rate> rates;
 
 	public String getId() {
@@ -30,17 +31,14 @@ public class Product {
 		this.name = name;
 	}
 
-	public Product() {
-		super();
-	}
-
-	public Product(String id, String name, int quantity, double price, String addressImage, String description) {
-		this.id = id;
+	public Product(String name, int quantity, double price, String addressImage) {
+		this.id = GenerateId.generateId();
 		this.name = name;
 		this.quantity = quantity;
 		this.price = price;
 		this.addressImage = addressImage;
-		this.description = description;
+		this.quantitySold = 0;
+		this.rates = new ArrayList<>();
 	}
 
 	public int getQuantity() {
@@ -75,14 +73,6 @@ public class Product {
 		this.addressImage = addressImage;
 	}
 
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
 	public List<Rate> getRates() {
 		return rates;
 	}
@@ -91,22 +81,32 @@ public class Product {
 		this.rates = rates;
 	}
 
-	public void increaseAmount(int amount) {
-		setQuantity(getQuantity() + amount);
-	}
-
-	public void decreaseAmount(int amount) {
-		setQuantity(getQuantity() - amount);
-	}
-
-	public void update(String id, String name, int quantity, int quantitySold, double price, String addressImage,
-			String description) {
-		setId(id);
+	public void update(String name, double price, String addressImage) {
 		setName(name);
-		setQuantity(quantity);
-		setQuantitySold(quantitySold);
 		setPrice(price);
 		setAddressImage(addressImage);
-		setDescription(description);
 	}
+
+	public void buyAmount(int amount) {
+		this.quantity -= amount;
+		this.quantitySold += amount;
+	}
+
+	public void cancelAmount(int amount) {
+		this.quantity += amount;
+		this.quantitySold -= amount;
+	}
+
+	public void increaseQuantity(int amount) {
+		this.quantity += amount;
+	}
+
+	public void decreaseQuantity(int amount) {
+		this.quantity -= amount;
+	}
+
+	public void createRating(double rating, String content, PersonObserver personObserver) {
+		this.rates.add(new Rate(rating, content, personObserver));
+	}
+	
 }

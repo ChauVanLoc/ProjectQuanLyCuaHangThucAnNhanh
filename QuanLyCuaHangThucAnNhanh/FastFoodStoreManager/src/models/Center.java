@@ -1,6 +1,8 @@
 package models;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import constant.Password;
 import models.manage.ManageCustomer;
@@ -24,9 +26,23 @@ public class Center implements Subject {
 		this.manageProduct = new ManageProduct();
 	}
 
-//	public int login(String email, String password) {
-//		
-//	}
+	@Override
+	public PersonObserver login(String email, String password) {
+		List<PersonObserver> list = new ArrayList<>();
+		list.addAll(this.manageCustomer.getCustomer());
+		list.addAll(this.manageEmployee.getEmployee());
+		for (PersonObserver o : list) {
+			if (o.getPerson().getAccount().validateAccount(email, password)) {
+				return o;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public PersonObserver register(String email, String password) {
+		return null;
+	}
 
 //	------------------------------------------------------------------
 //	------------------ Product ---------------------------------------
@@ -75,47 +91,47 @@ public class Center implements Subject {
 //	------------------ Customer --------------------------------------
 //	------------------------------------------------------------------
 
-	@Override
-	public void addCustomer(Customer p) {
-		this.manageCustomer.addCustomer(p);
-	}
-
-	@Override
-	public void deleteCustomer(Customer p) {
-		this.manageCustomer.deleteCustomer(p);
-	}
+//	@Override
+//	public void addCustomer(Customer p) {
+//		this.manageCustomer.addCustomer(p);
+//	}
+//
+//	@Override
+//	public void deleteCustomer(Customer p) {
+//		this.manageCustomer.deleteCustomer(p);
+//	}
 
 //	------------------------------------------------------------------
 //	------------------ Employee --------------------------------------
 //	------------------------------------------------------------------
 
-	@Override
-	public void addEmployee(Employee p) {
-		this.manageEmployee.addEmployee(p);
-	}
+//	@Override
+//	public void addEmployee(Employee p) {
+//		this.manageEmployee.addEmployee(p);
+//	}
+//
+//	@Override
+//	public void deleteEmployee(Employee p) {
+//		this.manageEmployee.deleteEmployee(p);
+//	}
+//
+//	@Override
+//	public void updateEmployee() {
+//		this.manageEmployee.updateEmployee();
+//	}
 
-	@Override
-	public void deleteEmployee(Employee p) {
-		this.manageEmployee.deleteEmployee(p);
-	}
-
-	@Override
-	public void updateEmployee() {
-		this.manageEmployee.updateEmployee();
-	}
-
-	public String changeDefaultPassword(String newDefaultPassword) {
-		return Password.changeDefaultPassword(newDefaultPassword);
-	}
+//	public String changeDefaultPassword(String newDefaultPassword) {
+//		return Password.changeDefaultPassword(newDefaultPassword);
+//	}
 
 //	------------------------------------------------------------------
 //	------------------ Order -----------------------------------------
 //	------------------------------------------------------------------
 
-	@Override
-	public void addOrder(Order o) {
-		this.manageOrder.addOrder(o);
-	}
+//	@Override
+//	public void addOrder(Order o) {
+//		this.manageOrder.addOrder(o);
+//	}
 
 	@Override
 	public void deleteOrder(Order o) {
@@ -155,6 +171,48 @@ public class Center implements Subject {
 	@Override
 	public void sendToAllCustomer() {
 
+	}
+
+	@Override
+	public void addCustomer(PersonObserver p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteCustomer(PersonObserver p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PersonObserver updateCustomer() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addEmployee(PersonObserver p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteEmployee(PersonObserver p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PersonObserver updateEmployee() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addOrder(Order o) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

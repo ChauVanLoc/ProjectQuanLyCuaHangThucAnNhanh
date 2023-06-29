@@ -7,7 +7,6 @@ import models.PersonObserver;
 import models.person.Person;
 
 public abstract class Employee extends PersonObserver {
-	protected Person person;
 	protected String academicLevel;
 	protected List<TimeWork> timeWork;
 	protected ISalary iSalary;

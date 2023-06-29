@@ -6,6 +6,9 @@ import models.person.Order;
 
 public interface Subject {
 
+	PersonObserver login(String email, String password);
+	PersonObserver register(String email, String password);
+	
 //-------------------Product---------------------------------
 
 	void addProduct(ProductObserver p);

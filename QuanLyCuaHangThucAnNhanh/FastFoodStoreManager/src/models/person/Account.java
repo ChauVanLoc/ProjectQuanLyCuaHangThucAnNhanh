@@ -94,13 +94,21 @@ public class Account {
 		return true;
 	}
 
-	public int validateAccount(String email, String password) {
+	public boolean validateAccount(String email, String password) {
 		if (checkFormatEmail(email) && checkFormatPassword(password)) {
 			if (this.email.equals(email) && this.password.equals(password)) {
-				return this.rule;
+				return true;
 			}
 		}
-		return Rule.UNAUTHORIZED;
+		return false;
+	}
+
+	public boolean changePassword(String currentPassword, String newPassword) {
+		if (this.password.equals(currentPassword)) {
+			setPassword(newPassword);
+			return true;
+		}
+		return false;
 	}
 
 }
