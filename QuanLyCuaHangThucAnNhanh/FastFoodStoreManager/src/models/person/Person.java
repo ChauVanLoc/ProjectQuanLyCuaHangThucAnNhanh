@@ -120,15 +120,12 @@ public class Person {
 		return this;
 	}
 
-	public int login(String email, String password) {
+	public boolean login(String email, String password) {
 		return this.account.validateAccount(email, password);
 	}
 
-	public Person changePassword(String currentPassword, String newPassword) {
-		if (this.getAccount().getPassword().equalsIgnoreCase(currentPassword)) {
-			this.getAccount().setPassword(newPassword);
-		}
-		return this;
+	public boolean changePassword(String currentPassword, String newPassword) {
+		return this.account.changePassword(currentPassword, newPassword);
 	}
 
 	@Override

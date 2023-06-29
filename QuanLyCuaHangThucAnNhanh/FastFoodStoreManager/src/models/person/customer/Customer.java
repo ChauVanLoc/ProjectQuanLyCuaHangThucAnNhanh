@@ -6,13 +6,11 @@ import java.util.List;
 import constant.OrderStatus;
 import models.PersonObserver;
 import models.ProductObserver;
-import models.Subject;
 import models.person.Address;
 import models.person.Order;
 import models.person.Person;
 
 public abstract class Customer extends PersonObserver {
-	protected Person person;
 	protected int score;
 	protected List<Address> deliveryAddress;
 	protected List<Order> orders;
@@ -67,28 +65,24 @@ public abstract class Customer extends PersonObserver {
 		return this.subject.payment(order);
 	}
 
-	public Order cancelOrder(String note, Order order) {
-		order.cancel(note);
-		return order;
+	public boolean cancelOrder(String note, Order order) {
+		return order.cancel(note);
 	}
 
-	public Customer updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
-		this.setPerson(this.person.updateInfor(cccd, name, dob, sex, phone, email));
-		return this;
+	public void updateInformation(String cccd, String name, Date dob, String sex, String phone, String email) {
+		this.person.updateInfor(cccd, name, dob, sex, phone, email);
 	}
 
-	public Customer updateAvatar(String image) {
+	public void updateAvatar(String image) {
 		this.person.setImage(image);
-		return this;
 	}
 
-	public int login(String email, String password) {
-		return this.person.login(email, password);
+	public boolean changePassword(String currentPassword, String newPassword) {
+		return this.person.changePassword(currentPassword, newPassword);
 	}
-
-	public Customer changePassword(String currentPassword, String newPassword) {
-		this.setPerson(this.person.changePassword(currentPassword, newPassword));
-		return this;
+	
+	public void recharge(double amount) {
+		((Customer) this.gateway).recharge(amount);
 	}
 
 	public abstract void upgradeCustomer(int score, Customer cus);

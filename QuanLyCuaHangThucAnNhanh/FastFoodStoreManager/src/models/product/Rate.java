@@ -1,53 +1,57 @@
 package models.product;
 
-import java.sql.Date;
+import java.util.Date;
+
+import models.PersonObserver;
 
 public class Rate {
-	private String id;
-	private String appearance;
-	private String quantity;
-	private String details;
-	private Date createdDate;
-	public String getId() {
-		return id;
+	private double rating;
+	private String content;
+	private PersonObserver personObserver;
+	private Date created;
+
+	public Rate(double rating, String content, PersonObserver personObserver) {
+		this.rating = rating;
+		this.content = content;
+		this.personObserver = personObserver;
+		this.created = new Date();
 	}
-	public void setId(String id) {
-		this.id = id;
+
+	public double getRating() {
+		return rating;
 	}
-	public String getAppearance() {
-		return appearance;
+
+	public void setRating(double rating) {
+		this.rating = rating;
 	}
-	public void setAppearance(String appearance) {
-		this.appearance = appearance;
+
+	public String getContent() {
+		return content;
 	}
-	public String getQuantity() {
-		return quantity;
+
+	public void setContent(String content) {
+		this.content = content;
 	}
-	public Rate() {
-		super();
+
+	public PersonObserver getPersonObserver() {
+		return personObserver;
 	}
-	public Rate(String id, String appearance, String quantity, String details, Date createdDate) {
-		super();
-		this.id = id;
-		this.appearance = appearance;
-		this.quantity = quantity;
-		this.details = details;
-		this.createdDate = createdDate;
+
+	public void setPersonObserver(PersonObserver personObserver) {
+		this.personObserver = personObserver;
 	}
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+
+	public Date getCreated() {
+		return created;
 	}
-	public String getDetails() {
-		return details;
-	}
-	public void setDetails(String details) {
-		this.details = details;
-	}
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+
+	public void setCreated(Date created) {
+		this.created = created;
 	}
 	
+	public void change(double rating, String content) {
+		setRating(rating);
+		setContent(content);
+	}
+
 }

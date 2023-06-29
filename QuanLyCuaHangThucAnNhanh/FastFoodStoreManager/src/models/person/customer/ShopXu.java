@@ -6,6 +6,10 @@ public class ShopXu implements GatewayPayment {
 	public ShopXu() {
 	}
 
+	public double getAmount() {
+		return amount;
+	}
+
 	@Override
 	public boolean sucessPayment(double amount) {
 		if (this.amount >= amount) {
@@ -15,7 +19,7 @@ public class ShopXu implements GatewayPayment {
 		return false;
 	}
 
-	public void addMoney(double amount) {
+	public void recharge(double amount) {
 		this.amount += amount;
 	}
 
