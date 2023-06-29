@@ -1,5 +1,5 @@
 package models.person.customer;
 
 public interface GatewayPayment {
-	boolean sucessPayment(double amount);
+	boolean pay(double amount);
 }

@@ -10,17 +10,17 @@ public class ShopXu implements GatewayPayment {
 		return amount;
 	}
 
+	public void recharge(double amount) {
+		this.amount += amount;
+	}
+
 	@Override
-	public boolean sucessPayment(double amount) {
+	public boolean pay(double amount) {
 		if (this.amount >= amount) {
 			this.amount -= amount;
 			return true;
 		}
 		return false;
-	}
-
-	public void recharge(double amount) {
-		this.amount += amount;
 	}
 
 }

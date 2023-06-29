@@ -110,14 +110,13 @@ public class Person {
 		this.image = image;
 	}
 
-	public Person updateInfor(String cccd, String name, Date dob, String sex, String phone, String email) {
+	public void updateInformation(String cccd, String name, Date dob, String sex, String phone, String email) {
 		setCccd(cccd);
 		setName(name);
 		setDateOfBirth(dob);
 		setSex(sex);
 		setPhone(phone);
 		this.account.setEmail(email);
-		return this;
 	}
 
 	public boolean login(String email, String password) {

@@ -52,7 +52,7 @@ public class Register {
 		};
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout());
 
 		JPanel panel = new JPanel() {
 			protected void paintComponent(Graphics g) {
@@ -65,79 +65,78 @@ public class Register {
 				graphics.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 				graphics.setColor(getBackground());
-				graphics.fillRoundRect(0, 0, width - 1, height - 1, 15, 15);// paint background
+				graphics.fillRoundRect(contentPane.getWidth() * 1 / 5, contentPane.getHeight() * 1 / 10,
+						contentPane.getWidth() * 3 / 5, contentPane.getHeight() * 8 / 10, 15, 15);// paint background
 			}
 		};
 		panel.setOpaque(false);
 		panel.setBackground(new Color(255, 255, 255));
-		panel.setBounds(this.screenSize.width * 1 / 4, this.screenSize.height * 1 / 11, this.screenSize.width * 2 / 4,
-				this.screenSize.height * 8 / 11 + 30);
-		contentPane.add(panel);
+		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Register");
 		lblNewLabel.setFont(Fonts.tahoma_bold_40);
-		lblNewLabel.setBounds(300, 15, 300, 53);
+		lblNewLabel.setBounds(590, 90, 300, 53);
 		panel.add(lblNewLabel);
 
 		lb_fullName = new JLabel("Full Name");
 		lb_fullName.setFont(Fonts.tahoma_plain_25);
-		lb_fullName.setBounds(81, 85, 130, 31);
+		lb_fullName.setBounds(365, 160, 130, 31);
 		panel.add(lb_fullName);
 
-		fullNamePanelCustom = new PanelCustom(81, 125, 350, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		fullNamePanelCustom = new PanelCustom(365, 200, 350, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
 		JPanel fullNamePanel = fullNamePanelCustom.createTextFiel(21, Fonts.tahoma_plain_18);
 		panel.add(fullNamePanel);
 		
-		lb_cccd = new JLabel("CCCD");
+		lb_cccd = new JLabel("Phone");
 		lb_cccd.setFont(Fonts.tahoma_plain_25);
-		lb_cccd.setBounds(470, 85, 130, 31);
+		lb_cccd.setBounds(740, 160, 130, 31);
 		panel.add(lb_cccd);
 		
-		cccdPanelCustom = new PanelCustom(470, 125, 215, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
-		JPanel cccdPanel = cccdPanelCustom.createTextFiel(12, Fonts.tahoma_plain_18);
+		cccdPanelCustom = new PanelCustom(740, 200, 230, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		JPanel cccdPanel = cccdPanelCustom.createTextFiel(13, Fonts.tahoma_plain_18);
 		panel.add(cccdPanel);
 		
 		lb_email = new JLabel("Email");
 		lb_email.setFont(Fonts.tahoma_plain_25);
-		lb_email.setBounds(81, 195, 82, 31);
+		lb_email.setBounds(365, 280, 82, 31);
 		panel.add(lb_email);
 
-		emailPanelCustom = new PanelCustom(81, 238, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		emailPanelCustom = new PanelCustom(365, 320, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
 		JPanel emailPanel = emailPanelCustom.createTextFiel(38, Fonts.tahoma_plain_18);
 		panel.add(emailPanel);
 		
 		lb_password = new JLabel("Password");
 		lb_password.setFont(Fonts.tahoma_plain_25);
-		lb_password.setBounds(81, 305, 149, 31);
+		lb_password.setBounds(365, 400, 149, 31);
 		panel.add(lb_password);
 		
-		passwordPanelCustom = new PanelCustom(81, 345, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
-		JPanel passwordPanel = passwordPanelCustom.createPasswordTextFiel(38, Fonts.tahoma_plain_18);
+		passwordPanelCustom = new PanelCustom(365, 440, 290, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		JPanel passwordPanel = passwordPanelCustom.createPasswordTextFiel(17, Fonts.tahoma_plain_18);
 		panel.add(passwordPanel);
 		
 		lb_confirmPassword = new JLabel("Confirm Password");
 		lb_confirmPassword.setFont(Fonts.tahoma_plain_25);
-		lb_confirmPassword.setBounds(81, 415, 250, 31);
+		lb_confirmPassword.setBounds(680, 400, 250, 31);
 		panel.add(lb_confirmPassword);
 		
-		confirmPasswordPanelCustom = new PanelCustom(81, 460, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
-		JPanel confirmPasswordPanel = confirmPasswordPanelCustom.createPasswordTextFiel(38, Fonts.tahoma_plain_18);
+		confirmPasswordPanelCustom = new PanelCustom(680, 440, 290, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		JPanel confirmPasswordPanel = confirmPasswordPanelCustom.createPasswordTextFiel(17, Fonts.tahoma_plain_18);
 		panel.add(confirmPasswordPanel);
 		
 		JLabel lblNewLabel_3 = new JLabel("Bạn đã có tài khoản?");
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lblNewLabel_3.setBounds(223, 610, 190, 28);
+		lblNewLabel_3.setBounds(510, 595, 190, 28);
 		panel.add(lblNewLabel_3);
 		
-		PanelCustom panelLoginCustom = new PanelCustom(81, 535, 606, 59, 15, new Color(223, 228, 234), Colors.blue);
+		PanelCustom panelLoginCustom = new PanelCustom(365, 527, 606, 59, 15, new Color(223, 228, 234), Colors.blue);
 		JPanel loginPanel = panelLoginCustom.createButton("Register", Fonts.tahoma_bold_20, new Color(255, 255, 255));
 		panel.add(loginPanel);
 		
 		JLabel lb_login_now = new JLabel("Đăng nhập ngay");
 		lb_login_now.setForeground(new Color(238, 77, 45));
 		lb_login_now.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		lb_login_now.setBounds(415, 610, 140, 28);
+		lb_login_now.setBounds(700, 595, 140, 28);
 		lb_login_now.setCursor(new Cursor(12));
 		panel.add(lb_login_now);
 		

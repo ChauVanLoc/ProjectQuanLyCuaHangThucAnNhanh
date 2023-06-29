@@ -28,5 +28,4 @@ public class NewCustomer extends Customer {
 	public int calScore(Order order) {
 		return (int) (order.getTotal() * Score.STRATEGY_NEW);
 	}
-
 }

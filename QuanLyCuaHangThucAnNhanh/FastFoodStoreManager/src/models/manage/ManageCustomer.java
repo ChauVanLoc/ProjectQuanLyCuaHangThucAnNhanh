@@ -11,26 +11,26 @@ import models.person.customer.Customer;
 import models.person.customer.NewCustomer;
 
 public class ManageCustomer {
-	private List<PersonObserver> cuss;
+	private List<PersonObserver> customers;
 
 	public ManageCustomer() {
-		this.cuss = new ArrayList<>();
+		this.customers = new ArrayList<>();
 	}
 
 	public List<PersonObserver> getCustomer() {
-		return cuss;
+		return customers;
 	}
 
 	public void changeScore(String type, int targetScore) {
 		Score.changeScore(type, targetScore);
 	}
 
-	public void addCustomer(Customer o) {
-		this.cuss.add(o);
+	public void addCustomer(PersonObserver o) {
+		this.customers.add(o);
 	}
 
-	public void deleteCustomer(Customer o) {
-		this.cuss.remove(o);
+	public void deleteCustomer(PersonObserver o) {
+		this.customers.remove(o);
 	}
 
 	public PersonObserver register(String name, String email, String password, String phone, Subject sub) {
