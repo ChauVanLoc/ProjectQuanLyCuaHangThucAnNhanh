@@ -14,12 +14,13 @@ import models.PersonObserver;
 
 public class Home extends JPanel {
 
+	private PersonObserver personObserver = null;
 	private CardLayout cardLayout;
 	private JPanel jp_content;
 	private JPanel primary_panel;
 	private JPanel nav_panel;
 
-	public Home(JPanel parentPanel, CardLayout cardLayoutMain, PersonObserver person) {
+	public Home(JPanel parentPanel, CardLayout cardLayoutMain, PersonObserver personObserver) {
 		cardLayout = new CardLayout();
 		setLayout(null);
 		setBounds(0, 0, 1350, 756);
@@ -36,7 +37,7 @@ public class Home extends JPanel {
 		primary_panel.add(jp_content);
 		jp_content.setLayout(cardLayout);
 
-		nav_panel = new Navigate(jp_content, cardLayout, parentPanel, cardLayoutMain, person);
+		nav_panel = new Navigate(jp_content, cardLayout, parentPanel, cardLayoutMain, this.personObserver);
 		nav_panel.setBounds(10, 0, 78, 619);
 		primary_panel.add(nav_panel);
 
@@ -77,5 +78,9 @@ public class Home extends JPanel {
 		jp_title.add(lb_logo);
 		lb_logo.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/logo.png", 80, 80));
 
+	}
+
+	public void setPersonObserver(PersonObserver personObserver) {
+		this.personObserver = personObserver;
 	}
 }
