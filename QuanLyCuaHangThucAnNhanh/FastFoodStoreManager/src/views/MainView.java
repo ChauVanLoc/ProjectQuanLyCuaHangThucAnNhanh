@@ -14,11 +14,11 @@ import models.Subject;
 
 public class MainView extends JFrame {
 
-	private Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	private JPanel contentPane;
 	private CardLayout cardLayout;
 	private Login login;
 	private Register register;
+	private Home home;
 
 	public void display() {
 		EventQueue.invokeLater(new Runnable() {
@@ -31,24 +31,29 @@ public class MainView extends JFrame {
 			}
 		});
 	}
-	
+
 	public MainView(Subject subject) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(0, 0, 1350, 756);
 		setLocationRelativeTo(null);
+		setResizable(false);
+
 		contentPane = new JPanel();
 		cardLayout = new CardLayout();
 		contentPane.setLayout(cardLayout);
-		
+
 		login = new Login();
 		JPanel loginPanel = login.createLogin(contentPane, cardLayout);
 		contentPane.add(loginPanel, Frame.login);
-		
+
 		register = new Register();
 		JPanel registerPanel = register.createRegister(contentPane, cardLayout);
 		contentPane.add(registerPanel, Frame.register);
-		
-		cardLayout.show(contentPane, Frame.register);
+
+		home = new Home(contentPane, cardLayout, null);
+		contentPane.add(home, Frame.home);
+
+		cardLayout.show(contentPane, Frame.login);
 		setContentPane(contentPane);
 	}
 

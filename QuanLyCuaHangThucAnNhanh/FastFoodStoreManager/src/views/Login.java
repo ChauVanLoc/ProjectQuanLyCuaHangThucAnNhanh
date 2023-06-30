@@ -89,7 +89,8 @@ public class Login {
 		lb_password.setBounds(365, 350, 149, 31);
 		panel.add(lb_password);
 
-		passwordPanelCustom = new PanelCustom(365, 399, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
+		passwordPanelCustom = new PanelCustom(365, 399, 606, 49, 15, new Color(223, 228, 234),
+				new Color(255, 255, 255));
 		JPanel passwordPanel = passwordPanelCustom.createPasswordTextFiel(38, Fonts.tahoma_plain_18);
 		panel.add(passwordPanel);
 
@@ -107,6 +108,12 @@ public class Login {
 		PanelCustom panelLoginCustom = new PanelCustom(365, 497, 606, 59, 15, new Color(223, 228, 234), Colors.blue);
 		JPanel loginPanel = panelLoginCustom.createButton("Login", Fonts.tahoma_bold_20, new Color(255, 255, 255));
 		panel.add(loginPanel);
+		panelLoginCustom.getBtn().addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayout.show(parentPanel, Frame.home);
+			}
+		});
 
 		JLabel lb_register_now = new JLabel("Đăng ký ngay");
 		lb_register_now.setForeground(new Color(238, 77, 45));

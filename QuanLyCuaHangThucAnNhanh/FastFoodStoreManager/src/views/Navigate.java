@@ -14,8 +14,11 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import constant.Frame;
 import models.Admin;
 import models.PersonObserver;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Navigate extends JPanel {
 	private JButton btnMenu;
@@ -27,7 +30,7 @@ public class Navigate extends JPanel {
 	private JLabel lblNewLabel_4_3;
 	private JLabel lblNewLabel_4_4;
 
-	public Navigate(JPanel panel, CardLayout cardLayout, PersonObserver person) {
+	public Navigate(JPanel panel, CardLayout cardLayout, JPanel main_panel, CardLayout cardLayoutMain, PersonObserver person) {
 		setBackground(Color.WHITE);
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
@@ -98,6 +101,12 @@ public class Navigate extends JPanel {
 		add(btnProfile);
 
 		btnLogOut = new JButton();
+		btnLogOut.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayoutMain.show(main_panel, Frame.login);
+			}
+		});
 		btnLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogOut.setBorder(null);
 		btnLogOut.setFocusPainted(false);
