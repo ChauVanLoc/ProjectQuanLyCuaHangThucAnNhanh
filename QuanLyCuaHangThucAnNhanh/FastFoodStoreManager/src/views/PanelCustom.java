@@ -93,34 +93,17 @@ public class PanelCustom {
 		this.p.add(this.text, this.gbc);
 		return p;
 	}
-	
+
 	public JPanel createPasswordTextFiel(int column, Font font) {
 		this.ps = new JPasswordField();
 		this.ps.setBorder(null);
 		this.ps.setFont(font);
 		this.ps.setColumns(column);
-		
+
 		this.p.add(this.ps, this.gbc);
 		setBound(this.p);
 		return p;
 	}
-
-//	public JPanel createBaseTextFiel(String lableName, Font lableFont, Font textFielFont, int textFielColumn) {
-//		JPanel panel = new JPanel();
-//		panel.setLayout(new FlowLayout(FlowLayout.LEFT));
-//		panel.setBackground(new Color(255, 255, 255));
-//
-//		JLabel lable = new JLabel(lableName);
-//		lable.setFont(lableFont);
-//		panel.add(lable);
-//
-//		JPanel childrenPanel = createTextFiel(textFielColumn, textFielFont, false);
-//		panel.add(childrenPanel);
-//
-//		setBound(panel);
-//
-//		return panel;
-//	}
 
 	public JPanel getP() {
 		return p;

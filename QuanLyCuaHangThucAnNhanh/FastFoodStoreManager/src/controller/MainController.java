@@ -6,7 +6,7 @@ import models.PersonObserver;
 import models.Subject;
 import views.MainView;
 
-public class Main {
+public class MainController {
 	private Subject center;
 	public void init() {
 		center = new Center();
@@ -16,7 +16,7 @@ public class Main {
 	}
 	
 	public static void main(String[] args) {
-		Main main = new Main();
+		MainController main = new MainController();
 		main.init();
 	}
 }
