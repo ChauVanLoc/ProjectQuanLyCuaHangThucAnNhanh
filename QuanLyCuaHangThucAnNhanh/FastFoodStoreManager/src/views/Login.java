@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.RenderingHints;
+import java.awt.SystemColor;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -27,6 +28,7 @@ import models.Subject;
 public class Login {
 	private JPanel contentPane;
 	private JLabel lb_email;
+	private JLabel lb_error;
 	private JLabel lb_password;
 	private PanelCustom passwordPanelCustom;
 	private PanelCustom emailPanelCustom;
@@ -82,6 +84,12 @@ public class Login {
 		lb_email.setBounds(365, 221, 82, 31);
 		panel.add(lb_email);
 
+		lb_error = new JLabel("Email or password invalid");
+		lb_error.setFont(Fonts.tahoma_plain_20);
+		lb_error.setForeground(SystemColor.white);
+		lb_error.setBounds(465, 223, 400, 31);
+		panel.add(lb_error);
+
 		emailPanelCustom = new PanelCustom(365, 270, 606, 49, 15, new Color(223, 228, 234), new Color(255, 255, 255));
 		JPanel emailPanel = emailPanelCustom.createTextFiel(38, Fonts.tahoma_plain_18);
 		panel.add(emailPanel);
@@ -114,7 +122,7 @@ public class Login {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				new LoginController(emailPanelCustom.getText().getText(), passwordPanelCustom.getPs().getText(),
-						parentPanel, cardLayout, subject);
+						parentPanel, cardLayout, subject, lb_error);
 			}
 		});
 

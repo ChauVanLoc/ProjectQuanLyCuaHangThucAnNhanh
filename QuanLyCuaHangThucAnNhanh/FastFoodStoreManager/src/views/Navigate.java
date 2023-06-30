@@ -142,63 +142,63 @@ public class Navigate extends JPanel {
 		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
 		add(lblNewLabel_4_2);
 
-//		if (!(person instanceof Admin)) {
-		btnPerson = new JButton();
-		btnPerson.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnPerson.setFocusPainted(false);
-		btnPerson.setBorder(null);
-		btnPerson.setBackground(Color.WHITE);
-		btnPerson.setBounds(0, 295, 78, 70);
-		add(btnPerson);
-		btnPerson.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
+		if (person instanceof Admin) {
+			btnPerson = new JButton();
+			btnPerson.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnPerson.setFocusPainted(false);
+			btnPerson.setBorder(null);
+			btnPerson.setBackground(Color.WHITE);
+			btnPerson.setBounds(0, 295, 78, 70);
+			add(btnPerson);
+			btnPerson.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
 
-		lblNewLabel_4_3 = new JLabel("Person");
-		lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4_3.setEnabled(false);
-		lblNewLabel_4_3.setBounds(0, 366, 78, 14);
-		add(lblNewLabel_4_3);
+			lblNewLabel_4_3 = new JLabel("Person");
+			lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4_3.setEnabled(false);
+			lblNewLabel_4_3.setBounds(0, 366, 78, 14);
+			add(lblNewLabel_4_3);
 
-		btnPerson.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(panel, "Person");
-				btnMenu.setBackground(Color.WHITE);
-				btnHistory.setBackground(Color.WHITE);
-				btnProfile.setBackground(Color.WHITE);
-				btnPerson.setBackground(SystemColor.scrollbar);
-				btnWork.setBackground(Color.WHITE);
-			}
-		});
+			btnPerson.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "Person");
+					btnMenu.setBackground(Color.WHITE);
+					btnHistory.setBackground(Color.WHITE);
+					btnProfile.setBackground(Color.WHITE);
+					btnPerson.setBackground(SystemColor.scrollbar);
+					btnWork.setBackground(Color.WHITE);
+				}
+			});
 
-		btnWork = new JButton();
-		btnWork.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnWork.setFocusPainted(false);
-		btnWork.setBorder(null);
-		btnWork.setBackground(Color.WHITE);
-		btnWork.setBounds(0, 396, 78, 70);
-		add(btnWork);
-		btnWork.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/work.png", 70, 70));
+			btnWork = new JButton();
+			btnWork.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnWork.setFocusPainted(false);
+			btnWork.setBorder(null);
+			btnWork.setBackground(Color.WHITE);
+			btnWork.setBounds(0, 396, 78, 70);
+			add(btnWork);
+			btnWork.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/work.png", 70, 70));
 
-		lblNewLabel_4_4 = new JLabel("Work");
-		lblNewLabel_4_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4_4.setEnabled(false);
-		lblNewLabel_4_4.setBounds(0, 470, 78, 14);
-		add(lblNewLabel_4_4);
+			lblNewLabel_4_4 = new JLabel("Work");
+			lblNewLabel_4_4.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4_4.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4_4.setEnabled(false);
+			lblNewLabel_4_4.setBounds(0, 470, 78, 14);
+			add(lblNewLabel_4_4);
 
-		btnWork.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(panel, "Work");
-				btnMenu.setBackground(Color.WHITE);
-				btnHistory.setBackground(Color.WHITE);
-				btnProfile.setBackground(Color.WHITE);
-				btnPerson.setBackground(Color.WHITE);
-				btnWork.setBackground(SystemColor.scrollbar);
-			}
-		});
-//		}
+			btnWork.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "Work");
+					btnMenu.setBackground(Color.WHITE);
+					btnHistory.setBackground(Color.WHITE);
+					btnProfile.setBackground(Color.WHITE);
+					btnPerson.setBackground(Color.WHITE);
+					btnWork.setBackground(SystemColor.scrollbar);
+				}
+			});
+		}
 	}
 
 	public JPanel getPanel() {

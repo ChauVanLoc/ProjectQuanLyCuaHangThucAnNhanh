@@ -12,9 +12,11 @@ import models.person.customer.NewCustomer;
 
 public class ManageCustomer {
 	private List<PersonObserver> customers;
+	private Subject subject;
 
-	public ManageCustomer() {
+	public ManageCustomer(Subject subject) {
 		this.customers = new ArrayList<>();
+		this.subject = subject;
 	}
 
 	public List<PersonObserver> getCustomer() {
@@ -33,8 +35,13 @@ public class ManageCustomer {
 		this.customers.remove(o);
 	}
 
-	public PersonObserver register(String name, String email, String password, String phone, Subject sub) {
-		return new NewCustomer(name, phone, email, password, sub);
+	public PersonObserver register(String name, String email, String password, String phone) {
+		for (PersonObserver p : customers) {
+			if (p.getPerson().getAccount().getEmail().equals(email)) {
+				return null;
+			}
+		}
+		return new NewCustomer(name, phone, email, password, this.subject);
 	}
 
 	public PersonObserver forgotPassword(String email) {
