@@ -47,7 +47,7 @@ public class MainView extends JFrame {
 		contentPane.add(loginPanel, Frame.login);
 
 		register = new Register();
-		JPanel registerPanel = register.createRegister(contentPane, cardLayout);
+		JPanel registerPanel = register.createRegister(contentPane, cardLayout, subject);
 		contentPane.add(registerPanel, Frame.register);
 
 		cardLayout.show(contentPane, Frame.login);

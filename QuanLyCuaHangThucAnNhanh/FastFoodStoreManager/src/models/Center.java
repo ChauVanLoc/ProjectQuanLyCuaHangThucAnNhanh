@@ -20,7 +20,7 @@ public class Center implements Subject {
 	private ManageProduct manageProduct;
 
 	public Center() {
-		this.manageCustomer = new ManageCustomer();
+		this.manageCustomer = new ManageCustomer(this);
 		this.manageEmployee = new ManageEmployee();
 		this.manageOrder = new ManageOrder();
 		this.manageProduct = new ManageProduct();
@@ -41,8 +41,8 @@ public class Center implements Subject {
 	}
 
 	@Override
-	public PersonObserver register(String email, String password) {
-		return null;
+	public PersonObserver register(String name, String phone, String email, String password) {
+		return this.manageCustomer.register(name, email, password, phone);
 	}
 
 //	------------------------------------------------------------------
