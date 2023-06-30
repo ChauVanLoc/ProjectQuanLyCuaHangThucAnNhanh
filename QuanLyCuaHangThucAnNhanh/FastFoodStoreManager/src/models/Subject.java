@@ -2,6 +2,10 @@ package models;
 
 import java.util.Date;
 
+import models.manage.CustomerManage;
+import models.manage.EmployeeManage;
+import models.manage.OrderManage;
+import models.manage.ProductManage;
 import models.person.Order;
 
 public interface Subject {
@@ -47,4 +51,11 @@ public interface Subject {
 
 	Vourcher createVourcher(String title, String content, String code, double cost, Date startDate, Date expiredDate);
 
+	OrderManage getOrderManage();
+	
+	CustomerManage getCustomerManage();
+	
+	EmployeeManage getEmployeeManage();
+
+	ProductManage getProductManage();
 }

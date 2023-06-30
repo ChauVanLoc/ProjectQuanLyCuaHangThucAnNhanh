@@ -1,16 +1,15 @@
 package views;
 
 import java.awt.CardLayout;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.SystemColor;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import models.PersonObserver;
+import models.Subject;
 
 public class Home extends JPanel {
 
@@ -18,8 +17,13 @@ public class Home extends JPanel {
 	private JPanel jp_content;
 	private JPanel primary_panel;
 	private JPanel nav_panel;
+	private JPanel content_panel;
+	private JPanel history_panel;
+	private JPanel profile_panel;
+	private JPanel work_panel;
+	private JPanel work_person;
 
-	public Home(JPanel parentPanel, CardLayout cardLayoutMain, PersonObserver personObserver) {
+	public Home(JPanel parentPanel, CardLayout cardLayoutMain, PersonObserver personObserver, Subject subject) {
 		cardLayout = new CardLayout();
 		setLayout(null);
 		setBounds(0, 0, 1350, 756);
@@ -40,19 +44,19 @@ public class Home extends JPanel {
 		nav_panel.setBounds(10, 0, 78, 619);
 		primary_panel.add(nav_panel);
 
-		JPanel content_panel = new Content();
+		content_panel = new Menu(personObserver, subject);
 		jp_content.add(content_panel, "Menu");
 
-		JPanel history_panel = new History();
+		history_panel = new History();
 		jp_content.add(history_panel, "History");
 
-		JPanel profile_panel = new Profile();
+		profile_panel = new Profile();
 		jp_content.add(profile_panel, "Profile");
 
-		JPanel work_panel = new Work();
+		work_panel = new Work();
 		jp_content.add(work_panel, "Work");
 
-		JPanel work_person = new PersonManage();
+		work_person = new PersonManage();
 		jp_content.add(work_person, "Person");
 
 		cardLayout.show(jp_content, "Menu");

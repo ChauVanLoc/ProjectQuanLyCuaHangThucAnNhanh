@@ -16,7 +16,7 @@ public class LoginController {
 			JLabel lb_err) {
 		PersonObserver person = login(email, password, subject);
 		if (person != null) {
-			Home home = new Home(panel, cardLayout, person);
+			Home home = new Home(panel, cardLayout, person, subject);
 			panel.add(home, Frame.home);
 			cardLayout.show(panel, Frame.home);
 		} else {

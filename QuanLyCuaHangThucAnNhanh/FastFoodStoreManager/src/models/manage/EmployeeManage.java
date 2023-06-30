@@ -6,11 +6,11 @@ import java.util.List;
 import models.PersonObserver;
 import models.person.employee.Employee;
 
-public class ManageEmployee {
+public class EmployeeManage {
 	private List<PersonObserver> employees;
 	private List<PersonObserver> admins;
 
-	public ManageEmployee() {
+	public EmployeeManage() {
 		this.employees = new ArrayList<>();
 		this.admins = new ArrayList<>();
 	}

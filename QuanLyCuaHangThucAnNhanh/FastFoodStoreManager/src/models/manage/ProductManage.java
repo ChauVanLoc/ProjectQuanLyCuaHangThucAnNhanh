@@ -5,18 +5,18 @@ import java.util.List;
 
 import models.ProductObserver;
 
-public class ManageProduct {
+public class ProductManage {
 	private List<ProductObserver> products;
 	private List<ProductObserver> decorators;
 
-	public ManageProduct() {
+	public ProductManage() {
 		this.products = new ArrayList<>();
 		this.decorators = new ArrayList<>();
 	}
 
 //	------------------ Product ---------------------------------------
 
-	public List<ProductObserver> getProduct() {
+	public List<ProductObserver> getProducts() {
 		return products;
 	}
 
@@ -33,7 +33,7 @@ public class ManageProduct {
 	}
 //	------------------ Decorator ---------------------------------------
 
-	public List<ProductObserver> getDecorator() {
+	public List<ProductObserver> getDecorators() {
 		return decorators;
 	}
 

@@ -6,10 +6,10 @@ import java.util.List;
 import constant.OrderStatus;
 import models.person.Order;
 
-public class ManageOrder {
+public class OrderManage {
 	private List<Order> orders;
 
-	public ManageOrder() {
+	public OrderManage() {
 		this.orders = new ArrayList<>();
 	}
 

@@ -10,11 +10,11 @@ import models.Subject;
 import models.person.customer.Customer;
 import models.person.customer.NewCustomer;
 
-public class ManageCustomer {
+public class CustomerManage {
 	private List<PersonObserver> customers;
 	private Subject subject;
 
-	public ManageCustomer(Subject subject) {
+	public CustomerManage(Subject subject) {
 		this.customers = new ArrayList<>();
 		this.subject = subject;
 	}

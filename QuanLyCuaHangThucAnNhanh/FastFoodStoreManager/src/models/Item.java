@@ -7,7 +7,7 @@ public class Item {
 	public Item(ProductObserver productObserver, int quantity) {
 		this.productObserver = productObserver;
 		this.quantity = quantity;
-		this.productObserver.descreaseAmount(quantity);
+		this.productObserver.buyAmount(quantity);
 	}
 
 	public ProductObserver getProductObserver() {
