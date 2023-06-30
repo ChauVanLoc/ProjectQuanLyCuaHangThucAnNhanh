@@ -144,6 +144,7 @@ public class Navigate extends JPanel {
 
 //		if (!(person instanceof Admin)) {
 		btnPerson = new JButton();
+		btnPerson.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnPerson.setFocusPainted(false);
 		btnPerson.setBorder(null);
 		btnPerson.setBackground(Color.WHITE);
@@ -171,6 +172,7 @@ public class Navigate extends JPanel {
 		});
 
 		btnWork = new JButton();
+		btnWork.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnWork.setFocusPainted(false);
 		btnWork.setBorder(null);
 		btnWork.setBackground(Color.WHITE);

@@ -43,15 +43,12 @@ public class MainView extends JFrame {
 		contentPane.setLayout(cardLayout);
 
 		login = new Login();
-		JPanel loginPanel = login.createLogin(contentPane, cardLayout);
+		JPanel loginPanel = login.createLogin(contentPane, cardLayout, subject);
 		contentPane.add(loginPanel, Frame.login);
 
 		register = new Register();
 		JPanel registerPanel = register.createRegister(contentPane, cardLayout);
 		contentPane.add(registerPanel, Frame.register);
-
-		home = new Home(contentPane, cardLayout, null);
-		contentPane.add(home, Frame.home);
 
 		cardLayout.show(contentPane, Frame.login);
 		setContentPane(contentPane);

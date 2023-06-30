@@ -21,6 +21,8 @@ import javax.swing.border.EmptyBorder;
 import constant.Colors;
 import constant.Fonts;
 import constant.Frame;
+import controller.LoginController;
+import models.Subject;
 
 public class Login {
 	private JPanel contentPane;
@@ -32,7 +34,7 @@ public class Login {
 	public Login() {
 	}
 
-	public JPanel createLogin(JPanel parentPanel, CardLayout cardLayout) {
+	public JPanel createLogin(JPanel parentPanel, CardLayout cardLayout, Subject subject) {
 		contentPane = new JPanel() {
 			@Override
 			protected void paintComponent(Graphics g) {
@@ -111,7 +113,8 @@ public class Login {
 		panelLoginCustom.getBtn().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(parentPanel, Frame.home);
+				new LoginController(emailPanelCustom.getText().getText(), passwordPanelCustom.getPs().getText(),
+						parentPanel, cardLayout, subject);
 			}
 		});
 
