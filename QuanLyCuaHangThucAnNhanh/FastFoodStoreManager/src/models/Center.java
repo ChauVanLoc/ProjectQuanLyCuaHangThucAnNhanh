@@ -5,33 +5,58 @@ import java.util.Date;
 import java.util.List;
 
 import constant.Password;
-import models.manage.ManageCustomer;
-import models.manage.ManageEmployee;
-import models.manage.ManageOrder;
-import models.manage.ManageProduct;
+import models.manage.CustomerManage;
+import models.manage.EmployeeManage;
+import models.manage.OrderManage;
+import models.manage.ProductManage;
 import models.person.Order;
 import models.person.customer.Customer;
 import models.person.employee.Employee;
 
 public class Center implements Subject {
-	private ManageOrder manageOrder;
-	private ManageCustomer manageCustomer;
-	private ManageEmployee manageEmployee;
-	private ManageProduct manageProduct;
+	private static Subject instance;
+
+	private OrderManage orderManage;
+	private CustomerManage customerManage;
+	private EmployeeManage employeeManage;
+	private ProductManage productManage;
 
 	public Center() {
-		this.manageCustomer = new ManageCustomer(this);
-		this.manageEmployee = new ManageEmployee();
-		this.manageOrder = new ManageOrder();
-		this.manageProduct = new ManageProduct();
+		this.customerManage = new CustomerManage(this);
+		this.employeeManage = new EmployeeManage();
+		this.orderManage = new OrderManage();
+		this.productManage = new ProductManage();
+	}
+
+	public static Subject getInstance() {
+		if (instance == null) {
+			return new Center();
+		}
+		return instance;
+	}
+
+	public OrderManage getOrderManage() {
+		return orderManage;
+	}
+
+	public CustomerManage getCustomerManage() {
+		return customerManage;
+	}
+
+	public EmployeeManage getEmployeeManage() {
+		return employeeManage;
+	}
+
+	public ProductManage getProductManage() {
+		return productManage;
 	}
 
 	@Override
 	public PersonObserver login(String email, String password) {
 		List<PersonObserver> list = new ArrayList<>();
-		list.addAll(this.manageCustomer.getCustomer());
-		list.addAll(this.manageEmployee.getEmployee());
-		list.addAll(this.manageEmployee.getAdmin());
+		list.addAll(this.customerManage.getCustomer());
+		list.addAll(this.employeeManage.getEmployee());
+		list.addAll(this.employeeManage.getAdmin());
 		for (PersonObserver o : list) {
 			if (o.getPerson().getAccount().validateAccount(email, password)) {
 				return o;
@@ -42,7 +67,7 @@ public class Center implements Subject {
 
 	@Override
 	public PersonObserver register(String name, String phone, String email, String password) {
-		return this.manageCustomer.register(name, email, password, phone);
+		return this.customerManage.register(name, email, password, phone);
 	}
 
 //	------------------------------------------------------------------
@@ -51,12 +76,12 @@ public class Center implements Subject {
 
 	@Override
 	public void addProduct(ProductObserver p) {
-		this.manageProduct.addProduct(p);
+		this.productManage.addProduct(p);
 	}
 
 	@Override
 	public void deleteProduct(ProductObserver p) {
-		this.manageProduct.deleteProduct(p);
+		this.productManage.deleteProduct(p);
 	}
 //	------------------------------------------------------------------
 //	------------------ Decorator ---------------------------------------
@@ -64,12 +89,12 @@ public class Center implements Subject {
 
 	@Override
 	public void addDecorator(ProductObserver p) {
-		this.manageProduct.addProduct(p);
+		this.productManage.addProduct(p);
 	}
 
 	@Override
 	public void deleteDecorator(ProductObserver p) {
-		this.manageProduct.deleteProduct(p);
+		this.productManage.deleteProduct(p);
 	}
 
 //	------------------------------------------------------------------
@@ -78,12 +103,12 @@ public class Center implements Subject {
 
 	@Override
 	public void addCustomer(PersonObserver p) {
-		this.manageCustomer.addCustomer(p);
+		this.customerManage.addCustomer(p);
 	}
 
 	@Override
 	public void deleteCustomer(PersonObserver p) {
-		this.manageCustomer.deleteCustomer(p);
+		this.customerManage.deleteCustomer(p);
 	}
 
 //	------------------------------------------------------------------
@@ -92,17 +117,17 @@ public class Center implements Subject {
 
 	@Override
 	public void addEmployee(PersonObserver p) {
-		this.manageEmployee.addEmployee(p);
+		this.employeeManage.addEmployee(p);
 	}
 
 	@Override
 	public void deleteEmployee(PersonObserver p) {
-		this.manageEmployee.deleteEmployee(p);
+		this.employeeManage.deleteEmployee(p);
 	}
-	
+
 	@Override
 	public void addAdmin(PersonObserver p) {
-		this.manageEmployee.addAdmin(p);
+		this.employeeManage.addAdmin(p);
 	}
 //	------------------------------------------------------------------
 //	------------------ Order -----------------------------------------
@@ -110,12 +135,12 @@ public class Center implements Subject {
 
 	@Override
 	public void addOrder(Order o) {
-		this.manageOrder.addOrder(o);
+		this.orderManage.addOrder(o);
 	}
 
 	@Override
 	public void deleteOrder(Order o) {
-		this.manageOrder.deleteOrder(o);
+		this.orderManage.deleteOrder(o);
 	}
 
 //	------------------------------------------------------------------

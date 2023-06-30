@@ -8,20 +8,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
+import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.border.MatteBorder;
 
+import models.Item;
 import models.ProductObserver;
 
 public class Product extends JPanel {
 
-	public Product(String path, ProductObserver productObserver) {
+	public Product(String path, ProductObserver productObserver, List<Item> items) {
 		setBorder(new LineBorder(SystemColor.controlShadow, 1, true));
 		setBounds(0, 0, 169, 266);
 		setLayout(null);
@@ -46,12 +49,20 @@ public class Product extends JPanel {
 		lblNewLabel_2.setBounds(22, 199, 60, 28);
 		add(lblNewLabel_2);
 
-		JSpinner spinner = new JSpinner();
+		SpinnerNumberModel spinnerNumber = new SpinnerNumberModel(1, 1, Integer.MAX_VALUE, 1);
+
+		JSpinner spinner = new JSpinner(spinnerNumber);
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		spinner.setBounds(80, 200, 55, 28);
 		add(spinner);
 
 		JButton btnNewButton = new JButton("Add Card");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				items.add(new Item(productObserver, (int) spinner.getValue()));
+			}
+		});
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setBackground(SystemColor.scrollbar);

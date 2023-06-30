@@ -3,15 +3,19 @@ package views;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.SystemColor;
+import java.util.List;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+
+import models.Item;
+import models.ProductObserver;
 
 public class Food extends JPanel {
 	private JPanel jp_food;
 	private JPanel jp_beverageFood;
 
-	public Food() {
+	public Food(List<Item> items, List<ProductObserver> products) {
 		setBackground(SystemColor.desktop);
 		setLayout(null);
 		setBounds(0, 0, 885, 585);
@@ -24,9 +28,9 @@ public class Food extends JPanel {
 		jp_food = new JPanel(new GridLayout(0, 3, 10, 10));
 		jp_food.setBackground(SystemColor.desktop);
 		scrollPane.setViewportView(jp_food);
-		
-		for(int i = 1; i < 10; i++) {
-			Product product = new Product("../FastFoodStoreManager/img/burgurBeef.png", null);
+
+		for (int i = 1; i < 10; i++) {
+			Product product = new Product("../FastFoodStoreManager/img/burgurBeef.png", null, items);
 			product.setPreferredSize(new Dimension(169, 266));
 			jp_food.add(product);
 		}
@@ -39,9 +43,9 @@ public class Food extends JPanel {
 		jp_beverageFood = new JPanel(new GridLayout(0, 2, 10, 10));
 		jp_beverageFood.setBackground(SystemColor.desktop);
 		scrollPane_1.setViewportView(jp_beverageFood);
-		
-		for(int i = 1; i < 10; i++) {
-			Product product = new Product("../FastFoodStoreManager/img/burgurBeef.png", null);
+
+		for (int i = 1; i < 10; i++) {
+			Product product = new Product("../FastFoodStoreManager/img/burgurBeef.png", null, items);
 			product.setPreferredSize(new Dimension(169, 266));
 			jp_beverageFood.add(product);
 		}
