@@ -21,8 +21,14 @@ public class MainController {
 				"0139476161", "Staff", 12, admin, new SalaryStrategy1());
 	}
 
+	public void initCustomer() {
+		center.register(null, null, null, null);
+	}
+
 	public void init() {
 		center = new Center();
+		initCustomer();
+		initEmployee();
 		PersonObserver ad1 = new Admin("ChauVanLoc", "0346128692", "locchau.220401@gmail.com", "chauvanloc", center);
 		MainView mainView = new MainView(center);
 		mainView.display();
