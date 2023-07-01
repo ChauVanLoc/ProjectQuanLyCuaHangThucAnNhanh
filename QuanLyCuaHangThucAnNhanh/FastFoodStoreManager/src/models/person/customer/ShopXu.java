@@ -23,4 +23,9 @@ public class ShopXu implements GatewayPayment {
 		return false;
 	}
 
+	@Override
+	public double getMoney() {
+		return this.amount;
+	}
+
 }

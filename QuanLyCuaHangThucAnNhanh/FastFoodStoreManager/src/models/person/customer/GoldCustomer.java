@@ -8,7 +8,6 @@ public class GoldCustomer extends Customer {
 	public GoldCustomer(PersonObserver cus) {
 		super.person = ((Customer) cus).getPerson();
 		super.subject = cus.getSubject();
-		super.deliveryAddress = ((Customer) cus).getDeliveryAddress();
 		super.orders = ((Customer) cus).getOrders();
 		super.score = ((Customer) cus).getScore();
 	}
