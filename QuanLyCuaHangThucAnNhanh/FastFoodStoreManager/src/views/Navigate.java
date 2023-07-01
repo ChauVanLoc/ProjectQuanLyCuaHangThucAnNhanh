@@ -21,12 +21,12 @@ import models.Admin;
 import models.PersonObserver;
 
 public class Navigate extends JPanel {
-	private JButton btnMenu;
-	private JButton btnHistory;
-	private JButton btnProfile;
-	private JButton btnLogOut;
-	private JButton btnPerson;
-	private JButton btnWork;
+	private JButton btnMenu = new JButton();
+	private JButton btnHistory = new JButton();
+	private JButton btnProfile = new JButton();
+	private JButton btnLogOut = new JButton();
+	private JButton btnPerson = new JButton();
+	private JButton btnWork = new JButton();
 	private JLabel lblNewLabel_4_3;
 	private JLabel lblNewLabel_4_4;
 
@@ -36,7 +36,6 @@ public class Navigate extends JPanel {
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
 
-		btnMenu = new JButton();
 		btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnMenu.setBackground(SystemColor.scrollbar);
 		btnMenu.addMouseListener(new MouseAdapter() {
@@ -59,7 +58,6 @@ public class Navigate extends JPanel {
 		add(btnMenu);
 		cardLayout.show(panel, "Menu");
 
-		btnHistory = new JButton();
 		btnHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnHistory.addMouseListener(new MouseAdapter() {
 			@Override
@@ -80,7 +78,6 @@ public class Navigate extends JPanel {
 		btnHistory.setBounds(0, 95, 78, 70);
 		add(btnHistory);
 
-		btnProfile = new JButton();
 		btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnProfile.addMouseListener(new MouseAdapter() {
 			@Override
@@ -101,7 +98,6 @@ public class Navigate extends JPanel {
 		btnProfile.setBounds(0, 195, 78, 70);
 		add(btnProfile);
 
-		btnLogOut = new JButton();
 		btnLogOut.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -143,7 +139,6 @@ public class Navigate extends JPanel {
 		add(lblNewLabel_4_2);
 
 		if (person instanceof Admin) {
-			btnPerson = new JButton();
 			btnPerson.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnPerson.setFocusPainted(false);
 			btnPerson.setBorder(null);
@@ -171,7 +166,6 @@ public class Navigate extends JPanel {
 				}
 			});
 
-			btnWork = new JButton();
 			btnWork.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnWork.setFocusPainted(false);
 			btnWork.setBorder(null);
