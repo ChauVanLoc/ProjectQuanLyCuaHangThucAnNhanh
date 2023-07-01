@@ -21,7 +21,7 @@ public class Center implements Subject {
 	private EmployeeManage employeeManage;
 	private ProductManage productManage;
 
-	public Center() {
+	private Center() {
 		this.customerManage = new CustomerManage(this);
 		this.employeeManage = new EmployeeManage();
 		this.orderManage = new OrderManage();

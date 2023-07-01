@@ -50,7 +50,7 @@ public class Home extends JPanel {
 		history_panel = new History();
 		jp_content.add(history_panel, "History");
 
-		profile_panel = new Profile();
+		profile_panel = new Profile(personObserver);
 		jp_content.add(profile_panel, "Profile");
 
 		work_panel = new Work();

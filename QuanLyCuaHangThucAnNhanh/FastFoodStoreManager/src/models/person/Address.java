@@ -35,4 +35,8 @@ public class Address {
 		this.provineOrCity = provineOrCity;
 	}
 
+	public String toString() {
+		return this.road + " " + this.district + " " + this.provineOrCity;
+	}
+
 }
