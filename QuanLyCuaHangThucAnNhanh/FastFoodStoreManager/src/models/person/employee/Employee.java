@@ -7,17 +7,8 @@ import models.PersonObserver;
 import models.person.Person;
 
 public abstract class Employee extends PersonObserver {
-	protected String academicLevel;
 	protected List<TimeWork> timeWork;
 	protected ISalary iSalary;
-
-	public String getAcademicLevel() {
-		return academicLevel;
-	}
-
-	public void setAcademicLevel(String academicLevel) {
-		this.academicLevel = academicLevel;
-	}
 
 	public void setTimeWork(List<TimeWork> timeWork) {
 		this.timeWork = timeWork;

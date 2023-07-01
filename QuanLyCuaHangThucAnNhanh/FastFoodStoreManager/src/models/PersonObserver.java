@@ -1,6 +1,7 @@
 package models;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import models.person.Order;
@@ -42,6 +43,15 @@ public abstract class PersonObserver {
 
 	public void setNotifications(List<Notification> notifications) {
 		this.notifications = notifications;
+	}
+
+	public void updateInformation(String cccd, String name, Date dob, String sex, String phone, String email,
+			String address) {
+		this.person.updateInformation(cccd, name, dob, sex, phone, email, address);
+	}
+
+	public boolean changePassword(String currentPassword, String newPassword) {
+		return this.person.changePassword(currentPassword, newPassword);
 	}
 
 }

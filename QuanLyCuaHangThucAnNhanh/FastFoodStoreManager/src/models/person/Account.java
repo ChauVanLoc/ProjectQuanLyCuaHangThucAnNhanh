@@ -19,7 +19,7 @@ public class Account {
 		this.expireDate = null;
 	}
 
-	public Account(String email, String password, int rule, Date expireDate) {
+	public Account(String email, String password, Date expireDate) {
 		this.email = email;
 		this.password = password;
 		this.status = true;

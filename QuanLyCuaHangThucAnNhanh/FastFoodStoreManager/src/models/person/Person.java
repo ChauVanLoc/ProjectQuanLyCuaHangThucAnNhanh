@@ -14,7 +14,7 @@ public class Person {
 	private Date dateOfBirth;
 	private String sex;
 	private String image;
-	private Address address;
+	private String address;
 	private String phone;
 	private Account account;
 
@@ -24,18 +24,15 @@ public class Person {
 		this.account = new Account(email, password);
 	}
 
-	public Person(String cccd, String name, Date dateOfBirth, String sex, Address address, String email, String phone,
-			int rule, Date expiredDate) {
+	public Person(String cccd, String name, Date dateOfBirth, String sex, String address, String email, String phone,
+			Date expiredDate) {
 		this.cccd = cccd;
 		this.name = name;
 		this.dateOfBirth = dateOfBirth;
 		this.sex = sex;
 		this.address = address;
 		this.phone = phone;
-		this.account = new Account(email, Password.DEFAULT_PASSWORD, rule, expiredDate);
-	}
-
-	public Person() {
+		this.account = new Account(email, Password.DEFAULT_PASSWORD, expiredDate);
 	}
 
 	public String getId() {
@@ -78,11 +75,11 @@ public class Person {
 		this.sex = sex;
 	}
 
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
@@ -110,12 +107,14 @@ public class Person {
 		this.image = image;
 	}
 
-	public void updateInformation(String cccd, String name, Date dob, String sex, String phone, String email) {
+	public void updateInformation(String cccd, String name, Date dob, String sex, String phone, String email,
+			String address) {
 		setCccd(cccd);
 		setName(name);
 		setDateOfBirth(dob);
 		setSex(sex);
 		setPhone(phone);
+		setAddress(address);
 		this.account.setEmail(email);
 	}
 

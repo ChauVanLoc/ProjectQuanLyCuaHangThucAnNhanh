@@ -14,13 +14,13 @@ public class Order {
 	private String id;
 	private List<Item> items;
 	private Date created;
-	private Address address;
+	private String address;
 	private int discount = 0;
 	private double total = 0;
 	private String note;
 	private String status;
 
-	public Order(List<Item> items, Address adress, PersonObserver customer, Subject sub, int score) {
+	public Order(List<Item> items, String adress, PersonObserver customer, Subject sub, int score) {
 		this.id = GenerateId.generateId();
 		this.created = new Date();
 		this.address = adress;
@@ -78,11 +78,11 @@ public class Order {
 		this.created = created;
 	}
 
-	public Address getAddress() {
+	public String getAddress() {
 		return address;
 	}
 
-	public void setAddress(Address address) {
+	public void setAddress(String address) {
 		this.address = address;
 	}
 
