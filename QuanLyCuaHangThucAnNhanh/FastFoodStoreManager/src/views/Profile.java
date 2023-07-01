@@ -43,6 +43,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import constant.Sex;
 import controller.ProfileController;
 import models.PersonObserver;
+import models.person.customer.Customer;
 
 public class Profile extends JPanel {
 	private JTextField jt_fullName;
@@ -70,9 +71,10 @@ public class Profile extends JPanel {
 	private JComboBox comboBoxDay;
 	private JPanel panel_2;
 	private JPanel panel;
-	private JPanel panel_3 = new JPanel();
+	private JPanel jp_payment;
 	private JTextArea ta_address;
 	private ButtonGroup group;
+	private JButton btn_addGatewayPayment;
 
 	private ProfileController profileController;
 	private JButton btn_savePassword;
@@ -290,51 +292,68 @@ public class Profile extends JPanel {
 		comboBoxYear.setBounds(593, 158, 75, 30);
 		panel_2.add(comboBoxYear);
 
-		panel_3.setBorder(new LineBorder(new Color(0, 0, 0)));
-		panel_3.setBackground(SystemColor.window);
-		panel_3.setBounds(717, 294, 511, 325);
-		panel_1.add(panel_3);
-		panel_3.setLayout(null);
+		if (personObserver instanceof Customer) {
+			jp_payment = new JPanel();
+			jp_payment.setBorder(new LineBorder(new Color(0, 0, 0)));
+			jp_payment.setBackground(SystemColor.window);
+			jp_payment.setBounds(717, 294, 511, 325);
+			panel_1.add(jp_payment);
+			jp_payment.setLayout(null);
 
-		JLabel lblNewLabel_2_1_1 = new JLabel("PAYMENT");
-		lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
-		lblNewLabel_2_1_1.setBorder(new LineBorder(new Color(0, 0, 0)));
-		lblNewLabel_2_1_1.setBounds(0, 0, 511, 41);
-		panel_3.add(lblNewLabel_2_1_1);
-		ImageIcon creditCard = new ImageIcon("../FastFoodStoreManager/img/creditCard.jpg");
-		Image imageCreditCard = creditCard.getImage();
-		Image resizeImageCreditCard = imageCreditCard.getScaledInstance(367, 181, Image.SCALE_SMOOTH);
-		ImageIcon creditCardImg = new ImageIcon(resizeImageCreditCard);
+			JLabel lblNewLabel_2_1_1 = new JLabel("PAYMENT");
+			lblNewLabel_2_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+			lblNewLabel_2_1_1.setBorder(new LineBorder(new Color(0, 0, 0)));
+			lblNewLabel_2_1_1.setBounds(0, 0, 511, 41);
+			jp_payment.add(lblNewLabel_2_1_1);
+			ImageIcon creditCard = new ImageIcon("../FastFoodStoreManager/img/creditCard.jpg");
+			Image imageCreditCard = creditCard.getImage();
+			Image resizeImageCreditCard = imageCreditCard.getScaledInstance(367, 181, Image.SCALE_SMOOTH);
+			ImageIcon creditCardImg = new ImageIcon(resizeImageCreditCard);
 
-		JLabel lb_amount = new JLabel("Amount");
-		lb_amount.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lb_amount.setBounds(47, 132, 150, 30);
-		panel_3.add(lb_amount);
+			JLabel lb_amount = new JLabel("Amount");
+			lb_amount.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lb_amount.setBounds(48, 126, 150, 30);
+			jp_payment.add(lb_amount);
 
-		passwordField_3 = new JPasswordField();
-		passwordField_3.setBounds(246, 132, 200, 30);
-		panel_3.add(passwordField_3);
+			passwordField_3 = new JPasswordField();
+			passwordField_3.setBounds(247, 126, 200, 30);
+			jp_payment.add(passwordField_3);
 
-		JButton btn_savePayment = new JButton("Recharge");
-		btn_savePayment.setFocusPainted(false);
-		btn_savePayment.setForeground(SystemColor.text);
-		btn_savePayment.setBackground(SystemColor.desktop);
-		btn_savePayment.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btn_savePayment.setBounds(296, 230, 150, 30);
-		panel_3.add(btn_savePayment);
-		btn_savePayment.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		
-		JLabel lblFullName_6_2_1 = new JLabel("Money in account");
-		lblFullName_6_2_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblFullName_6_2_1.setBounds(47, 74, 161, 30);
-		panel_3.add(lblFullName_6_2_1);
-		
-		lb_money = new JLabel("10");
-		lb_money.setForeground(new Color(139, 0, 0));
-		lb_money.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lb_money.setBounds(246, 74, 200, 30);
-		panel_3.add(lb_money);
+			JButton btn_savePayment = new JButton("Recharge");
+			btn_savePayment.setFocusPainted(false);
+			btn_savePayment.setForeground(SystemColor.text);
+			btn_savePayment.setBackground(SystemColor.desktop);
+			btn_savePayment.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btn_savePayment.setBounds(320, 193, 150, 30);
+			jp_payment.add(btn_savePayment);
+			btn_savePayment.setFont(new Font("Tahoma", Font.PLAIN, 20));
+
+			JLabel lblFullName_6_2_1 = new JLabel("Money in account");
+			lblFullName_6_2_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lblFullName_6_2_1.setBounds(48, 77, 161, 30);
+			jp_payment.add(lblFullName_6_2_1);
+
+			lb_money = new JLabel();
+			lb_money.setForeground(new Color(139, 0, 0));
+			lb_money.setFont(new Font("Tahoma", Font.PLAIN, 17));
+			lb_money.setBounds(247, 77, 200, 30);
+			lb_money.setText(((Customer) personObserver).getGateway() != null
+					? "" + ((Customer) personObserver).getGateway().getMoney()
+					: "No Gateway Payment");
+			jp_payment.add(lb_money);
+
+			if (((Customer) personObserver).getGateway() == null) {
+				btn_addGatewayPayment = new JButton("Add Gateway Payment");
+				btn_addGatewayPayment.setForeground(Color.WHITE);
+				btn_addGatewayPayment.setFont(new Font("Tahoma", Font.PLAIN, 20));
+				btn_addGatewayPayment.setFocusPainted(false);
+				btn_addGatewayPayment.setBackground(new Color(139, 0, 0));
+				btn_addGatewayPayment.setBounds(66, 193, 240, 30);
+				btn_addGatewayPayment.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+				jp_payment.add(btn_addGatewayPayment);
+			}
+		}
 
 		panel = new JPanel();
 		panel.setBorder(new MatteBorder(1, 0, 0, 1, (Color) new Color(0, 0, 0)));

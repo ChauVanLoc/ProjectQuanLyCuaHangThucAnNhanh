@@ -11,20 +11,20 @@ public abstract class Customer extends PersonObserver {
 	protected int score;
 	protected GatewayPayment gateway;
 
-	public int getScore() {
-		return score;
-	}
-
-	public void setScore(int score) {
-		this.score = score;
-	}
-
 	public GatewayPayment getGateway() {
 		return gateway;
 	}
 
 	public void setGateway(GatewayPayment gateway) {
 		this.gateway = gateway;
+	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
 	}
 
 	public void incrementScore(int score) {
@@ -67,8 +67,10 @@ public abstract class Customer extends PersonObserver {
 	public boolean changePassword(String currentPassword, String newPassword) {
 		return this.person.changePassword(currentPassword, newPassword);
 	}
-	
-//	public void 
+
+	public void addGatewayPayment(GatewayPayment gatewayPayment) {
+		this.gateway = gatewayPayment;
+	}
 
 	public void recharge(double amount) {
 		((Customer) this.gateway).recharge(amount);
