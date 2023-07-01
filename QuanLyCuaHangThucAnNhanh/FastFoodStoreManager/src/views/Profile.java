@@ -9,9 +9,12 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.time.YearMonth;
+import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -205,17 +208,60 @@ public class Profile extends JPanel {
 		txtTrantunguyetgmailcom.setBounds(413, 214, 270, 30);
 		panel_3.add(txtTrantunguyetgmailcom);
 
-		JComboBox comboBoxDay = new JComboBox();
+		JComboBox comboBoxDay = new JComboBox<>();
 		comboBoxDay.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		comboBoxDay.setBounds(413, 159, 70, 30);
 		panel_3.add(comboBoxDay);
 
-		JComboBox comboBoxMonth = new JComboBox();
+	       // Tạo danh sách các tháng từ 1 đến 12
+        Integer[] months = new Integer[12];
+        for (int i = 0; i < 12; i++) {
+            months[i] = i + 1;
+        }
+        
+		JComboBox comboBoxMonth = new JComboBox<>(months);
+	       // Thêm ActionListener để xử lý sự kiện khi người dùng chọn một tháng
+        comboBoxMonth.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lấy tháng được chọn
+                int selectedMonth = (int) comboBoxMonth.getSelectedItem();
+
+                // Lấy số ngày trong tháng được chọn
+                YearMonth yearMonthObject = YearMonth.of(2023, selectedMonth);
+                int daysInMonth = yearMonthObject.lengthOfMonth();
+
+                // Cập nhật danh sách các ngày trong JComboBox ngày
+                Integer[] days = new Integer[daysInMonth];
+                for (int i = 0; i < daysInMonth; i++) {
+                    days[i] = i + 1;
+                }
+                comboBoxDay.setModel(new DefaultComboBoxModel<>(days));
+            }
+        });
 		comboBoxMonth.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		comboBoxMonth.setBounds(501, 158, 70, 30);
 		panel_3.add(comboBoxMonth);
 
-		JComboBox comboBoxYear = new JComboBox();
+		
+	       // Lấy năm hiện tại
+        int currentYear = Calendar.getInstance().get(Calendar.YEAR);
+
+        // Tạo danh sách các năm từ 1900 đến năm hiện tại
+        Integer[] years = new Integer[currentYear - 1900 + 1];
+        for (int i = 1900; i <= currentYear; i++) {
+            years[i - 1900] = i;
+        }
+		JComboBox comboBoxYear = new JComboBox<>(years);
+	       // Thêm ActionListener để xử lý sự kiện khi người dùng chọn một năm trong JComboBox
+        comboBoxYear.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lấy năm được chọn
+                int selectedYear = (int) comboBoxYear.getSelectedItem();
+                System.out.println("Selected year: " + selectedYear);
+            }
+        });
 		comboBoxYear.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		comboBoxYear.setBounds(593, 158, 70, 30);
 		panel_3.add(comboBoxYear);
