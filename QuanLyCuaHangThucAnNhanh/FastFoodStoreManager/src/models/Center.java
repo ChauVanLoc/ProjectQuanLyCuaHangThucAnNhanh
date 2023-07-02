@@ -69,6 +69,11 @@ public class Center implements Subject {
 	public PersonObserver register(String name, String phone, String email, String password) {
 		return this.customerManage.register(name, email, password, phone);
 	}
+	
+	@Override
+	public void disableAccount(boolean status, PersonObserver personObserver) {
+		personObserver.disableAccount(status);
+	}
 
 //	------------------------------------------------------------------
 //	------------------ Product ---------------------------------------

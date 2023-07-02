@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Date;
+
 import models.person.Person;
 
 public class Admin extends PersonObserver {
@@ -8,13 +10,28 @@ public class Admin extends PersonObserver {
 		super.subject = subject;
 		super.subject.addAdmin(this);
 	}
-	
-	public void addProduct() {
+
+	public PersonObserver createEmployeecreateEmployee(String rule, String cccd, String name, Date dateOfBirth,
+			Date expiredDate, String sex, String address, String email, String phone) {
+		return this.subject.getEmployeeManage().createEmployee(rule, cccd, name, dateOfBirth, expiredDate, sex, address,
+				email, phone, super.subject);
 	}
 	
-	public void updateProduct() {
+	public void disableAccount(boolean status, PersonObserver personObserver) {
+		super.subject.disableAccount(status, personObserver);
 	}
 	
+	public void deleteEmployee(PersonObserver personObserver) {
+		super.subject.deleteEmployee(personObserver);
+	}
+
+//	public ProductObserver createProduct() {
+//		
+//	}
+
+	public void updateProduct(ProductObserver productObserver) {
+	}
+
 	public boolean deleteProduct() {
 		return false;
 	}

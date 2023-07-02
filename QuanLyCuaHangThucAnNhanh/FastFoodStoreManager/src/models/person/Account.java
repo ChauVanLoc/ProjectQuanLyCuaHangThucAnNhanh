@@ -7,23 +7,18 @@ import constant.Rule;
 public class Account {
 	private String email;
 	private String password;
-	private boolean status;
-	private Date createdDate;
-	private Date expireDate;
+	private boolean status = true;
+	private Date createdDate = new Date();
+	private Date expireDate = null;
 
 	public Account(String email, String password) {
 		this.email = email;
 		this.password = password;
-		this.status = true;
-		this.createdDate = new Date();
-		this.expireDate = null;
 	}
 
 	public Account(String email, String password, Date expireDate) {
 		this.email = email;
 		this.password = password;
-		this.status = true;
-		this.createdDate = new Date();
 		this.expireDate = expireDate;
 	}
 
@@ -32,14 +27,6 @@ public class Account {
 	}
 
 	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getUserName() {
-		return email;
-	}
-
-	public void setUserName(String email) {
 		this.email = email;
 	}
 
@@ -84,10 +71,8 @@ public class Account {
 	}
 
 	public boolean validateAccount(String email, String password) {
-		if (checkFormatEmail(email) && checkFormatPassword(password)) {
-			return this.email.equals(email) && this.password.equals(password);
-		}
-		return false;
+		return this.status && checkFormatEmail(email) && checkFormatPassword(password) && this.email.equals(email)
+				&& this.password.equals(password);
 	}
 
 	public boolean changePassword(String currentPassword, String newPassword) {

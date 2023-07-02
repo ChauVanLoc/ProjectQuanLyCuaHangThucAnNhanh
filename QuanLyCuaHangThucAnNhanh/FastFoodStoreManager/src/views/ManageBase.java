@@ -11,71 +11,71 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
-import javax.swing.JTabbedPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-public class PersonManage extends JPanel {
-	private final ButtonGroup buttonGroup = new ButtonGroup();
+public class ManageBase extends JPanel {
+	private JPanel primary_panel;
+	private JPanel panel_title;
+	private JLabel lb_title;
+	private JButton btnNewButton;
+	private JButton btn_create;
+	private JButton btnCancel;
+	private JButton btnDisable;
+	private JPanel panel_btn;
+	private JPanel panel_change;
+	private JPanel content_panel;
 	private JRadioButton rdbtnFemale;
 	private JRadioButton rdbtnMale;
 	private JRadioButton rdbtnOtherGender;
+	private ButtonGroup buttonGroup;
 	private JPasswordField jt_name;
 	private JPasswordField jt_cccd;
-	private JPasswordField jt_email;
 	private JPasswordField jt_phone;
-	private JComboBox comboBoxType;
-	private JComboBox dob_year;
-	private JComboBox dob_month;
-	private JComboBox dob_day;
-	private JTextArea ta_address;
+	private JPasswordField jt_email;
 	private JComboBox ex_day;
 	private JComboBox ex_month;
 	private JComboBox ex_year;
-	private JPanel content_panel;
-	private JPanel jp_customer;
-	private JPanel jp_employee;
-	private JLabel lblNewLabel_1;
-	private JPanel primary_panel;
-	private JPanel panel_btn;
-	private JButton btn_create;
-	private JPanel panel_change;
-	private JButton btnNewButton;
-	private JButton btnCancel;
-	private JButton btnDisable;
-	private JPanel panel_title;
+	private JComboBox comboBoxType;
+	private JComboBox dob_day;
+	private JComboBox dob_month;
+	private JComboBox dob_year;
+	private JTextArea ta_address;
 
-	public PersonManage() {
+	public ManageBase() {
+		setBackground(SystemColor.window);
 		setBorder(null);
-		setBackground(SystemColor.desktop);
-		setBounds(0, 0, 1228, 619);
 		setLayout(null);
 
-		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		tabbedPane.setBorder(null);
-		tabbedPane.setBackground(SystemColor.window);
-		tabbedPane.setBounds(0, 0, 1228, 619);
-		add(tabbedPane);
+		primary_panel = new JPanel();
+		primary_panel.setBorder(new LineBorder(SystemColor.windowBorder, 1, true));
+		primary_panel.setBackground(SystemColor.window);
+		primary_panel.setBounds(0, 0, 400, 584);
+		add(primary_panel);
+		primary_panel.setLayout(null);
 
-		jp_customer = new JPanel();
-		jp_customer.setBackground(SystemColor.window);
-		jp_customer.setBorder(null);
-		tabbedPane.add(jp_customer, "Customer");
+		panel_title = new JPanel();
+		panel_title.setBounds(0, 0, 400, 50);
+		primary_panel.add(panel_title);
+		panel_title.setLayout(null);
 
 	}
 
 	public void initTitle() {
+		lb_title = new JLabel("Information");
+		lb_title.setBounds(140, 0, 260, 50);
+		panel_title.add(lb_title);
+		lb_title.setBackground(SystemColor.window);
+		lb_title.setBorder(null);
+		lb_title.setHorizontalTextPosition(SwingConstants.CENTER);
+		lb_title.setHorizontalAlignment(SwingConstants.LEFT);
+		lb_title.setFont(new Font("Tahoma", Font.BOLD, 20));
 
-		lblNewLabel_1 = new JLabel("Information");
-		lblNewLabel_1.setBounds(130, 0, 270, 50);
-		panel_title.add(lblNewLabel_1);
-		lblNewLabel_1.setBackground(SystemColor.window);
-		lblNewLabel_1.setBorder(null);
-		lblNewLabel_1.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_1.setHorizontalAlignment(SwingConstants.LEFT);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnNewButton = new JButton("Create");
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setBounds(10, 8, 110, 35);
+		panel_title.add(btnNewButton);
 	}
 
 	public void initCreateButton() {
@@ -118,6 +118,9 @@ public class PersonManage extends JPanel {
 		btnDisable.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnDisable.setBounds(24, 27, 98, 33);
 		panel_change.add(btnDisable);
+		
+		initContent(true);
+		initCreateButton();
 	}
 
 	public void initContent(boolean isRead) {
@@ -244,4 +247,5 @@ public class PersonManage extends JPanel {
 		ta_address.setBounds(128, 344, 240, 73);
 		content_panel.add(ta_address);
 	}
+
 }

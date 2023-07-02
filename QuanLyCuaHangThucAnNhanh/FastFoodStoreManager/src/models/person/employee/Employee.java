@@ -40,4 +40,8 @@ public abstract class Employee extends PersonObserver {
 	public void attendance() {
 
 	}
+	
+	public void disableAccount(boolean status) {
+		super.person.getAccount().setStatus(status);
+	}
 }

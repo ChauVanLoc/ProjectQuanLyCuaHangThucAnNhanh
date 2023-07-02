@@ -8,11 +8,10 @@ import models.person.Person;
 
 public class Cashier extends Employee {
 	public Cashier(String cccd, String name, Date dateOfBirth, Date expiredDate, String sex, String address,
-			String email, String phone, Subject subject, ISalary iSalary) {
+			String email, String phone, Subject subject) {
 		super.person = new Person(cccd, name, dateOfBirth, sex, address, email, phone, expiredDate);
 		super.subject = subject;
 		super.subject.addEmployee(this);
-		super.iSalary = iSalary;
 		super.notifications = new ArrayList<>();
 	}
 }

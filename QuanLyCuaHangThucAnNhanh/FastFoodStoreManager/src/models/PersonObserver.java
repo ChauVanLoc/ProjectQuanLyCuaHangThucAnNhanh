@@ -53,5 +53,9 @@ public abstract class PersonObserver {
 	public boolean changePassword(String currentPassword, String newPassword) {
 		return this.person.changePassword(currentPassword, newPassword);
 	}
+	
+	public void disableAccount(boolean status) {
+		this.person.getAccount().setStatus(status);
+	}
 
 }
