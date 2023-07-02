@@ -56,7 +56,7 @@ public class Home extends JPanel {
 		work_panel = new Work();
 		jp_content.add(work_panel, "Work");
 
-		work_person = new PersonManage();
+		work_person = new PersonManage(subject);
 		jp_content.add(work_person, "Person");
 
 		cardLayout.show(jp_content, "Menu");

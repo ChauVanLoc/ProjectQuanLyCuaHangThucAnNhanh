@@ -13,6 +13,8 @@ public interface Subject {
 	PersonObserver login(String email, String password);
 
 	PersonObserver register(String name, String phone, String email, String password);
+	
+	void disableAccount(boolean status, PersonObserver personObserver);
 
 //-------------------Product---------------------------------
 
