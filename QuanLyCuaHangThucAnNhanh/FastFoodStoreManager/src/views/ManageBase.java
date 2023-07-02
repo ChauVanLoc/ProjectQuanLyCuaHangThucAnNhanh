@@ -3,6 +3,7 @@ package views;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -11,9 +12,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.table.TableColumnModel;
+
+import models.PersonObserver;
+import models.ProductObserver;
+import models.custom.CustomTableModel;
+import models.custom.CustomerTableModel;
+import models.custom.EmployeeTableModel;
+import models.custom.ProductTableModel;
+import javax.swing.border.MatteBorder;
+import java.awt.Cursor;
 
 public class ManageBase extends JPanel {
 	private JPanel primary_panel;
@@ -42,11 +55,16 @@ public class ManageBase extends JPanel {
 	private JComboBox dob_month;
 	private JComboBox dob_year;
 	private JTextArea ta_address;
+	private JPanel panel_list;
+	private JTable table;
+	private JScrollPane scrollPane;
+	private CustomTableModel model;
 
-	public ManageBase() {
+	public ManageBase(List<PersonObserver> personObserver, List<ProductObserver> productObserver, String rule) {
 		setBackground(SystemColor.window);
 		setBorder(null);
 		setLayout(null);
+		setBounds(0, 0, 1261, 619);
 
 		primary_panel = new JPanel();
 		primary_panel.setBorder(new LineBorder(SystemColor.windowBorder, 1, true));
@@ -56,32 +74,105 @@ public class ManageBase extends JPanel {
 		primary_panel.setLayout(null);
 
 		panel_title = new JPanel();
+		panel_title.setBackground(new Color(224, 224, 224));
 		panel_title.setBounds(0, 0, 400, 50);
 		primary_panel.add(panel_title);
 		panel_title.setLayout(null);
 
+		initTitle();
+		initContent(true);
+//		initCreateButton();
+		initChangeButton();
+		initList(personObserver, null, rule);
+
+	}
+
+	public void initList(List<PersonObserver> personObservers, List<ProductObserver> productObserver, String rule) {
+		panel_list = new JPanel();
+		panel_list.setBorder(new MatteBorder(0, 1, 0, 0, (Color) SystemColor.controlShadow));
+		panel_list.setBackground(SystemColor.window);
+		panel_list.setBounds(399, 0, 825, 584);
+		add(panel_list);
+		panel_list.setLayout(null);
+
+		if (rule.equals("Customer")) {
+			model = new CustomerTableModel(personObservers);
+		} else if (rule.equals("Employee")) {
+			model = new EmployeeTableModel(personObservers);
+		} else {
+			model = new ProductTableModel(productObserver);
+		}
+
+		scrollPane = new JScrollPane();
+		scrollPane.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		scrollPane.setBackground(SystemColor.window);
+		scrollPane.setBorder(new MatteBorder(0, 1, 0, 0, (Color) SystemColor.controlShadow));
+		scrollPane.setBounds(0, 0, 825, 584);
+		panel_list.add(scrollPane);
+
+		table = new JTable(model);
+		table.setDoubleBuffered(true);
+		table.setRowHeight(27);
+		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
+		table.setFillsViewportHeight(true);
+		table.setAutoCreateRowSorter(true);
+		table.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		table.setBorder(new MatteBorder(0, 1, 0, 0, (Color) SystemColor.controlShadow));
+		table.setBackground(SystemColor.window);
+		scrollPane.setViewportView(table);
+		
+		table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 20));
+
+		if (rule.equals("Customer")) {
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(180);
+			columnModel.getColumn(1).setPreferredWidth(50);
+			columnModel.getColumn(2).setPreferredWidth(70);
+			columnModel.getColumn(3).setPreferredWidth(150);
+			columnModel.getColumn(4).setPreferredWidth(100);
+			columnModel.getColumn(5).setPreferredWidth(50);
+		} else if (rule.equals("Employee")) {
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(200);
+			columnModel.getColumn(1).setPreferredWidth(70);
+			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(3).setPreferredWidth(70);
+			columnModel.getColumn(4).setPreferredWidth(100);
+			columnModel.getColumn(5).setPreferredWidth(70);
+			columnModel.getColumn(6).setPreferredWidth(50);
+		} else {
+			TableColumnModel columnModel = table.getColumnModel();
+			columnModel.getColumn(0).setPreferredWidth(200);
+			columnModel.getColumn(1).setPreferredWidth(80);
+			columnModel.getColumn(2).setPreferredWidth(50);
+			columnModel.getColumn(3).setPreferredWidth(50);
+		}
 	}
 
 	public void initTitle() {
 		lb_title = new JLabel("Information");
 		lb_title.setBounds(140, 0, 260, 50);
 		panel_title.add(lb_title);
-		lb_title.setBackground(SystemColor.window);
+		lb_title.setBackground(new Color(212, 212, 212));
 		lb_title.setBorder(null);
 		lb_title.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb_title.setHorizontalAlignment(SwingConstants.LEFT);
 		lb_title.setFont(new Font("Tahoma", Font.BOLD, 20));
 
 		btnNewButton = new JButton("Create");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(10, 8, 110, 35);
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnNewButton.setForeground(SystemColor.text);
+		btnNewButton.setBackground(new Color(255, 99, 71));
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		btnNewButton.setBounds(10, 11, 95, 32);
 		panel_title.add(btnNewButton);
 	}
 
 	public void initCreateButton() {
 		panel_btn = new JPanel();
-		panel_btn.setBackground(SystemColor.window);
-		panel_btn.setBounds(0, 474, 400, 110);
+		panel_btn.setBackground(new Color(224, 224, 224));
+		panel_btn.setBounds(0, 503, 400, 81);
 		primary_panel.add(panel_btn);
 		panel_btn.setLayout(null);
 
@@ -89,79 +180,85 @@ public class ManageBase extends JPanel {
 		btn_create.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btn_create.setForeground(SystemColor.text);
 		btn_create.setBackground(SystemColor.desktop);
-		btn_create.setBounds(247, 29, 104, 39);
+		btn_create.setBounds(246, 5, 104, 39);
 		panel_btn.add(btn_create);
 	}
 
 	public void initChangeButton() {
 		panel_change = new JPanel();
 		panel_change.setBackground(SystemColor.window);
-		panel_change.setBounds(0, 474, 400, 110);
+		panel_change.setBounds(0, 504, 400, 80);
 		primary_panel.add(panel_change);
 		panel_change.setLayout(null);
 
 		btnNewButton = new JButton("Save");
+		btnNewButton.setFocusPainted(false);
+		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton.setForeground(SystemColor.text);
 		btnNewButton.setBackground(SystemColor.desktop);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(266, 27, 98, 33);
+		btnNewButton.setBounds(270, 0, 98, 33);
 		panel_change.add(btnNewButton);
 
 		btnCancel = new JButton("Cancel");
+		btnCancel.setFocusPainted(false);
+		btnCancel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnCancel.setForeground(SystemColor.text);
 		btnCancel.setBackground(new Color(139, 0, 0));
 		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnCancel.setBounds(146, 27, 98, 33);
+		btnCancel.setBounds(150, 0, 98, 33);
 		panel_change.add(btnCancel);
 
 		btnDisable = new JButton("Disable");
+		btnDisable.setFocusPainted(false);
+		btnDisable.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnDisable.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnDisable.setBounds(24, 27, 98, 33);
+		btnDisable.setBounds(21, 0, 105, 33);
 		panel_change.add(btnDisable);
-		
-		initContent(true);
-		initCreateButton();
+
 	}
 
 	public void initContent(boolean isRead) {
 		content_panel = new JPanel();
 		content_panel.setBackground(SystemColor.window);
-		content_panel.setBounds(0, 50, 400, 428);
+		content_panel.setBounds(0, 50, 400, 454);
 		primary_panel.add(content_panel);
 		content_panel.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Type");
-		lblNewLabel.setBounds(36, 11, 68, 26);
+		lblNewLabel.setBounds(36, 20, 68, 26);
 		content_panel.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblName = new JLabel("Name");
-		lblName.setBounds(36, 52, 68, 26);
+		lblName.setBounds(36, 61, 68, 26);
 		content_panel.add(lblName);
 		lblName.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblSex = new JLabel("Sex");
-		lblSex.setBounds(36, 134, 68, 26);
+		lblSex.setBounds(36, 143, 68, 26);
 		content_panel.add(lblSex);
 		lblSex.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblCccd = new JLabel("CCCD");
-		lblCccd.setBounds(36, 95, 68, 26);
+		lblCccd.setBounds(36, 104, 68, 26);
 		content_panel.add(lblCccd);
 		lblCccd.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblEmail = new JLabel("Email");
-		lblEmail.setBounds(36, 214, 68, 26);
+		lblEmail.setBounds(36, 223, 68, 26);
 		content_panel.add(lblEmail);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		JLabel lblBirthday = new JLabel("Birthday");
-		lblBirthday.setBounds(36, 171, 79, 26);
+		lblBirthday.setBounds(36, 180, 79, 26);
 		content_panel.add(lblBirthday);
 		lblBirthday.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
+		buttonGroup = new ButtonGroup();
+
 		rdbtnFemale = new JRadioButton("FeMale");
-		rdbtnFemale.setBounds(128, 137, 86, 23);
+		rdbtnFemale.setBounds(128, 146, 86, 23);
 		content_panel.add(rdbtnFemale);
 		buttonGroup.add(rdbtnFemale);
 		rdbtnFemale.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -169,7 +266,7 @@ public class ManageBase extends JPanel {
 		rdbtnFemale.setBackground(Color.WHITE);
 
 		rdbtnMale = new JRadioButton("Male");
-		rdbtnMale.setBounds(216, 136, 70, 23);
+		rdbtnMale.setBounds(216, 145, 70, 23);
 		content_panel.add(rdbtnMale);
 		buttonGroup.add(rdbtnMale);
 		rdbtnMale.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -177,7 +274,7 @@ public class ManageBase extends JPanel {
 		rdbtnMale.setBackground(Color.WHITE);
 
 		rdbtnOtherGender = new JRadioButton("Other");
-		rdbtnOtherGender.setBounds(288, 136, 80, 23);
+		rdbtnOtherGender.setBounds(288, 145, 80, 23);
 		content_panel.add(rdbtnOtherGender);
 		buttonGroup.add(rdbtnOtherGender);
 		rdbtnOtherGender.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -185,67 +282,71 @@ public class ManageBase extends JPanel {
 		rdbtnOtherGender.setBackground(Color.WHITE);
 
 		jt_name = new JPasswordField();
-		jt_name.setBounds(128, 52, 240, 30);
+		jt_name.setBounds(128, 61, 240, 30);
 		content_panel.add(jt_name);
 
 		jt_cccd = new JPasswordField();
-		jt_cccd.setBounds(128, 93, 240, 30);
+		jt_cccd.setBounds(128, 102, 240, 30);
 		content_panel.add(jt_cccd);
 
 		comboBoxType = new JComboBox();
-		comboBoxType.setBounds(128, 11, 240, 30);
+		comboBoxType.setBounds(128, 20, 240, 30);
 		content_panel.add(comboBoxType);
 
 		dob_day = new JComboBox();
-		dob_day.setBounds(128, 172, 57, 30);
+		dob_day.setBounds(128, 181, 57, 30);
 		content_panel.add(dob_day);
 
 		dob_month = new JComboBox();
-		dob_month.setBounds(206, 172, 57, 30);
+		dob_month.setBounds(206, 181, 57, 30);
 		content_panel.add(dob_month);
 
 		dob_year = new JComboBox();
-		dob_year.setBounds(290, 172, 78, 30);
+		dob_year.setBounds(290, 181, 78, 30);
 		content_panel.add(dob_year);
 
 		jt_email = new JPasswordField();
-		jt_email.setBounds(128, 213, 240, 30);
+		jt_email.setBounds(128, 222, 240, 30);
 		content_panel.add(jt_email);
 
 		JLabel lblPhone_1 = new JLabel("Phone");
-		lblPhone_1.setBounds(36, 256, 68, 26);
+		lblPhone_1.setBounds(36, 265, 68, 26);
 		content_panel.add(lblPhone_1);
 		lblPhone_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		jt_phone = new JPasswordField();
-		jt_phone.setBounds(128, 255, 240, 30);
+		jt_phone.setBounds(128, 264, 240, 30);
 		content_panel.add(jt_phone);
 
 		JLabel lblExpire = new JLabel("Expire");
-		lblExpire.setBounds(36, 298, 79, 26);
+		lblExpire.setBounds(36, 307, 79, 26);
 		content_panel.add(lblExpire);
 		lblExpire.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		ex_day = new JComboBox();
-		ex_day.setBounds(128, 299, 57, 30);
+		ex_day.setBounds(128, 308, 57, 30);
 		content_panel.add(ex_day);
 
 		ex_month = new JComboBox();
-		ex_month.setBounds(206, 299, 57, 30);
+		ex_month.setBounds(206, 308, 57, 30);
 		content_panel.add(ex_month);
 
 		ex_year = new JComboBox();
-		ex_year.setBounds(290, 299, 78, 30);
+		ex_year.setBounds(290, 308, 78, 30);
 		content_panel.add(ex_year);
 
 		JLabel lblAddress = new JLabel("Address");
-		lblAddress.setBounds(36, 342, 79, 26);
+		lblAddress.setBounds(36, 351, 79, 26);
 		content_panel.add(lblAddress);
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		ta_address = new JTextArea();
-		ta_address.setBounds(128, 344, 240, 73);
+		ta_address.setBorder(new LineBorder(SystemColor.scrollbar));
+		ta_address.setBounds(128, 353, 240, 73);
 		content_panel.add(ta_address);
 	}
 
+	public void initTable() {
+
+	}
 }

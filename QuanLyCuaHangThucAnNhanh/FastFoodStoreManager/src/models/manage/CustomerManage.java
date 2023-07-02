@@ -19,7 +19,7 @@ public class CustomerManage {
 		this.subject = subject;
 	}
 
-	public List<PersonObserver> getCustomer() {
+	public List<PersonObserver> getCustomers() {
 		return customers;
 	}
 

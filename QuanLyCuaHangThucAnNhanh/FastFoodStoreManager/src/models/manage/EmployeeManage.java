@@ -21,11 +21,11 @@ public class EmployeeManage {
 		this.admins = new ArrayList<>();
 	}
 
-	public List<PersonObserver> getEmployee() {
+	public List<PersonObserver> getEmployees() {
 		return employees;
 	}
 
-	public List<PersonObserver> getAdmin() {
+	public List<PersonObserver> getAdmins() {
 		return admins;
 	}
 

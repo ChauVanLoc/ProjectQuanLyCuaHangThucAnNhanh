@@ -50,6 +50,10 @@ public class Account {
 		return createdDate;
 	}
 
+	public boolean getStatus() {
+		return this.status;
+	}
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}

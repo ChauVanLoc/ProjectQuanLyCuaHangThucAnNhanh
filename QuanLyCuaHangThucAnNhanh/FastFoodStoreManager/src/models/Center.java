@@ -54,9 +54,9 @@ public class Center implements Subject {
 	@Override
 	public PersonObserver login(String email, String password) {
 		List<PersonObserver> list = new ArrayList<>();
-		list.addAll(this.customerManage.getCustomer());
-		list.addAll(this.employeeManage.getEmployee());
-		list.addAll(this.employeeManage.getAdmin());
+		list.addAll(this.customerManage.getCustomers());
+		list.addAll(this.employeeManage.getEmployees());
+		list.addAll(this.employeeManage.getAdmins());
 		for (PersonObserver o : list) {
 			if (o.getPerson().getAccount().validateAccount(email, password)) {
 				return o;
