@@ -13,14 +13,20 @@ public interface Subject {
 	PersonObserver login(String email, String password);
 
 	PersonObserver register(String name, String phone, String email, String password);
-	
+
 	void disableAccount(boolean status, PersonObserver personObserver);
 
-//-------------------Product---------------------------------
+//-------------------Food---------------------------------
 
-	void addProduct(ProductObserver p);
+	void addFood(ProductObserver p);
 
-	void deleteProduct(ProductObserver p);
+	void deleteFood(ProductObserver p);
+
+// -------------------Beverage---------------------------------
+
+	void addBeverage(ProductObserver p);
+
+	void deleteBeverage(ProductObserver p);
 
 // -------------------Customer---------------------------------
 
@@ -41,12 +47,6 @@ public interface Subject {
 
 	void deleteOrder(Order o);
 
-//-------------------Decorator---------------------------------
-
-	void addDecorator(ProductObserver p);
-
-	void deleteDecorator(ProductObserver p);
-
 //-------------------Notification---------------------------------
 
 	Notification createNotification();
@@ -54,9 +54,9 @@ public interface Subject {
 	Vourcher createVourcher(String title, String content, String code, double cost, Date startDate, Date expiredDate);
 
 	OrderManage getOrderManage();
-	
+
 	CustomerManage getCustomerManage();
-	
+
 	EmployeeManage getEmployeeManage();
 
 	ProductManage getProductManage();

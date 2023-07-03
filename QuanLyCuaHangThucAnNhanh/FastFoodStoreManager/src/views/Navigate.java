@@ -15,17 +15,17 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import constant.Fonts;
 import constant.Frame;
 import models.Admin;
 import models.PersonObserver;
+import models.person.employee.Employee;
 
 public class Navigate extends JPanel {
 	private JButton btnMenu = new JButton();
 	private JButton btnHistory = new JButton();
 	private JButton btnProfile = new JButton();
 	private JButton btnLogOut = new JButton();
-	private JButton btnPerson = new JButton();
+	private JButton btnManage = new JButton();
 	private JButton btnWork = new JButton();
 	private JLabel lblNewLabel_4_3;
 	private JLabel lblNewLabel_4_4;
@@ -36,48 +36,63 @@ public class Navigate extends JPanel {
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
 
-		btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnMenu.setBackground(SystemColor.scrollbar);
-		btnMenu.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(panel, "Menu");
-				btnMenu.setBackground(SystemColor.scrollbar);
-				btnHistory.setBackground(Color.WHITE);
-				btnProfile.setBackground(Color.WHITE);
-				btnPerson.setBackground(Color.WHITE);
-				btnWork.setBackground(Color.WHITE);
-			}
-		});
-		btnMenu.setBorder(null);
-		btnMenu.setFocusPainted(false);
-		btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
-		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
-		btnMenu.setIcon(iconMenu);
-		btnMenu.setBounds(0, 0, 78, 70);
-		add(btnMenu);
-		cardLayout.show(panel, "Menu");
+		if (!(person instanceof Admin)) {
+			btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnMenu.setBackground(SystemColor.scrollbar);
+			btnMenu.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "Menu");
+					btnMenu.setBackground(SystemColor.scrollbar);
+					btnHistory.setBackground(Color.WHITE);
+					btnProfile.setBackground(Color.WHITE);
+					btnManage.setBackground(Color.WHITE);
+					btnWork.setBackground(Color.WHITE);
+				}
+			});
+			btnMenu.setBorder(null);
+			btnMenu.setFocusPainted(false);
+			btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
+			ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
+			btnMenu.setIcon(iconMenu);
+			btnMenu.setBounds(0, 0, 78, 70);
+			add(btnMenu);
+			cardLayout.show(panel, "Menu");
+			JLabel lblNewLabel_4 = new JLabel(person instanceof Admin ? "Order" : "Menu");
+			lblNewLabel_4.setEnabled(false);
+			lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4.setBounds(0, 70, 78, 14);
+			add(lblNewLabel_4);
 
-		btnHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		btnHistory.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				cardLayout.show(panel, "History");
-				btnMenu.setBackground(Color.WHITE);
-				btnHistory.setBackground(SystemColor.scrollbar);
-				btnProfile.setBackground(Color.WHITE);
-				btnPerson.setBackground(Color.WHITE);
-				btnWork.setBackground(Color.WHITE);
-			}
-		});
-		btnHistory.setBorder(null);
-		btnHistory.setFocusPainted(false);
-		btnHistory.setBackground(Color.WHITE);
-		ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/icon/history.png");
-		btnHistory.setIcon(iconHistory);
-		btnHistory.setBounds(0, 95, 78, 70);
-		add(btnHistory);
+			btnHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnHistory.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					cardLayout.show(panel, "History");
+					btnMenu.setBackground(Color.WHITE);
+					btnHistory.setBackground(SystemColor.scrollbar);
+					btnProfile.setBackground(Color.WHITE);
+					btnManage.setBackground(Color.WHITE);
+					btnWork.setBackground(Color.WHITE);
+				}
+			});
+			btnHistory.setBorder(null);
+			btnHistory.setFocusPainted(false);
+			btnHistory.setBackground(Color.WHITE);
+			ImageIcon iconHistory = new ImageIcon("../FastFoodStoreManager/img/icon/history.png");
+			btnHistory.setIcon(iconHistory);
+			btnHistory.setBounds(0, 95, 78, 70);
+			add(btnHistory);
 
+			JLabel lblNewLabel_4_1 = new JLabel("History");
+			lblNewLabel_4_1.setEnabled(false);
+			lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
+			lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+			lblNewLabel_4_1.setBounds(0, 164, 78, 20);
+			add(lblNewLabel_4_1);
+
+		}
 		btnProfile.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnProfile.addMouseListener(new MouseAdapter() {
 			@Override
@@ -86,7 +101,7 @@ public class Navigate extends JPanel {
 				btnMenu.setBackground(Color.WHITE);
 				btnHistory.setBackground(Color.WHITE);
 				btnProfile.setBackground(SystemColor.scrollbar);
-				btnPerson.setBackground(Color.WHITE);
+				btnManage.setBackground(Color.WHITE);
 				btnWork.setBackground(Color.WHITE);
 			}
 		});
@@ -95,8 +110,26 @@ public class Navigate extends JPanel {
 		btnProfile.setBackground(Color.WHITE);
 		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/icon/profile.png");
 		btnProfile.setIcon(iconFrofile);
-		btnProfile.setBounds(0, 195, 78, 70);
+
+		if (person instanceof Admin) {
+			btnProfile.setBounds(0, 95, 78, 70);
+		} else {
+			btnProfile.setBounds(0, 195, 78, 70);
+		}
 		add(btnProfile);
+
+		JLabel lblNewLabel_4_2 = new JLabel("Frofile");
+		lblNewLabel_4_2.setEnabled(false);
+		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+
+		if (person instanceof Admin) {
+			lblNewLabel_4_2.setBounds(0, 164, 78, 20);
+		} else {
+			lblNewLabel_4_2.setBounds(0, 266, 78, 14);
+		}
+
+		add(lblNewLabel_4_2);
 
 		btnLogOut.addMouseListener(new MouseAdapter() {
 			@Override
@@ -108,6 +141,7 @@ public class Navigate extends JPanel {
 				}
 			}
 		});
+
 		btnLogOut.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnLogOut.setBorder(null);
 		btnLogOut.setFocusPainted(false);
@@ -117,55 +151,35 @@ public class Navigate extends JPanel {
 		btnLogOut.setBounds(0, 546, 78, 70);
 		add(btnLogOut);
 
-		JLabel lblNewLabel_4 = new JLabel(person instanceof Admin ? "Order" : "Menu");
-		lblNewLabel_4.setEnabled(false);
-		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(0, 70, 78, 14);
-		add(lblNewLabel_4);
-
-		JLabel lblNewLabel_4_1 = new JLabel("History");
-		lblNewLabel_4_1.setEnabled(false);
-		lblNewLabel_4_1.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4_1.setBounds(0, 164, 78, 20);
-		add(lblNewLabel_4_1);
-
-		JLabel lblNewLabel_4_2 = new JLabel("Frofile");
-		lblNewLabel_4_2.setEnabled(false);
-		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
-		add(lblNewLabel_4_2);
-
 		if (person instanceof Admin) {
-			btnPerson.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnPerson.setFocusPainted(false);
-			btnPerson.setBorder(null);
-			btnPerson.setBackground(Color.WHITE);
-			btnPerson.setBounds(0, 295, 78, 70);
-			add(btnPerson);
-			btnPerson.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
+			btnManage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+			btnManage.setFocusPainted(false);
+			btnManage.setBorder(null);
+			btnManage.setBackground(Color.WHITE);
+			btnManage.setBounds(0, 0, 78, 70);
+			add(btnManage);
+			btnManage.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
 
-			lblNewLabel_4_3 = new JLabel("Person");
+			lblNewLabel_4_3 = new JLabel("Manage");
 			lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_4_3.setEnabled(false);
-			lblNewLabel_4_3.setBounds(0, 366, 78, 14);
+			lblNewLabel_4_3.setBounds(0, 70, 78, 14);
 			add(lblNewLabel_4_3);
 
-			btnPerson.addMouseListener(new MouseAdapter() {
+			btnManage.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
 					cardLayout.show(panel, "Person");
 					btnMenu.setBackground(Color.WHITE);
 					btnHistory.setBackground(Color.WHITE);
 					btnProfile.setBackground(Color.WHITE);
-					btnPerson.setBackground(SystemColor.scrollbar);
+					btnManage.setBackground(SystemColor.scrollbar);
 					btnWork.setBackground(Color.WHITE);
 				}
 			});
-
+		}
+		if (person instanceof Employee) {
 			btnWork.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnWork.setFocusPainted(false);
 			btnWork.setBorder(null);
@@ -188,7 +202,7 @@ public class Navigate extends JPanel {
 					btnMenu.setBackground(Color.WHITE);
 					btnHistory.setBackground(Color.WHITE);
 					btnProfile.setBackground(Color.WHITE);
-					btnPerson.setBackground(Color.WHITE);
+					btnManage.setBackground(Color.WHITE);
 					btnWork.setBackground(SystemColor.scrollbar);
 				}
 			});
