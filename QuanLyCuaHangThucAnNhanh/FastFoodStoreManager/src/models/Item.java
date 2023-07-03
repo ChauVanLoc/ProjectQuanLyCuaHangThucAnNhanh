@@ -7,7 +7,7 @@ public class Item {
 	public Item(ProductObserver productObserver, int quantity) {
 		this.productObserver = productObserver;
 		this.quantity = quantity;
-		this.productObserver.buyAmount(quantity);
+		buy(quantity);
 	}
 
 	public ProductObserver getProductObserver() {
@@ -30,4 +30,23 @@ public class Item {
 		return this.productObserver.cost() * quantity;
 	}
 
+	public void increase(int amount) {
+		this.productObserver.increase(amount);
+	}
+
+	public void decrease(int amount) {
+		this.productObserver.descrease(amount);
+	}
+
+	public void buy(int amount) {
+		this.productObserver.buy(amount);
+	}
+
+	public void cancel(int amount) {
+		this.productObserver.cancel(amount);
+	}
+
+	public boolean equalItem(Item item) {
+		return this.productObserver.getProduct().getId().equals(item.productObserver.getProduct().getId());
+	}
 }

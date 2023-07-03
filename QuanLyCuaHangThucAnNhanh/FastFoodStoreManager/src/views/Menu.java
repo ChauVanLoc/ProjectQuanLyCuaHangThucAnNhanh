@@ -1,7 +1,6 @@
 package views;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,19 +9,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
+import javax.swing.border.LineBorder;
 
+import controller.OrderController;
 import models.Item;
 import models.PersonObserver;
-import models.ProductObserver;
 import models.Subject;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.JTextField;
 
 public class Menu extends JPanel {
 
@@ -32,11 +30,10 @@ public class Menu extends JPanel {
 	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JButton btnNewButton;
-	private JLabel lblNewLabel_3;
-	private List<Item> items = new ArrayList<>();
+	private JLabel lb_total;
+	private List<Item> items;
 	private JPanel panel_2;
 	private JPanel panel_3;
-	private JPanel panel_container;
 	private JScrollPane scrollPane;
 	private JPanel panel_4;
 	private JLabel lblNewLabel_5;
@@ -48,15 +45,18 @@ public class Menu extends JPanel {
 	private JTextField jt_customer;
 	private JLabel lb_customer;
 	private JLabel lb_phone;
+	private Food food;
+	private Subject subject;
+
+	private OrderController orderController;
+	private JLabel lblNewLabel_4;
 
 	public Menu(PersonObserver personObserver, Subject subject) {
+		this.items = new ArrayList<>();
+		this.subject = subject;
 		setBackground(SystemColor.desktop);
 		setBounds(0, 0, 1230, 619);
 		setLayout(null);
-
-		Food food = new Food(items, subject.getProductManage().getFoods(), subject.getProductManage().getBeverages());
-		food.setBounds(0, 32, 709, 585);
-		add(food);
 
 		panel = new JPanel();
 		panel.setBackground(SystemColor.controlLtHighlight);
@@ -65,8 +65,10 @@ public class Menu extends JPanel {
 		panel.setLayout(null);
 
 		lblNewLabel_2 = new JLabel("Total");
+		lblNewLabel_2.setHorizontalTextPosition(SwingConstants.RIGHT);
+		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(266, 494, 66, 27);
+		lblNewLabel_2.setBounds(289, 494, 90, 27);
 		panel.add(lblNewLabel_2);
 
 		btnNewButton = new JButton("Pay");
@@ -76,12 +78,13 @@ public class Menu extends JPanel {
 		btnNewButton.setBounds(338, 532, 137, 42);
 		panel.add(btnNewButton);
 
-		lblNewLabel_3 = new JLabel("10$");
-		lblNewLabel_3.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel_3.setHorizontalTextPosition(SwingConstants.CENTER);
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_3.setBounds(345, 494, 174, 27);
-		panel.add(lblNewLabel_3);
+		lb_total = new JLabel();
+		lb_total.setForeground(new Color(139, 0, 0));
+		lb_total.setHorizontalAlignment(SwingConstants.CENTER);
+		lb_total.setHorizontalTextPosition(SwingConstants.CENTER);
+		lb_total.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lb_total.setBounds(399, 494, 110, 27);
+		panel.add(lb_total);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(new Color(229, 229, 229));
@@ -118,7 +121,7 @@ public class Menu extends JPanel {
 		add(panel_3);
 		panel_3.setLayout(null);
 
-		lblNewLabel = new JLabel("Decorate");
+		lblNewLabel = new JLabel("Beverage");
 		lblNewLabel.setBounds(0, 0, 347, 30);
 		panel_3.add(lblNewLabel);
 		lblNewLabel.setForeground(SystemColor.textText);
@@ -138,12 +141,6 @@ public class Menu extends JPanel {
 		panel_4.add(scrollPane);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		panel_container = new JPanel();
-		panel_container.setBackground(SystemColor.window);
-		panel_container.setBorder(new LineBorder(new Color(206, 206, 206)));
-		scrollPane.setViewportView(panel_container);
-		panel_container.setLayout(new GridLayout(10, 1, 0, 0));
-
 		Helper.speedScroll(scrollPane);
 
 		lblNewLabel_5 = new JLabel("Product");
@@ -153,13 +150,18 @@ public class Menu extends JPanel {
 
 		lblNewLabel_6 = new JLabel("Quantity");
 		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_6.setBounds(279, 11, 97, 21);
+		lblNewLabel_6.setBounds(249, 11, 97, 21);
 		panel_4.add(lblNewLabel_6);
 
 		lblNewLabel_7 = new JLabel("Price");
 		lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel_7.setBounds(399, 11, 97, 21);
+		lblNewLabel_7.setBounds(356, 11, 66, 21);
 		panel_4.add(lblNewLabel_7);
+
+		lblNewLabel_4 = new JLabel("Total");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel_4.setBounds(422, 11, 97, 21);
+		panel_4.add(lblNewLabel_4);
 
 		lb_employee = new JLabel("Employee");
 		lb_employee.setFont(new Font("Tahoma", Font.PLAIN, 17));
@@ -191,38 +193,59 @@ public class Menu extends JPanel {
 		jt_customer.setBounds(153, 125, 321, 30);
 		panel.add(jt_customer);
 
-		for (int i = 0; i < 10; i++) {
-			JPanel p = new ProductInOrder(null);
+		orderController = new OrderController(this, subject.getProductManage());
+		recallDataProduct();
+		recallDataInList();
+	}
+
+	public void recallDataProduct() {
+		if (food != null) {
+			remove(food);
+		}
+		food = new Food(this.subject.getProductManage().getFoods(), this.subject.getProductManage().getBeverages(),
+				orderController);
+		food.setBounds(0, 32, 709, 585);
+		add(food);
+	}
+
+	public void recallDataInList() {
+		scrollPane.setViewportView(null);
+		JPanel panel_container = new JPanel();
+		panel_container.setBackground(SystemColor.window);
+		panel_container.setBorder(new LineBorder(new Color(206, 206, 206)));
+		scrollPane.setViewportView(panel_container);
+		panel_container.setLayout(new GridLayout(10, 1, 0, 0));
+		double cost = 0;
+		for (int i = 0; i < items.size(); i++) {
+			JPanel p = new ProductInOrder(items.get(i));
 			p.setPreferredSize(new Dimension(519, 42));
 			panel_container.add(p);
+			cost += items.get(i).getQuantity() * items.get(i).getProductObserver().getProduct().getPrice();
 		}
+		lb_total.setText("" + cost);
 	}
 
-	public void initProductInList(ProductObserver productObserver) {
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(SystemColor.window);
-		panel_5.setBounds(0, 95, 519, 42);
-		panel.add(panel_5);
-		panel_5.setLayout(null);
-
-		JCheckBox chckbxNewCheckBox = new JCheckBox("Burger Beef");
-		chckbxNewCheckBox.setBackground(SystemColor.window);
-		chckbxNewCheckBox.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		chckbxNewCheckBox.setAlignmentX(Component.CENTER_ALIGNMENT);
-		chckbxNewCheckBox.setBounds(16, 7, 249, 27);
-		panel_5.add(chckbxNewCheckBox);
-
-		JLabel lblNewLabel_4 = new JLabel("100");
-		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_4.setBounds(295, 7, 64, 27);
-		panel_5.add(lblNewLabel_4);
-
-		JLabel lblNewLabel_4_1 = new JLabel("100");
-		lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lblNewLabel_4_1.setBounds(402, 7, 107, 27);
-		panel_5.add(lblNewLabel_4_1);
-
-		panel_container.add(panel_5);
-
+	public List<Item> getItems() {
+		return this.items;
 	}
+
+	public void addItem(Item item) {
+		if (this.items.size() == 0) {
+			this.items.add(item);
+		} else {
+			for (Item i : this.items) {
+				if (i.equalItem(item)) {
+					i.setQuantity(i.getQuantity() + item.getQuantity());
+					i.buy(item.getQuantity());
+					recallDataInList();
+					recallDataProduct();
+					return;
+				}
+			}
+			this.items.add(item);
+		}
+		recallDataInList();
+		recallDataProduct();
+	}
+
 }

@@ -26,29 +26,28 @@ public class MainController {
 	private Subject center;
 
 	public void initProduct() {
-		ProductObserver burgerBeef = new BurgerBeef("Burger Bò", 10, 30000,
-				"../FastFoodStoreManager/img/burgurBeef.png", center);
-		ProductObserver burgerChicken = new BurgerChicken("Burger Gà", 10, 25000,
+		ProductObserver burgerBeef = new BurgerBeef("Burger Bò", 10, 1.5, "../FastFoodStoreManager/img/burgurBeef.png",
+				center);
+		ProductObserver burgerChicken = new BurgerChicken("Burger Gà", 10, 1.2,
 				"../FastFoodStoreManager/img/burgurChicken.png", center);
-		ProductObserver burgerCheese = new BurgerCheese("Burger phô mai", 10, 25000,
+		ProductObserver burgerCheese = new BurgerCheese("Burger phô mai", 10, 1.2,
 				"../FastFoodStoreManager/img/burgurCheese.png", center);
-		ProductObserver spaghetti = new Spagetti("Mì Spaghetti", 10, 35000,
-				"../FastFoodStoreManager/img/spagZhetti.png", center);
-		ProductObserver friedChicken = new FriedChicken("Gà rán", 10, 30000,
+		ProductObserver spaghetti = new Spagetti("Mì Spaghetti", 10, 1.7, "../FastFoodStoreManager/img/spagZhetti.png",
+				center);
+		ProductObserver friedChicken = new FriedChicken("Gà rán", 10, 1.3,
 				"../FastFoodStoreManager/img/friedChicken.png", center);
-		ProductObserver friedFrench = new FrenchFries("Khoai tây chiên", 10, 15000,
+		ProductObserver friedFrench = new FrenchFries("Khoai tây chiên", 10, 0.7,
 				"../FastFoodStoreManager/img/chips.png", center);
-		ProductObserver burgurShrimp = new BurgerShrimp("Burger Tôm", 10, 25000,
+		ProductObserver burgurShrimp = new BurgerShrimp("Burger Tôm", 10, 1.2,
 				"../FastFoodStoreManager/img/burgurShrimp.png", center);
-		ProductObserver burgerFish = new BurgerFish("Burger cá", 10, 20000,
-				"../FastFoodStoreManager/img/burgurFish.png", center);
-		ProductObserver carbonateSoftDrink = new CarbonateSoftDrink("Nước giải khát có gas", 10, 10000,
+		ProductObserver burgerFish = new BurgerFish("Burger cá", 10, 0.9, "../FastFoodStoreManager/img/burgurFish.png",
+				center);
+		ProductObserver carbonateSoftDrink = new CarbonateSoftDrink("Nước giải khát có gas", 10, 0.5,
 				"../FastFoodStoreManager/img/carbonateSoftDrink.png", center);
-		ProductObserver juice = new Juice("Nước ép trái cây", 10, 15000, "../FastFoodStoreManager/img/juice.png",
+		ProductObserver juice = new Juice("Nước ép trái cây", 10, 0.7, "../FastFoodStoreManager/img/juice.png", center);
+		ProductObserver mixed = new Mixed("Nước uông pha chế", 10, 0.7, "../FastFoodStoreManager/img/mixed.png",
 				center);
-		ProductObserver mixed = new Mixed("Nước uông pha chế", 10, 15000, "../FastFoodStoreManager/img/mixed.png",
-				center);
-		ProductObserver tea = new Tea("Trà", 10, 10000, "../FastFoodStoreManager/img/tea.png", center);
+		ProductObserver tea = new Tea("Trà", 10, 0.5, "../FastFoodStoreManager/img/tea.png", center);
 	}
 
 	public void initEmployee(Admin admin) {

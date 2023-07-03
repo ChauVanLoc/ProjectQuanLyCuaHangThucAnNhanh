@@ -78,24 +78,13 @@ public class Center implements Subject {
 //	------------------ Food ---------------------------------------
 
 	@Override
-	public void addFood(ProductObserver p) {
-		this.productManage.addFood(p);
+	public void addProduct(ProductObserver p) {
+		this.productManage.addProduct(p);
 	}
 
 	@Override
-	public void deleteFood(ProductObserver p) {
-		this.productManage.deleteFood(p);
-	}
-//	------------------ Beverage ---------------------------------------
-
-	@Override
-	public void addBeverage(ProductObserver p) {
-		this.productManage.addBeverage(p);
-	}
-
-	@Override
-	public void deleteBeverage(ProductObserver p) {
-		this.productManage.deleteBeverage(p);
+	public void deleteProduct(ProductObserver p) {
+		this.productManage.deleteProduct(p);
 	}
 
 //	------------------ Customer --------------------------------------

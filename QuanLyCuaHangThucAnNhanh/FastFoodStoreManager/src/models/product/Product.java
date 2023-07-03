@@ -87,26 +87,30 @@ public class Product {
 		setAddressImage(addressImage);
 	}
 
-	public void buyAmount(int amount) {
+	public void buy(int amount) {
 		this.quantity -= amount;
 		this.quantitySold += amount;
 	}
 
-	public void cancelAmount(int amount) {
+	public void cancel(int amount) {
 		this.quantity += amount;
 		this.quantitySold -= amount;
 	}
 
-	public void increaseQuantity(int amount) {
+	public void increase(int amount) {
 		this.quantity += amount;
 	}
 
-	public void decreaseQuantity(int amount) {
+	public void decrease(int amount) {
 		this.quantity -= amount;
 	}
 
 	public void createRating(double rating, String content, PersonObserver personObserver) {
 		this.rates.add(new Rate(rating, content, personObserver));
+	}
+	
+	public boolean equalProduct(Product product) {
+		return this.id.equals(product.getId());
 	}
 	
 }
