@@ -10,4 +10,6 @@ public abstract class CustomTableModel extends AbstractTableModel {
 	public abstract String getColumnName(int column);
 
 	public abstract Object getValueAt(int row, int column);
+	
+	public abstract Object getItem(int row);
 }

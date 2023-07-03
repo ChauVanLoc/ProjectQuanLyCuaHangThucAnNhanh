@@ -39,4 +39,9 @@ public class ProductTableModel extends CustomTableModel {
 			return null;
 		}
 	}
+
+	@Override
+	public Object getItem(int row) {
+		return this.dataList.get(row);
+	}
 }
