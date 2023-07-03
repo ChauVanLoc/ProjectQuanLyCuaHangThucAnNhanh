@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
@@ -21,6 +23,7 @@ import controller.OrderController;
 import models.Item;
 import models.PersonObserver;
 import models.Subject;
+import models.person.customer.Customer;
 
 public class Menu extends JPanel {
 
@@ -50,6 +53,11 @@ public class Menu extends JPanel {
 
 	private OrderController orderController;
 	private JLabel lblNewLabel_4;
+	private JPanel panel_infor_employee;
+	private JPanel panel_infor_customer;
+	private JTextField jt_customer_for_customer;
+	private JTextField jt_phone_for_customer;
+	private JComboBox cbb_gateway;
 
 	public Menu(PersonObserver personObserver, Subject subject) {
 		this.items = new ArrayList<>();
@@ -68,14 +76,14 @@ public class Menu extends JPanel {
 		lblNewLabel_2.setHorizontalTextPosition(SwingConstants.RIGHT);
 		lblNewLabel_2.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel_2.setBounds(289, 494, 90, 27);
+		lblNewLabel_2.setBounds(303, 543, 75, 27);
 		panel.add(lblNewLabel_2);
 
 		btnNewButton = new JButton("Pay");
 		btnNewButton.setForeground(SystemColor.text);
 		btnNewButton.setBackground(SystemColor.desktop);
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBounds(338, 532, 137, 42);
+		btnNewButton.setBounds(199, 537, 110, 42);
 		panel.add(btnNewButton);
 
 		lb_total = new JLabel();
@@ -83,7 +91,7 @@ public class Menu extends JPanel {
 		lb_total.setHorizontalAlignment(SwingConstants.CENTER);
 		lb_total.setHorizontalTextPosition(SwingConstants.CENTER);
 		lb_total.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lb_total.setBounds(399, 494, 110, 27);
+		lb_total.setBounds(398, 543, 110, 27);
 		panel.add(lb_total);
 
 		JPanel panel_1 = new JPanel();
@@ -131,7 +139,7 @@ public class Menu extends JPanel {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		panel_4 = new JPanel();
-		panel_4.setBounds(0, 232, 519, 251);
+		panel_4.setBounds(0, 261, 519, 251);
 		panel.add(panel_4);
 		panel_4.setLayout(null);
 
@@ -163,39 +171,121 @@ public class Menu extends JPanel {
 		lblNewLabel_4.setBounds(422, 11, 97, 21);
 		panel_4.add(lblNewLabel_4);
 
-		lb_employee = new JLabel("Employee");
-		lb_employee.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lb_employee.setBounds(37, 74, 103, 30);
-		panel.add(lb_employee);
-
-		jt_employee = new JTextField();
-		jt_employee.setBounds(154, 74, 321, 30);
-		panel.add(jt_employee);
-		jt_employee.setColumns(10);
-
-		lb_phone = new JLabel("Phone");
-		lb_phone.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lb_phone.setBounds(37, 175, 103, 30);
-		panel.add(lb_phone);
-
-		jt_phone = new JTextField();
-		jt_phone.setColumns(10);
-		jt_phone.setBounds(154, 175, 321, 30);
-		panel.add(jt_phone);
-
-		lb_customer = new JLabel("Customer");
-		lb_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
-		lb_customer.setBounds(36, 125, 103, 30);
-		panel.add(lb_customer);
-
-		jt_customer = new JTextField();
-		jt_customer.setColumns(10);
-		jt_customer.setBounds(153, 125, 321, 30);
-		panel.add(jt_customer);
-
 		orderController = new OrderController(this, subject.getProductManage());
 		recallDataProduct();
 		recallDataInList();
+
+		if (personObserver instanceof Customer) {
+			initInforForCustomer(personObserver);
+		} else {
+			initInforForEmployee(personObserver);
+		}
+	}
+
+	public void initInforForCustomer(PersonObserver personObserver) {
+		if (panel_infor_employee != null) {
+			panel.remove(panel_infor_employee);
+		}
+		panel_infor_customer = new JPanel();
+		panel_infor_customer.setBackground(SystemColor.window);
+		panel_infor_customer.setBounds(0, 52, 519, 208);
+		panel.add(panel_infor_customer);
+		panel_infor_customer.setLayout(null);
+
+		JLabel lb_customer_for_customer = new JLabel("Customer");
+		lb_customer_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lb_customer_for_customer.setBounds(43, 22, 103, 30);
+		panel_infor_customer.add(lb_customer_for_customer);
+
+		jt_customer_for_customer = new JTextField(personObserver.getPerson().getName());
+		jt_customer_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		jt_customer_for_customer.setColumns(10);
+		jt_customer_for_customer.setBounds(160, 22, 321, 30);
+		panel_infor_customer.add(jt_customer_for_customer);
+		jt_customer_for_customer.setEnabled(false);
+
+		JLabel lb_phone_for_customer = new JLabel("Phone");
+		lb_phone_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lb_phone_for_customer.setBounds(43, 63, 103, 30);
+		panel_infor_customer.add(lb_phone_for_customer);
+
+		jt_phone_for_customer = new JTextField(personObserver.getPerson().getPhone());
+		jt_phone_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		jt_phone_for_customer.setColumns(10);
+		jt_phone_for_customer.setBounds(160, 63, 321, 30);
+		panel_infor_customer.add(jt_phone_for_customer);
+
+		JLabel lb_address_for_customer = new JLabel("Address");
+		lb_address_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lb_address_for_customer.setBounds(43, 104, 103, 30);
+		panel_infor_customer.add(lb_address_for_customer);
+
+		JTextArea textArea = new JTextArea(personObserver.getPerson().getAddress());
+		textArea.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		textArea.setBorder(new LineBorder(new Color(192, 192, 192)));
+		textArea.setBounds(160, 104, 321, 46);
+		panel_infor_customer.add(textArea);
+
+		String[] gateway = { "Thanh toán khi nhận hàng", "Shop Xu" };
+
+		cbb_gateway = new JComboBox(gateway);
+		cbb_gateway.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		cbb_gateway.setBounds(160, 161, 321, 30);
+		panel_infor_customer.add(cbb_gateway);
+
+		JLabel lb_gateway_for_customer = new JLabel("Gateway");
+		lb_gateway_for_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
+		lb_gateway_for_customer.setBounds(43, 161, 103, 30);
+		panel_infor_customer.add(lb_gateway_for_customer);
+
+		JButton btnCancel = new JButton("Cancel");
+		btnCancel.setForeground(Color.WHITE);
+		btnCancel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnCancel.setBackground(new Color(128, 0, 0));
+		btnCancel.setBounds(50, 538, 126, 42);
+		panel.add(btnCancel);
+	}
+
+	public void initInforForEmployee(PersonObserver personObserver) {
+		if (panel_infor_customer != null) {
+			panel.remove(panel_infor_customer);
+		}
+		panel_infor_employee = new JPanel();
+		panel_infor_employee.setBackground(SystemColor.window);
+		panel_infor_employee.setBounds(0, 52, 519, 179);
+		panel.add(panel_infor_employee);
+		panel_infor_employee.setLayout(null);
+
+		lb_employee = new JLabel("Employee");
+		lb_employee.setBounds(42, 24, 103, 30);
+		panel_infor_employee.add(lb_employee);
+		lb_employee.setFont(new Font("Tahoma", Font.PLAIN, 17));
+
+		jt_employee = new JTextField(personObserver.getPerson().getName());
+		jt_employee.setBounds(159, 24, 321, 30);
+		panel_infor_employee.add(jt_employee);
+		jt_employee.setColumns(10);
+		jt_employee.setEnabled(false);
+
+		lb_phone = new JLabel("Phone");
+		lb_phone.setBounds(42, 125, 103, 30);
+		panel_infor_employee.add(lb_phone);
+		lb_phone.setFont(new Font("Tahoma", Font.PLAIN, 17));
+
+		jt_phone = new JTextField(personObserver.getPerson().getPhone());
+		jt_phone.setBounds(159, 125, 321, 30);
+		panel_infor_employee.add(jt_phone);
+		jt_phone.setColumns(10);
+
+		lb_customer = new JLabel("Customer");
+		lb_customer.setBounds(41, 75, 103, 30);
+		panel_infor_employee.add(lb_customer);
+		lb_customer.setFont(new Font("Tahoma", Font.PLAIN, 17));
+
+		jt_customer = new JTextField();
+		jt_customer.setBounds(158, 75, 321, 30);
+		panel_infor_employee.add(jt_customer);
+		jt_customer.setColumns(10);
 	}
 
 	public void recallDataProduct() {
@@ -246,5 +336,4 @@ public class Menu extends JPanel {
 		recallDataInList();
 		recallDataProduct();
 	}
-
 }

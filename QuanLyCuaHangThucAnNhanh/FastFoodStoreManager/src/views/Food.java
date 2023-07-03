@@ -36,7 +36,7 @@ public class Food extends JPanel {
 
 		for (int i = 0; i < foods.size(); i++) {
 			Product product = new Product(foods.get(i), orderController);
-			product.setPreferredSize(new Dimension(169, 292));
+			product.setPreferredSize(new Dimension(169, 290));
 			jp_food.add(product);
 		}
 
@@ -51,7 +51,7 @@ public class Food extends JPanel {
 
 		for (int i = 0; i < beverages.size(); i++) {
 			Product product = new Product(beverages.get(i), orderController);
-			product.setPreferredSize(new Dimension(169, 292));
+			product.setPreferredSize(new Dimension(169, 290));
 			jp_beverageFood.add(product);
 		}
 	}
