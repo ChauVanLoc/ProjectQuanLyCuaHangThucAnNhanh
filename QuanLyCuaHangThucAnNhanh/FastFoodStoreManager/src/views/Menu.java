@@ -236,7 +236,6 @@ public class Menu extends JPanel {
 			for (Item i : this.items) {
 				if (i.equalItem(item)) {
 					i.setQuantity(i.getQuantity() + item.getQuantity());
-					i.buy(item.getQuantity());
 					recallDataInList();
 					recallDataProduct();
 					return;
