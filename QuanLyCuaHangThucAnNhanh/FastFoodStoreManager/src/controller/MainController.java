@@ -46,12 +46,27 @@ public class MainController {
 				"../FastFoodStoreManager/img/carbonateSoftDrink.png", center);
 		ProductObserver juice = new Juice("Nước ép trái cây", 10, 0.63, "../FastFoodStoreManager/img/juice.png",
 				center);
-		ProductObserver mixed = new Mixed("Nước uông pha chế", 10, 0.63, "../FastFoodStoreManager/img/mixed.png",
+		ProductObserver mixedStrawberry = new Mixed("Mixed: Orange Power!", 10, 0.85,
+				"../FastFoodStoreManager/img/mixedStrawberry.png", center);
+		ProductObserver mixedCherry = new Mixed("Mixe: Blue!", 10, 0.85, "../FastFoodStoreManager/img/mixedCherry.png",
+				center);
+		ProductObserver mixedDragonFruit = new Mixed("Mixed: Sweet Pink!", 10, 0.63,
+				"../FastFoodStoreManager/img/mixedDragonFruit.png", center);
+		ProductObserver mixedGrape = new Mixed("Mixed: Red!", 10, 0.63, "../FastFoodStoreManager/img/mixedGrape.png",
+				center);
+		ProductObserver mixedLychee = new Mixed("Mixed: White!", 10, 0.63,
+				"../FastFoodStoreManager/img/mixedLychee.png", center);
+		ProductObserver mixedPeach = new Mixed("Mixed: Bia Đào", 10, 0.85, "../FastFoodStoreManager/img/mixedPeach.png",
 				center);
 		ProductObserver tea = new Tea("Trà", 10, 0.42, "../FastFoodStoreManager/img/tea.png", center);
 		ProductObserver honeyTea = new Tea("Trà mật ong chanh", 10, 0.63, "../FastFoodStoreManager/img/honeyTea.png",
 				center);
-		ProductObserver oolongTea = new Tea("Trà ô long", 10, 0.42, "../FastFoodStoreManager/img/honeyTea.png", center);
+		ProductObserver gingerTea = new Tea("Trà gừng", 10, 0.42, "../FastFoodStoreManager/img/gingerTea.png", center);
+		ProductObserver ginsengTea = new Tea("Trà nhân sâm", 10, 1.3, "../FastFoodStoreManager/img/ginsengTea.png",
+				center);
+		ProductObserver atisoTea = new Tea("Trà hoa Atiso", 10, 0.63, "../FastFoodStoreManager/img/atisoTea.png",
+				center);
+		ProductObserver daisyTea = new Tea("Trà hoa cúc", 10, 0.42, "../FastFoodStoreManager/img/daisyTea.png", center);
 	}
 
 	public void initEmployee(Admin admin) {
