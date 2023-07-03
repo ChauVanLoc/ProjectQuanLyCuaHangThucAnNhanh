@@ -104,7 +104,6 @@ public class Product extends JPanel {
 		add(btn_increase);
 
 		lb_quantity = new JLabel();
-		System.out.println(productObserver.getProduct().getQuantity());
 		if (productObserver.getProduct().getQuantity() == 0) {
 			lb_quantity.setText("0");
 			btn_addcard.setText("Sold out");
