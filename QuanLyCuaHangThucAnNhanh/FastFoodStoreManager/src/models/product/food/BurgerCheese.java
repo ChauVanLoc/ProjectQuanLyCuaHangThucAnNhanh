@@ -8,6 +8,6 @@ public class BurgerCheese extends Food {
 	public BurgerCheese(String name, int quantity, double price, String addImg, Subject sub) {
 		super.product = new Product(name, quantity, price, addImg);
 		super.subject = sub;
-		super.subject.addFood(this);
+		super.subject.addProduct(this);
 	}
 }

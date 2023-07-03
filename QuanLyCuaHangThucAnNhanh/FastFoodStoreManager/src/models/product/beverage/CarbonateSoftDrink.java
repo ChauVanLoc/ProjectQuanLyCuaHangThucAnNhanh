@@ -8,12 +8,7 @@ public class CarbonateSoftDrink extends Beverage {
 	public CarbonateSoftDrink(String name, int quantity, double price, String addImg, Subject sub) {
 		super.product = new Product(name, quantity, price, addImg);
 		super.subject = sub;
-		super.subject.addBeverage(this);
+		super.subject.addProduct(this);
 	}
 
-	@Override
-	public double cost() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 }

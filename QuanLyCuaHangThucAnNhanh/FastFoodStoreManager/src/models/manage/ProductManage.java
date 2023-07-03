@@ -4,48 +4,73 @@ import java.util.ArrayList;
 import java.util.List;
 
 import models.ProductObserver;
+import models.product.beverage.Beverage;
+import models.product.food.Food;
 
 public class ProductManage {
-	private List<ProductObserver> foods;
-	private List<ProductObserver> beverages;
+	private List<ProductObserver> products;
 
 	public ProductManage() {
-		this.foods = new ArrayList<>();
-		this.beverages = new ArrayList<>();
+		this.products = new ArrayList<>();
 	}
-
-//	------------------ Product ---------------------------------------
 
 	public List<ProductObserver> getFoods() {
-		return foods;
+		List<ProductObserver> result = new ArrayList<>();
+		for (ProductObserver p : this.products) {
+			if (p instanceof Food) {
+				result.add(p);
+			}
+		}
+		return result;
 	}
-
-	public void addFood(ProductObserver o) {
-		this.foods.add(o);
-	}
-
-	public void deleteFood(ProductObserver o) {
-		this.foods.remove(o);
-	}
-
-	public void updateFood() {
-
-	}
-//	------------------ Beverage ---------------------------------------
 
 	public List<ProductObserver> getBeverages() {
-		return beverages;
+		List<ProductObserver> result = new ArrayList<>();
+		for (ProductObserver p : this.products) {
+			if (p instanceof Beverage) {
+				result.add(p);
+			}
+		}
+		return result;
 	}
 
-	public void addBeverage(ProductObserver o) {
-		this.beverages.add(o);
+	public void addProduct(ProductObserver o) {
+		this.products.add(o);
 	}
 
-	public void deleteBeverage(ProductObserver o) {
-		this.beverages.remove(o);
+	public void deleteProduct(ProductObserver o) {
+		this.products.remove(o);
 	}
 
-	public void updateDecorator() {
+	public void buy(ProductObserver productObserver, int amount) {
+		for (ProductObserver p : this.products) {
+			if (p.equalProductObserver(productObserver)) {
+				p.getProduct().buy(amount);
+			}
+		}
+	}
 
+	public void cancel(ProductObserver productObserver, int amount) {
+		for (ProductObserver p : this.products) {
+			if (p.equalProductObserver(productObserver)) {
+				p.getProduct().cancel(amount);
+			}
+		}
+	}
+
+	public void increaseQuantity(ProductObserver productObserver, int amount) {
+		for (ProductObserver p : this.products) {
+			if (p.equalProductObserver(productObserver)) {
+				p.getProduct().increase(amount);
+			}
+		}
+	}
+
+	public void decreaseQuantity(ProductObserver productObserver, int amount) {
+		for (ProductObserver p : this.products) {
+			if (p.equalProductObserver(productObserver)) {
+				p.getProduct().decrease(amount);
+			}
+		}
 	}
 }

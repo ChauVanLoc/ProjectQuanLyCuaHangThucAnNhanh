@@ -8,38 +8,38 @@ public abstract class ProductObserver {
 
 	public double cost() {
 		return this.product.getPrice();
-	};
-
-	public String getName() {
-		return this.product.getName();
 	}
 
 	public void update(String name, double price, String addressImage) {
 		this.product.update(name, price, addressImage);
 	}
 
-	public void increaseAmount(int amount) {
-		this.product.increaseQuantity(amount);
+	public void increase(int amount) {
+		this.subject.getProductManage().increaseQuantity(this, amount);
 	}
 
-	public void descreaseAmount(int amount) {
-		this.product.decreaseQuantity(amount);
-	}
-	
-	public void buyAmount(int amount) {
-		this.product.buyAmount(amount);
+	public void descrease(int amount) {
+		this.subject.getProductManage().decreaseQuantity(this, amount);
 	}
 
-	public void cancelAmount(int amount) {
-		this.product.cancelAmount(amount);
+	public void buy(int amount) {
+		this.subject.getProductManage().buy(this, amount);
 	}
-	
+
+	public void cancel(int amount) {
+		this.subject.getProductManage().cancel(this, amount);
+	}
+
 	public void createRating(double rating, String content, PersonObserver personObserver) {
 		this.product.createRating(rating, content, personObserver);
 	}
 
 	public Product getProduct() {
 		return product;
+	}
+
+	public boolean equalProductObserver(ProductObserver productObserver) {
+		return this.product.equalProduct(productObserver.getProduct());
 	}
 
 }

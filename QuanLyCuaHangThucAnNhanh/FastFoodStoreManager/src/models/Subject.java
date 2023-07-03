@@ -16,17 +16,11 @@ public interface Subject {
 
 	void disableAccount(boolean status, PersonObserver personObserver);
 
-//-------------------Food---------------------------------
+//-------------------Product--------------------------------------
 
-	void addFood(ProductObserver p);
+	void addProduct(ProductObserver p);
 
-	void deleteFood(ProductObserver p);
-
-// -------------------Beverage---------------------------------
-
-	void addBeverage(ProductObserver p);
-
-	void deleteBeverage(ProductObserver p);
+	void deleteProduct(ProductObserver p);
 
 // -------------------Customer---------------------------------
 
