@@ -1,11 +1,15 @@
 package views;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.SystemColor;
+import java.util.Enumeration;
 import java.util.List;
 
+import javax.swing.AbstractButton;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -15,8 +19,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableColumnModel;
 
 import models.PersonObserver;
@@ -25,8 +33,11 @@ import models.custom.CustomTableModel;
 import models.custom.CustomerTableModel;
 import models.custom.EmployeeTableModel;
 import models.custom.ProductTableModel;
-import javax.swing.border.MatteBorder;
-import java.awt.Cursor;
+import models.person.employee.Cashier;
+import models.person.employee.KitchenStaff;
+import models.person.employee.Shipper;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ManageBase extends JPanel {
 	private JPanel primary_panel;
@@ -43,10 +54,10 @@ public class ManageBase extends JPanel {
 	private JRadioButton rdbtnMale;
 	private JRadioButton rdbtnOtherGender;
 	private ButtonGroup buttonGroup;
-	private JPasswordField jt_name;
-	private JPasswordField jt_cccd;
-	private JPasswordField jt_phone;
-	private JPasswordField jt_email;
+	private JTextField jt_name;
+	private JTextField jt_cccd;
+	private JTextField jt_phone;
+	private JTextField jt_email;
 	private JComboBox ex_day;
 	private JComboBox ex_month;
 	private JComboBox ex_year;
@@ -80,11 +91,8 @@ public class ManageBase extends JPanel {
 		panel_title.setLayout(null);
 
 		initTitle();
-		initContent(true);
-//		initCreateButton();
-		initChangeButton();
+		initContent(true, rule);
 		initList(personObserver, null, rule);
-
 	}
 
 	public void initList(List<PersonObserver> personObservers, List<ProductObserver> productObserver, String rule) {
@@ -115,13 +123,19 @@ public class ManageBase extends JPanel {
 		table.setRowHeight(27);
 		table.setAutoResizeMode(JTable.AUTO_RESIZE_NEXT_COLUMN);
 		table.setFillsViewportHeight(true);
-		table.setAutoCreateRowSorter(true);
 		table.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		table.setBorder(new MatteBorder(0, 1, 0, 0, (Color) SystemColor.controlShadow));
 		table.setBackground(SystemColor.window);
 		scrollPane.setViewportView(table);
-		
+
 		table.getTableHeader().setFont(new Font("Tahoma", Font.BOLD, 20));
+
+		table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent event) {
+				setAll(personObservers.get(table.getSelectedRow()));
+				lb_title.setText("Information");
+			}
+		});
 
 		if (rule.equals("Customer")) {
 			TableColumnModel columnModel = table.getColumnModel();
@@ -160,6 +174,12 @@ public class ManageBase extends JPanel {
 		lb_title.setFont(new Font("Tahoma", Font.BOLD, 20));
 
 		btnNewButton = new JButton("Create");
+		btnNewButton.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				setAll(null);
+			}
+		});
 		btnNewButton.setFocusPainted(false);
 		btnNewButton.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		btnNewButton.setForeground(SystemColor.text);
@@ -218,10 +238,10 @@ public class ManageBase extends JPanel {
 
 	}
 
-	public void initContent(boolean isRead) {
+	public void initContent(boolean isRead, String rule) {
 		content_panel = new JPanel();
 		content_panel.setBackground(SystemColor.window);
-		content_panel.setBounds(0, 50, 400, 454);
+		content_panel.setBounds(0, 50, 400, 445);
 		primary_panel.add(content_panel);
 		content_panel.setLayout(null);
 
@@ -281,17 +301,26 @@ public class ManageBase extends JPanel {
 		rdbtnOtherGender.setFocusPainted(false);
 		rdbtnOtherGender.setBackground(Color.WHITE);
 
-		jt_name = new JPasswordField();
+		jt_name = new JTextField();
+		jt_name.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		jt_name.setBounds(128, 61, 240, 30);
 		content_panel.add(jt_name);
 
-		jt_cccd = new JPasswordField();
+		jt_cccd = new JTextField();
+		jt_cccd.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		jt_cccd.setBounds(128, 102, 240, 30);
 		content_panel.add(jt_cccd);
 
-		comboBoxType = new JComboBox();
+		String EmployeeType[] = { "Cashier", "Shipper", "Kitchen Staff" };
+
+		comboBoxType = new JComboBox(EmployeeType);
+		comboBoxType.setBackground(SystemColor.window);
+		comboBoxType.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		comboBoxType.setBounds(128, 20, 240, 30);
 		content_panel.add(comboBoxType);
+		if (rule.equals("Customer")) {
+			comboBoxType.setEnabled(false);
+		}
 
 		dob_day = new JComboBox();
 		dob_day.setBounds(128, 181, 57, 30);
@@ -305,7 +334,8 @@ public class ManageBase extends JPanel {
 		dob_year.setBounds(290, 181, 78, 30);
 		content_panel.add(dob_year);
 
-		jt_email = new JPasswordField();
+		jt_email = new JTextField();
+		jt_email.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		jt_email.setBounds(128, 222, 240, 30);
 		content_panel.add(jt_email);
 
@@ -314,7 +344,8 @@ public class ManageBase extends JPanel {
 		content_panel.add(lblPhone_1);
 		lblPhone_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
-		jt_phone = new JPasswordField();
+		jt_phone = new JTextField();
+		jt_phone.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		jt_phone.setBounds(128, 264, 240, 30);
 		content_panel.add(jt_phone);
 
@@ -341,12 +372,55 @@ public class ManageBase extends JPanel {
 		lblAddress.setFont(new Font("Tahoma", Font.PLAIN, 17));
 
 		ta_address = new JTextArea();
+		ta_address.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		ta_address.setBorder(new LineBorder(SystemColor.scrollbar));
 		ta_address.setBounds(128, 353, 240, 73);
 		content_panel.add(ta_address);
 	}
 
-	public void initTable() {
+	public void setAll(PersonObserver personObserver) {
+		if (personObserver instanceof Cashier) {
+			comboBoxType.setSelectedIndex(0);
+		} else if (personObserver instanceof Shipper) {
+			comboBoxType.setSelectedIndex(1);
+		} else if (personObserver instanceof KitchenStaff) {
+			comboBoxType.setSelectedIndex(2);
+		}
+		if (personObserver != null) {
+			jt_name.setText(personObserver.getPerson().getName());
+			jt_cccd.setText(personObserver.getPerson().getCccd());
+			jt_email.setText(personObserver.getPerson().getAccount().getEmail());
+			jt_phone.setText(personObserver.getPerson().getPhone());
+			ta_address.setText(personObserver.getPerson().getAddress());
+			if (panel_change != null) {
+				primary_panel.remove(panel_change);
+			}
+			initChangeButton();
+		} else {
+			if (panel_btn != null) {
+				primary_panel.remove(panel_btn);
+			}
+			initCreateButton();
+			lb_title.setText("Create Employee");
+			jt_name.setText("");
+			jt_cccd.setText("");
+			jt_email.setText("");
+			jt_phone.setText("");
+			ta_address.setText("");
+		}
+//		buttonGroup.set
+	}
 
+	private JRadioButton getSelectedRadioButton(ButtonGroup buttonGroup) {
+		ButtonModel selectedModel = buttonGroup.getSelection();
+		if (selectedModel != null) {
+			for (Enumeration<AbstractButton> buttons = buttonGroup.getElements(); buttons.hasMoreElements();) {
+				JRadioButton radioButton = (JRadioButton) buttons.nextElement();
+				if (radioButton.getModel() == selectedModel) {
+					return radioButton;
+				}
+			}
+		}
+		return null;
 	}
 }

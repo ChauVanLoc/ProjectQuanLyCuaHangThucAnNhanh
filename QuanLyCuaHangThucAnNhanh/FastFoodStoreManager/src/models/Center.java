@@ -69,42 +69,36 @@ public class Center implements Subject {
 	public PersonObserver register(String name, String phone, String email, String password) {
 		return this.customerManage.register(name, email, password, phone);
 	}
-	
+
 	@Override
 	public void disableAccount(boolean status, PersonObserver personObserver) {
 		personObserver.disableAccount(status);
 	}
 
-//	------------------------------------------------------------------
-//	------------------ Product ---------------------------------------
-//	------------------------------------------------------------------
+//	------------------ Food ---------------------------------------
 
 	@Override
-	public void addProduct(ProductObserver p) {
-		this.productManage.addProduct(p);
+	public void addFood(ProductObserver p) {
+		this.productManage.addFood(p);
 	}
 
 	@Override
-	public void deleteProduct(ProductObserver p) {
-		this.productManage.deleteProduct(p);
+	public void deleteFood(ProductObserver p) {
+		this.productManage.deleteFood(p);
 	}
-//	------------------------------------------------------------------
-//	------------------ Decorator ---------------------------------------
-//	------------------------------------------------------------------
+//	------------------ Beverage ---------------------------------------
 
 	@Override
-	public void addDecorator(ProductObserver p) {
-		this.productManage.addProduct(p);
+	public void addBeverage(ProductObserver p) {
+		this.productManage.addBeverage(p);
 	}
 
 	@Override
-	public void deleteDecorator(ProductObserver p) {
-		this.productManage.deleteProduct(p);
+	public void deleteBeverage(ProductObserver p) {
+		this.productManage.deleteBeverage(p);
 	}
 
-//	------------------------------------------------------------------
 //	------------------ Customer --------------------------------------
-//	------------------------------------------------------------------
 
 	@Override
 	public void addCustomer(PersonObserver p) {
@@ -116,9 +110,7 @@ public class Center implements Subject {
 		this.customerManage.deleteCustomer(p);
 	}
 
-//	------------------------------------------------------------------
 //	------------------ Employee --------------------------------------
-//	------------------------------------------------------------------
 
 	@Override
 	public void addEmployee(PersonObserver p) {
@@ -134,9 +126,7 @@ public class Center implements Subject {
 	public void addAdmin(PersonObserver p) {
 		this.employeeManage.addAdmin(p);
 	}
-//	------------------------------------------------------------------
 //	------------------ Order -----------------------------------------
-//	------------------------------------------------------------------
 
 	@Override
 	public void addOrder(Order o) {
@@ -147,10 +137,7 @@ public class Center implements Subject {
 	public void deleteOrder(Order o) {
 		this.orderManage.deleteOrder(o);
 	}
-
-//	------------------------------------------------------------------
 //	------------------ Vourcher --------------------------------------
-//	------------------------------------------------------------------
 
 	@Override
 	public Vourcher createVourcher(String title, String content, String code, double cost, Date startDate,

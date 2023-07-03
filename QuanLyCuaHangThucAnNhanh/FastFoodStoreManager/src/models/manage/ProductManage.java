@@ -6,43 +6,43 @@ import java.util.List;
 import models.ProductObserver;
 
 public class ProductManage {
-	private List<ProductObserver> products;
-	private List<ProductObserver> decorators;
+	private List<ProductObserver> foods;
+	private List<ProductObserver> beverages;
 
 	public ProductManage() {
-		this.products = new ArrayList<>();
-		this.decorators = new ArrayList<>();
+		this.foods = new ArrayList<>();
+		this.beverages = new ArrayList<>();
 	}
 
 //	------------------ Product ---------------------------------------
 
-	public List<ProductObserver> getProducts() {
-		return products;
+	public List<ProductObserver> getFoods() {
+		return foods;
 	}
 
-	public void addProduct(ProductObserver o) {
-		this.products.add(o);
+	public void addFood(ProductObserver o) {
+		this.foods.add(o);
 	}
 
-	public void deleteProduct(ProductObserver o) {
-		this.products.remove(o);
+	public void deleteFood(ProductObserver o) {
+		this.foods.remove(o);
 	}
 
-	public void updateProduct() {
+	public void updateFood() {
 
 	}
-//	------------------ Decorator ---------------------------------------
+//	------------------ Beverage ---------------------------------------
 
-	public List<ProductObserver> getDecorators() {
-		return decorators;
+	public List<ProductObserver> getBeverages() {
+		return beverages;
 	}
 
-	public void addDecorator(ProductObserver o) {
-		this.products.add(o);
+	public void addBeverage(ProductObserver o) {
+		this.beverages.add(o);
 	}
 
-	public void deleteDecorator(ProductObserver o) {
-		this.products.remove(o);
+	public void deleteBeverage(ProductObserver o) {
+		this.beverages.remove(o);
 	}
 
 	public void updateDecorator() {
