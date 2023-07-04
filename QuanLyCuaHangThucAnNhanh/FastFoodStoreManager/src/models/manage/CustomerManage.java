@@ -3,10 +3,10 @@ package models.manage;
 import java.util.ArrayList;
 import java.util.List;
 
-import constant.Rule;
 import constant.Score;
 import models.PersonObserver;
 import models.Subject;
+import models.person.Order;
 import models.person.customer.Customer;
 import models.person.customer.NewCustomer;
 
@@ -45,6 +45,27 @@ public class CustomerManage {
 	}
 
 	public PersonObserver forgotPassword(String email) {
+		return null;
+	}
+
+	public void buySuccess(List<Order> orders, PersonObserver personObserver, int discount, int score) {
+		for (PersonObserver p : this.customers) {
+			if (p.getPerson().equalPerson(personObserver.getPerson())) {
+				((Customer) p).decreaseScore(discount);
+				((Customer) p).incrementScore(score);
+				p.getOrders().clear();
+				p.getOrders().addAll(orders);
+				break;
+			}
+		}
+	}
+
+	public PersonObserver getCustomerObserver(PersonObserver personObserver) {
+		for (PersonObserver p : this.customers) {
+			if (p.getPerson().equalPerson(personObserver.getPerson())) {
+				return p;
+			}
+		}
 		return null;
 	}
 

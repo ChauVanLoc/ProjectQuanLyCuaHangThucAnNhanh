@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import constant.Frame;
+import models.Admin;
 import models.PersonObserver;
 import models.Subject;
 import views.Home;
@@ -16,6 +17,9 @@ public class LoginController {
 			JLabel lb_err) {
 		PersonObserver person = login(email, password, subject);
 		if (person != null) {
+			if (person instanceof Admin) {
+				
+			}
 			Home home = new Home(panel, cardLayout, person, subject);
 			panel.add(home, Frame.home);
 			cardLayout.show(panel, Frame.home);

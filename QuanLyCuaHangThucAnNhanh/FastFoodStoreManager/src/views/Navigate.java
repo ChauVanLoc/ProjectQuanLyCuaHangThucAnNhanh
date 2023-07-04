@@ -36,35 +36,35 @@ public class Navigate extends JPanel {
 		setBounds(0, 0, 78, 616);
 		setLayout(null);
 
-		if (!(person instanceof Admin)) {
-			btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-			btnMenu.setBackground(SystemColor.scrollbar);
-			btnMenu.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseClicked(MouseEvent e) {
-					cardLayout.show(panel, "Menu");
-					btnMenu.setBackground(SystemColor.scrollbar);
-					btnHistory.setBackground(Color.WHITE);
-					btnProfile.setBackground(Color.WHITE);
-					btnManage.setBackground(Color.WHITE);
-					btnWork.setBackground(Color.WHITE);
-				}
-			});
-			btnMenu.setBorder(null);
-			btnMenu.setFocusPainted(false);
-			btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
-			ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
-			btnMenu.setIcon(iconMenu);
-			btnMenu.setBounds(0, 0, 78, 70);
-			add(btnMenu);
-			cardLayout.show(panel, "Menu");
-			JLabel lblNewLabel_4 = new JLabel(person instanceof Admin ? "Order" : "Menu");
-			lblNewLabel_4.setEnabled(false);
-			lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
-			lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
-			lblNewLabel_4.setBounds(0, 70, 78, 14);
-			add(lblNewLabel_4);
+		btnMenu.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		btnMenu.setBackground(SystemColor.scrollbar);
+		btnMenu.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				cardLayout.show(panel, "Menu");
+				btnMenu.setBackground(SystemColor.scrollbar);
+				btnHistory.setBackground(Color.WHITE);
+				btnProfile.setBackground(Color.WHITE);
+				btnManage.setBackground(Color.WHITE);
+				btnWork.setBackground(Color.WHITE);
+			}
+		});
+		btnMenu.setBorder(null);
+		btnMenu.setFocusPainted(false);
+		btnMenu.setVerticalAlignment(SwingConstants.BOTTOM);
+		ImageIcon iconMenu = new ImageIcon("../FastFoodStoreManager/img/icon/menu.png");
+		btnMenu.setIcon(iconMenu);
+		btnMenu.setBounds(0, 0, 78, 70);
+		add(btnMenu);
+		cardLayout.show(panel, "Menu");
+		JLabel lblNewLabel_4 = new JLabel(person instanceof Admin ? "Order" : "Menu");
+		lblNewLabel_4.setEnabled(false);
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel_4.setBounds(0, 70, 78, 14);
+		add(lblNewLabel_4);
 
+		if (!(person instanceof Admin)) {
 			btnHistory.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 			btnHistory.addMouseListener(new MouseAdapter() {
 				@Override
@@ -111,11 +111,7 @@ public class Navigate extends JPanel {
 		ImageIcon iconFrofile = new ImageIcon("../FastFoodStoreManager/img/icon/profile.png");
 		btnProfile.setIcon(iconFrofile);
 
-		if (person instanceof Admin) {
-			btnProfile.setBounds(0, 95, 78, 70);
-		} else {
-			btnProfile.setBounds(0, 195, 78, 70);
-		}
+		btnProfile.setBounds(0, 195, 78, 70);
 		add(btnProfile);
 
 		JLabel lblNewLabel_4_2 = new JLabel("Frofile");
@@ -123,11 +119,7 @@ public class Navigate extends JPanel {
 		lblNewLabel_4_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4_2.setFont(new Font("Tahoma", Font.BOLD, 15));
 
-		if (person instanceof Admin) {
-			lblNewLabel_4_2.setBounds(0, 164, 78, 20);
-		} else {
-			lblNewLabel_4_2.setBounds(0, 266, 78, 14);
-		}
+		lblNewLabel_4_2.setBounds(0, 266, 78, 14);
 
 		add(lblNewLabel_4_2);
 
@@ -156,7 +148,7 @@ public class Navigate extends JPanel {
 			btnManage.setFocusPainted(false);
 			btnManage.setBorder(null);
 			btnManage.setBackground(Color.WHITE);
-			btnManage.setBounds(0, 0, 78, 70);
+			btnManage.setBounds(0, 95, 78, 70);
 			add(btnManage);
 			btnManage.setIcon(Helper.getImageIconScale("../FastFoodStoreManager/img/user.png", 70, 70));
 
@@ -164,7 +156,7 @@ public class Navigate extends JPanel {
 			lblNewLabel_4_3.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel_4_3.setFont(new Font("Tahoma", Font.BOLD, 15));
 			lblNewLabel_4_3.setEnabled(false);
-			lblNewLabel_4_3.setBounds(0, 70, 78, 14);
+			lblNewLabel_4_3.setBounds(0, 165, 78, 17);
 			add(lblNewLabel_4_3);
 
 			btnManage.addMouseListener(new MouseAdapter() {

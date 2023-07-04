@@ -134,6 +134,8 @@ public class ManageBase extends JPanel {
 			public void valueChanged(ListSelectionEvent event) {
 				setAll(personObservers.get(table.getSelectedRow()));
 				lb_title.setText("Information");
+				initChangeButton();
+				
 			}
 		});
 
@@ -190,6 +192,9 @@ public class ManageBase extends JPanel {
 	}
 
 	public void initCreateButton() {
+		if (panel_change != null) {
+			primary_panel.remove(panel_change);
+		}
 		panel_btn = new JPanel();
 		panel_btn.setBackground(new Color(224, 224, 224));
 		panel_btn.setBounds(0, 503, 400, 81);
@@ -205,6 +210,9 @@ public class ManageBase extends JPanel {
 	}
 
 	public void initChangeButton() {
+		if (panel_btn != null) {
+			primary_panel.remove(panel_btn);
+		}
 		panel_change = new JPanel();
 		panel_change.setBackground(SystemColor.window);
 		panel_change.setBounds(0, 504, 400, 80);
@@ -408,7 +416,6 @@ public class ManageBase extends JPanel {
 			jt_phone.setText("");
 			ta_address.setText("");
 		}
-//		buttonGroup.set
 	}
 
 	private JRadioButton getSelectedRadioButton(ButtonGroup buttonGroup) {

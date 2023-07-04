@@ -26,64 +26,76 @@ public class MainController {
 	private Subject center;
 
 	public void initProduct() {
-		ProductObserver burgerBeef = new BurgerBeef("Burger Bò", 10, 1.5, "../FastFoodStoreManager/img/burgurBeef.png",
+		ProductObserver burgerBeef = new BurgerBeef("Burger Bò", 10, 1.3, "../FastFoodStoreManager/img/burgerBeef.png",
 				center);
-		ProductObserver burgerChicken = new BurgerChicken("Burger Gà", 10, 1.2,
-				"../FastFoodStoreManager/img/burgurChicken.png", center);
-		ProductObserver burgerCheese = new BurgerCheese("Burger phô mai", 10, 1.2,
-				"../FastFoodStoreManager/img/burgurCheese.png", center);
-		ProductObserver spaghetti = new Spagetti("Mì Spaghetti", 10, 1.7, "../FastFoodStoreManager/img/spagZhetti.png",
+		ProductObserver burgerChicken = new BurgerChicken("Burger Gà", 10, 1.06,
+				"../FastFoodStoreManager/img/burgerChicken.png", center);
+		ProductObserver burgerCheese = new BurgerCheese("Burger phô mai", 10, 1.06,
+				"../FastFoodStoreManager/img/burgerCheese.png", center);
+		ProductObserver spaghetti = new Spagetti("Mì Spaghetti", 10, 1.48, "../FastFoodStoreManager/img/spaghetti.png",
 				center);
 		ProductObserver friedChicken = new FriedChicken("Gà rán", 10, 1.3,
 				"../FastFoodStoreManager/img/friedChicken.png", center);
-		ProductObserver friedFrench = new FrenchFries("Khoai tây chiên", 10, 0.7,
+		ProductObserver friedFrench = new FrenchFries("Khoai tây chiên", 10, 0.63,
 				"../FastFoodStoreManager/img/chips.png", center);
-		ProductObserver burgurShrimp = new BurgerShrimp("Burger Tôm", 10, 1.2,
-				"../FastFoodStoreManager/img/burgurShrimp.png", center);
-		ProductObserver burgerFish = new BurgerFish("Burger cá", 10, 0.9, "../FastFoodStoreManager/img/burgurFish.png",
+		ProductObserver burgurShrimp = new BurgerShrimp("Burger Tôm", 10, 1.06,
+				"../FastFoodStoreManager/img/burgerShrimp.png", center);
+		ProductObserver burgerFish = new BurgerFish("Burger cá", 10, 0.85, "../FastFoodStoreManager/img/burgerFish.png",
 				center);
-		ProductObserver carbonateSoftDrink = new CarbonateSoftDrink("Nước giải khát có gas", 10, 0.5,
+		ProductObserver carbonateSoftDrink = new CarbonateSoftDrink("Nước giải khát có gas", 10, 0.42,
 				"../FastFoodStoreManager/img/carbonateSoftDrink.png", center);
-		ProductObserver juice = new Juice("Nước ép trái cây", 10, 0.7, "../FastFoodStoreManager/img/juice.png", center);
-		ProductObserver mixed = new Mixed("Nước uông pha chế", 10, 0.7, "../FastFoodStoreManager/img/mixed.png",
+		ProductObserver juice = new Juice("Nước ép trái cây", 10, 0.63, "../FastFoodStoreManager/img/juice.png",
 				center);
-		ProductObserver tea = new Tea("Trà", 10, 0.5, "../FastFoodStoreManager/img/tea.png", center);
+		ProductObserver mixedStrawberry = new Mixed("Mixed: Orange Power!", 10, 0.85,
+				"../FastFoodStoreManager/img/mixedStrawberry.png", center);
+		ProductObserver mixedCherry = new Mixed("Mixe: Blue!", 10, 0.85, "../FastFoodStoreManager/img/mixedCherry.png",
+				center);
+		ProductObserver mixedDragonFruit = new Mixed("Mixed: Sweet Pink!", 10, 0.63,
+				"../FastFoodStoreManager/img/mixedDragonFruit.png", center);
+		ProductObserver mixedGrape = new Mixed("Mixed: Red!", 10, 0.63, "../FastFoodStoreManager/img/mixedGrape.png",
+				center);
+		ProductObserver mixedLychee = new Mixed("Mixed: White!", 10, 0.63,
+				"../FastFoodStoreManager/img/mixedLychee.png", center);
+		ProductObserver mixedPeach = new Mixed("Mixed: Bia Đào", 10, 0.85, "../FastFoodStoreManager/img/mixedPeach.png",
+				center);
+		ProductObserver tea = new Tea("Trà", 10, 0.42, "../FastFoodStoreManager/img/tea.png", center);
+		ProductObserver honeyTea = new Tea("Trà mật ong chanh", 10, 0.63, "../FastFoodStoreManager/img/honeyTea.png",
+				center);
+		ProductObserver gingerTea = new Tea("Trà gừng", 10, 0.42, "../FastFoodStoreManager/img/gingerTea.png", center);
+		ProductObserver ginsengTea = new Tea("Trà nhân sâm", 10, 1.3, "../FastFoodStoreManager/img/ginsengTea.png",
+				center);
+		ProductObserver atisoTea = new Tea("Trà hoa Atiso", 10, 0.63, "../FastFoodStoreManager/img/atisoTea.png",
+				center);
+		ProductObserver daisyTea = new Tea("Trà hoa cúc", 10, 0.42, "../FastFoodStoreManager/img/daisyTea.png", center);
 	}
 
-	public void initEmployee(Admin admin) {
-		admin.createEmployeecreateEmployee(Rule.Cashier, "098785746778", "Tran Tu Nguyet", new Date(2001, 5, 10),
-				new Date(2025, 5, 10), "Female", "Ho Chi Minh", "hoamuoigio2001@gmail.com", "0914945738");
-		admin.createEmployeecreateEmployee(Rule.KitchenStaff, "02232343232", "Tong Truc Phung Tran",
+	public void initEmployee(PersonObserver admin) {
+		((Admin) admin).createEmployeecreateEmployee(Rule.Cashier, "098785746778", "Tran Tu Nguyet",
+				new Date(2001, 5, 10), new Date(2025, 5, 10), "Female", "Ho Chi Minh", "hoamuoigio2001@gmail.com",
+				"0914945738");
+		((Admin) admin).createEmployeecreateEmployee(Rule.KitchenStaff, "02232343232", "Tong Truc Phung Tran",
 				new Date(2001, 10, 5), new Date(2025, 12, 24), "Famele", "Ho Chi Minh", "phungtran@gmail.com",
 				"0888877773");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "098357483838", "Ngo Cu Van", new Date(2003, 9, 19),
+		((Admin) admin).createEmployeecreateEmployee(Rule.Shipper, "098357483838", "Ngo Cu Van", new Date(2003, 9, 19),
 				new Date(2024, 2, 25), "Male", "Binh Duong", "cuvandeptrai@gmail.com", "0533352635");
-		admin.createEmployeecreateEmployee(Rule.Cashier, "089736263726", "Chau Van Loc", new Date(2001, 5, 5),
+		((Admin) admin).createEmployeecreateEmployee(Rule.Cashier, "089736263726", "Chau Van Loc", new Date(2001, 5, 5),
 				new Date(2023, 9, 21), "Male", "Tay Bac", "thaylocphuho@gmail.com", "0988873662");
-		admin.createEmployeecreateEmployee(Rule.Cashier, "093829484928", "Cao Mi Le", new Date(2000, 10, 10),
+		((Admin) admin).createEmployeecreateEmployee(Rule.Cashier, "093829484928", "Cao Mi Le", new Date(2000, 10, 10),
 				new Date(2023, 9, 9), "Female", "Gia Lai", "camile@gmai.com", "0363637263");
-		admin.createEmployeecreateEmployee(Rule.KitchenStaff, "938293829389", "Le Sin", new Date(1999, 9, 20),
+		((Admin) admin).createEmployeecreateEmployee(Rule.KitchenStaff, "938293829389", "Le Sin", new Date(1999, 9, 20),
 				new Date(2024, 12, 31), "Male", "Ninh Thuan", "lesin@gmail.com", "0988888979");
-		admin.createEmployeecreateEmployee(Rule.KitchenStaff, "098332322332", "Au Tra Son", new Date(1998, 12, 12),
-				new Date(2025, 7, 12), "Male", "Ha Noi", "rongthan@gmail.com", "0993332221");
-		admin.createEmployeecreateEmployee(Rule.KitchenStaff, "092828182888", "Tran Trung Nhat", new Date(2002, 6, 30),
-				new Date(2026, 8, 12), "Male", "An Giang", "nhat@gmail.com", "0347474878");
-		admin.createEmployeecreateEmployee(Rule.KitchenStaff, "022333233232", "Dao My Nhan", new Date(2002, 4, 24),
-				new Date(2023, 12, 11), "Female", "Bac Ninh", "daomynhan@gmail.com", "0939393929");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "093938484575", "Phan Duy Manh", new Date(1997, 1, 12),
-				new Date(2024, 12, 20), "Male", "Ho Chi Minh", "phaduymanh@gmail.com", "0737374747");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "099988777666", "Ha Thi Thu Uyen", new Date(2001, 7, 27),
-				new Date(2023, 12, 24), "Female", "Ha Tinh", "uyen@gmail.com", "0999888991");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "033337774474", "Luu Manh Phu", new Date(2003, 6, 4),
-				new Date(2024, 12, 5), "Male", "Da Nang", "phu@gmail.com", "0444555556");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "0666455463536", "Tu Nguyen Bao", new Date(1997, 3, 24),
-				new Date(2025, 5, 30), "Male", "Ca Mau", "bao@gmail.com", "04455544543");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "0556666474689", "Luc Thanh Thanh", new Date(2001, 5, 28),
-				new Date(2026, 6, 6), "Female", "Long An", "thanhthanh@gmail.com", "0345645673");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "088776655443", "Van Diep", new Date(2002, 2, 2),
-				new Date(2026, 4, 6), "Male", "Son La", "diep@gmail.com", "0222333444");
-		admin.createEmployeecreateEmployee(Rule.Shipper, "022334411398", "Thai Nhu Huyen", new Date(2002, 3, 13),
-				new Date(2027, 2, 9), "Female", "Long Xuyen", "huyen@gmail.com", "0333333345");
+		((Admin) admin).createEmployeecreateEmployee(Rule.KitchenStaff, "098332322332", "Au Tra Son",
+				new Date(1998, 12, 12), new Date(2025, 7, 12), "Male", "Ha Noi", "rongthan@gmail.com", "0993332221");
+		((Admin) admin).createEmployeecreateEmployee(Rule.KitchenStaff, "092828182888", "Tran Trung Nhat",
+				new Date(2002, 6, 30), new Date(2026, 8, 12), "Male", "An Giang", "nhat@gmail.com", "0347474878");
+		((Admin) admin).createEmployeecreateEmployee(Rule.KitchenStaff, "022333233232", "Dao My Nhan",
+				new Date(2002, 4, 24), new Date(2023, 12, 11), "Female", "Bac Ninh", "daomynhan@gmail.com",
+				"0939393929");
+		((Admin) admin).createEmployeecreateEmployee(Rule.Shipper, "093938484575", "Phan Duy Manh",
+				new Date(1997, 1, 12), new Date(2024, 12, 20), "Male", "Ho Chi Minh", "phaduymanh@gmail.com",
+				"0737374747");
+		((Admin) admin).createEmployeecreateEmployee(Rule.Shipper, "099988777666", "Ha Thi Thu Uyen",
+				new Date(2001, 7, 27), new Date(2023, 12, 24), "Female", "Ha Tinh", "uyen@gmail.com", "0999888991");
 	}
 
 	public void initCustomer() {

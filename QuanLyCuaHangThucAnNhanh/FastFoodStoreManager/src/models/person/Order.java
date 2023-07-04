@@ -19,24 +19,25 @@ public class Order {
 	private double total = 0;
 	private String note;
 	private String status;
+	private String phone;
 
-	public Order(List<Item> items, String adress, PersonObserver customer, Subject sub, int score) {
+	public Order(List<Item> items, String adress, String phone, PersonObserver customer, Subject sub, int score) {
 		this.id = GenerateId.generateId();
 		this.created = new Date();
 		this.address = adress;
 		this.items = items;
+		this.phone = phone;
+		this.status = OrderStatus.waiting_transaction;
 		for (Item i : this.items) {
 			total += i.cost();
 		}
-		if (score > 0) {
-			total -= score;
-			this.discount = score;
-		}
+		total -= score;
+		this.discount = score;
 		customer.getOrders().add(this);
 		sub.addOrder(this);
 	}
 
-	public Order(List<Item> items, PersonObserver customer, PersonObserver employee, Subject sub, int score) {
+	public Order(List<Item> items, PersonObserver customer, PersonObserver employee, Subject sub) {
 		this.id = GenerateId.generateId();
 		this.created = new Date();
 		this.items = items;
@@ -44,14 +45,18 @@ public class Order {
 			total += i.cost();
 		}
 		if (customer != null) {
-			if (score > 0) {
-				total -= score;
-				this.discount = score;
-			}
 			customer.getOrders().add(this);
 		}
 		employee.getOrders().add(this);
 		sub.addOrder(this);
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getId() {
@@ -127,7 +132,7 @@ public class Order {
 		return false;
 	}
 
-	public boolean same(Order order) {
+	public boolean equalOrder(Order order) {
 		return this.id.equals(order.id);
 	}
 }

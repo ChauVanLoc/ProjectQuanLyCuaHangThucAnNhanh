@@ -7,20 +7,29 @@ import java.awt.SystemColor;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import models.Item;
 import javax.swing.SwingConstants;
+
+import controller.OrderController;
+import models.Item;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ProductInOrder extends JPanel {
 	private JCheckBox cb_product;
 	private JLabel lb_quantity;
 	private JLabel lb_price;
 
-	public ProductInOrder(Item item) {
+	public ProductInOrder(Item item, OrderController orderController) {
 		setBackground(SystemColor.window);
 		setLayout(null);
 
 		cb_product = new JCheckBox(item.getProductObserver().getProduct().getName());
+		cb_product.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				orderController.deleteItem(item);
+			}
+		});
 		cb_product.setBackground(SystemColor.window);
 		cb_product.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		cb_product.setAlignmentX(Component.CENTER_ALIGNMENT);

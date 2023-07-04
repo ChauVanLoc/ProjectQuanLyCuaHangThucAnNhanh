@@ -3,9 +3,7 @@ package models.person;
 import java.util.Date;
 
 import constant.Password;
-import models.Subject;
-import models.person.customer.Customer;
-import models.person.employee.Employee;
+import models.PersonObserver;
 
 public class Person {
 	private String id;
@@ -124,6 +122,10 @@ public class Person {
 
 	public boolean changePassword(String currentPassword, String newPassword) {
 		return this.account.changePassword(currentPassword, newPassword);
+	}
+
+	public boolean equalPerson(Person person) {
+		return this.account.getEmail().equals(person.getAccount().getEmail());
 	}
 
 	@Override
