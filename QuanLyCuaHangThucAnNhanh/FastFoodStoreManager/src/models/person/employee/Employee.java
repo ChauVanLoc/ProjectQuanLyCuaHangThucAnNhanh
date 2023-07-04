@@ -26,7 +26,7 @@ public abstract class Employee extends PersonObserver {
 
 	public double salary() {
 		return this.iSalary.salary(this);
-	};
+	}
 
 	public double salaryByPosition() {
 		if (this instanceof Cashier) {
