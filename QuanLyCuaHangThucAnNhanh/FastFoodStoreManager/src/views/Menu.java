@@ -429,4 +429,7 @@ public class Menu extends JPanel {
 			}
 		}
 	}
+	public JLabel getLableMoneyContent() {
+		return lb_money;
+	}
 }

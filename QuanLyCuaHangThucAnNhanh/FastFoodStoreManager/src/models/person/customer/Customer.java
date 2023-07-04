@@ -36,14 +36,12 @@ public abstract class Customer extends PersonObserver {
 	}
 
 	public Order createOrder(List<Item> items, String address, String phone, int score) {
-		if (!address.equals("") && !phone.equals("")) {
-			double cost = 0;
-			for (Item i : items) {
-				cost += i.cost();
-			}
-			if (score > 0 && score <= cost * 0.3) {
-				return new Order(items, address, phone, this, super.subject, score);
-			}
+		double cost = 0;
+		for (Item i : items) {
+			cost += i.cost();
+		}
+		if (score <= cost * 0.3) {
+			return new Order(items, address, phone, this, super.subject, score);
 		}
 		return null;
 	}
@@ -51,7 +49,7 @@ public abstract class Customer extends PersonObserver {
 	public boolean pay(Order order, GatewayPayment gateway) {
 		if (order != null && gateway.pay(order.getTotal())) {
 			order.setStatus(OrderStatus.success);
-			decreaseScore(score);
+			decreaseScore(order.getDiscount());
 			incrementScore(this.calScore(order));
 			upgradeCustomer(this.score, this);
 			return true;

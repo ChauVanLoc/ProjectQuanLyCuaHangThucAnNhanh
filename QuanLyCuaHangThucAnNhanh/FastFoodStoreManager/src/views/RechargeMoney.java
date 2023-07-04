@@ -47,7 +47,7 @@ public class RechargeMoney extends JFrame {
 		setBackground(SystemColor.desktop);
 		setTitle("Recharge");
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -63,6 +63,7 @@ public class RechargeMoney extends JFrame {
 		contentPane.add(lb_amount);
 
 		jt_amount = new JTextField();
+		jt_amount.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		jt_amount.setBounds(140, 132, 242, 30);
 		contentPane.add(jt_amount);
 		jt_amount.setColumns(10);
