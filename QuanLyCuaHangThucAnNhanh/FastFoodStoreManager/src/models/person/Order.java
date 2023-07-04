@@ -37,7 +37,7 @@ public class Order {
 		sub.addOrder(this);
 	}
 
-	public Order(List<Item> items, PersonObserver customer, PersonObserver employee, Subject sub, int score) {
+	public Order(List<Item> items, PersonObserver customer, PersonObserver employee, Subject sub) {
 		this.id = GenerateId.generateId();
 		this.created = new Date();
 		this.items = items;
@@ -45,10 +45,6 @@ public class Order {
 			total += i.cost();
 		}
 		if (customer != null) {
-			if (score > 0) {
-				total -= score;
-				this.discount = score;
-			}
 			customer.getOrders().add(this);
 		}
 		employee.getOrders().add(this);

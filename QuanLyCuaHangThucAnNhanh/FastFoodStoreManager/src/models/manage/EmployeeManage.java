@@ -7,6 +7,7 @@ import java.util.List;
 import constant.Rule;
 import models.PersonObserver;
 import models.Subject;
+import models.person.Order;
 import models.person.employee.Cashier;
 import models.person.employee.Employee;
 import models.person.employee.KitchenStaff;
@@ -50,9 +51,29 @@ public class EmployeeManage {
 		}
 		return new KitchenStaff(cccd, name, dateOfBirth, expiredDate, sex, address, email, phone, subject);
 	}
-	
+
 	public void disableAccount(boolean status, PersonObserver employee) {
 		((Employee) employee).disableAccount(status);
+	}
+
+	public void sellSuccessByEmployee(PersonObserver employee, List<Order> orders) {
+		for (PersonObserver p : this.employees) {
+			if (p.getPerson().equalPerson(employee.getPerson())) {
+				p.getOrders().clear();
+				p.getOrders().addAll(orders);
+				break;
+			}
+		}
+	}
+	
+	public void sellSuccessByAdmin(PersonObserver admin, List<Order> orders) {
+		for (PersonObserver p : this.admins) {
+			if (p.getPerson().equalPerson(admin.getPerson())) {
+				p.getOrders().clear();
+				p.getOrders().addAll(orders);
+				break;
+			}
+		}
 	}
 
 }

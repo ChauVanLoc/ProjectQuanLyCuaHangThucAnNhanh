@@ -2,9 +2,11 @@ package models.person.employee;
 
 import java.util.List;
 
+import constant.OrderStatus;
 import constant.Salary;
+import models.Item;
 import models.PersonObserver;
-import models.person.Person;
+import models.person.Order;
 
 public abstract class Employee extends PersonObserver {
 	protected List<TimeWork> timeWork;
@@ -37,11 +39,23 @@ public abstract class Employee extends PersonObserver {
 		return 0;
 	}
 
-	public void attendance() {
-
-	}
-	
 	public void disableAccount(boolean status) {
 		super.person.getAccount().setStatus(status);
+	}
+
+	public Order createOrder(List<Item> items, PersonObserver customer, PersonObserver employee) {
+		return new Order(items, customer, employee, super.subject);
+	}
+
+	public boolean sell(Order order) {
+		for (Order o : super.orders) {
+			if (o.equalOrder(order)) {
+				o.setStatus(OrderStatus.success);
+				this.subject.getEmployeeManage().sellSuccessByEmployee(this, orders);
+				this.subject.getOrderManage().changeStatusOrder(order, OrderStatus.success);
+				return true;
+			}
+		}
+		return false;
 	}
 }

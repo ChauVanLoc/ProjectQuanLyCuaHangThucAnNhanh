@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import constant.OrderStatus;
 import models.person.Order;
 import models.person.Person;
+import models.person.customer.GatewayPayment;
 
 public abstract class PersonObserver {
 	protected Person person;
@@ -53,9 +55,13 @@ public abstract class PersonObserver {
 	public boolean changePassword(String currentPassword, String newPassword) {
 		return this.person.changePassword(currentPassword, newPassword);
 	}
-	
+
 	public void disableAccount(boolean status) {
 		this.person.getAccount().setStatus(status);
+	}
+
+	public Order createOrder(List<Item> items, String address, String phone, int score) {
+		return new Order(items, address, phone, this, subject, score);
 	}
 
 }

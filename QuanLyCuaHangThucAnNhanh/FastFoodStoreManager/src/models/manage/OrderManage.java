@@ -25,12 +25,13 @@ public class OrderManage {
 		this.orders.remove(o);
 	}
 
-	public void payAgain(Order order) {
+	public void changeStatusOrder(Order order, String status) {
 		for (Order o : this.orders) {
 			if (o.equalOrder(order)) {
-				o.setStatus(OrderStatus.success);
+				o.setStatus(status);
 				break;
 			}
 		}
 	}
+	
 }

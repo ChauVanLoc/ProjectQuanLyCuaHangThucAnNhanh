@@ -2,8 +2,6 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.List;
 
 import javax.swing.JOptionPane;
@@ -12,7 +10,6 @@ import javax.swing.JPanel;
 import models.Item;
 import models.PersonObserver;
 import models.Subject;
-import models.manage.ProductManage;
 import models.person.Order;
 import models.person.customer.Customer;
 import models.person.customer.GatewayPayment;
@@ -21,12 +18,10 @@ import views.RechargeMoney;
 
 public class OrderController {
 	private Menu menu;
-	private ProductManage productManage;
 	private JPanel panel;
 
-	public OrderController(Menu menu, ProductManage productManage, JPanel panel) {
+	public OrderController(Menu menu, JPanel panel) {
 		this.menu = menu;
-		this.productManage = productManage;
 		this.panel = panel;
 	}
 
@@ -42,7 +37,7 @@ public class OrderController {
 		this.menu.deleteItem(item);
 	}
 
-	public void pay(List<Item> items, String address, String phone, PersonObserver customer, int score,
+	public void payByCustomer(List<Item> items, String address, String phone, PersonObserver customer, int score,
 			GatewayPayment gateway) {
 		if (items.isEmpty()) {
 			JOptionPane.showMessageDialog(panel, "Product list is empty!", "Failed Order",
@@ -53,9 +48,28 @@ public class OrderController {
 					JOptionPane.INFORMATION_MESSAGE);
 			return;
 		}
+		double cost = 0;
+		for (Item i : items) {
+			cost += i.cost();
+		}
+		if (score > cost * 0.3) {
+			JOptionPane.showMessageDialog(panel, "Số lượng score không lớn hơn 30% so với hóa đơn!", "Failed Order",
+					JOptionPane.INFORMATION_MESSAGE);
+			return;
+		}
 		Order order = ((Customer) customer).createOrder(items, address, phone, score);
 		popupMessage(((Customer) customer).pay(order, gateway), customer, order);
 	}
+
+//	public void payByEmployee(List<Item> items, PersonObserver customer, PersonObserver employee) {
+//		if (items.isEmpty()) {
+//			JOptionPane.showMessageDialog(panel, "Product list is empty!", "Failed Order",
+//					JOptionPane.INFORMATION_MESSAGE);
+//			return;
+//		}
+//		Order order = ((Employee) employee).createOrder(items, customer, employee);
+//		popupMessage(((Customer) employee).pay(order, gateway), employee, order);
+//	}
 
 	public void payAgain(Order order, PersonObserver customer) {
 		popupMessage(((Customer) customer).payAgain(order), customer, order);
@@ -65,6 +79,12 @@ public class OrderController {
 		if (status) {
 			JOptionPane.showMessageDialog(this.panel, "Thanh toán thành công", "Thanh toán",
 					JOptionPane.INFORMATION_MESSAGE);
+			this.menu.getItems().clear();
+			this.menu.recallDataInList();
+			if (customer instanceof Customer) {
+				this.menu.initInforForCustomer(this.menu.getCustomer(customer));
+				System.out.println("111");
+			}
 		} else {
 			int result = JOptionPane.showConfirmDialog(this.panel,
 					"Bạn có muốn nạp tiền vào Shop Xu để tiếp tục thành toán?", "Shop Xu", JOptionPane.YES_NO_OPTION,
@@ -87,6 +107,12 @@ public class OrderController {
 							if (isPayAgain) {
 								JOptionPane.showMessageDialog(rechargeView, "Thanh toán thành công", "Thanh toán",
 										JOptionPane.INFORMATION_MESSAGE);
+								menu.getItems().clear();
+								menu.recallDataInList();
+								if (customer instanceof Customer) {
+									menu.initInforForCustomer(menu.getCustomer(customer));
+									System.out.println("222");
+								}
 							} else {
 								JOptionPane.showMessageDialog(rechargeView,
 										"Tiền trong Shop Xu không đủ để thanh toán!", "Thanh toán",
@@ -103,10 +129,6 @@ public class OrderController {
 						JOptionPane.INFORMATION_MESSAGE);
 			}
 		}
-	}
-
-	public void popupRecharge() {
-
 	}
 
 	public void createOrderByEmployee(List<Item> items, String address, String phone, PersonObserver customer,

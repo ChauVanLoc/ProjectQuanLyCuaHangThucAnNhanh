@@ -36,23 +36,21 @@ public abstract class Customer extends PersonObserver {
 	}
 
 	public Order createOrder(List<Item> items, String address, String phone, int score) {
-		double cost = 0;
-		for (Item i : items) {
-			cost += i.cost();
-		}
-		if (score <= cost * 0.3) {
-			return new Order(items, address, phone, this, super.subject, score);
-		}
-		return null;
+		return new Order(items, address, phone, this, super.subject, score);
 	}
 
 	public boolean pay(Order order, GatewayPayment gateway) {
-		if (order != null && gateway.pay(order.getTotal())) {
-			order.setStatus(OrderStatus.success);
-			decreaseScore(order.getDiscount());
-			incrementScore(this.calScore(order));
-			upgradeCustomer(this.score, this);
-			return true;
+		if (gateway.pay(order.getTotal())) {
+			for (Order o : super.orders) {
+				if (o.equalOrder(order)) {
+					o.setStatus(OrderStatus.success);
+					this.subject.getCustomerManage().buySuccess(this.orders, this, order.getDiscount(),
+							this.calScore(order));
+					this.subject.getOrderManage().changeStatusOrder(order, OrderStatus.success);
+					upgradeCustomer(this.score, this);
+					return true;
+				}
+			}
 		}
 		return false;
 	}
@@ -60,11 +58,11 @@ public abstract class Customer extends PersonObserver {
 	public boolean payAgain(Order order) {
 		for (Order o : this.orders) {
 			if (o.equalOrder(order) && this.gateway.pay(order.getTotal())) {
-				order.setStatus(OrderStatus.success);
-				decreaseScore(score);
-				incrementScore(this.calScore(order));
+				o.setStatus(OrderStatus.success);
+				this.subject.getCustomerManage().buySuccess(this.orders, this, order.getDiscount(),
+						this.calScore(order));
+				this.subject.getOrderManage().changeStatusOrder(order, OrderStatus.success);
 				upgradeCustomer(this.score, this);
-				super.subject.getOrderManage().payAgain(order);
 				return true;
 			}
 		}

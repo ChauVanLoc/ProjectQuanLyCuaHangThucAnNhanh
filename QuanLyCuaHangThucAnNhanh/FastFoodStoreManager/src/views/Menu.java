@@ -74,6 +74,7 @@ public class Menu extends JPanel {
 	private JLabel lb_money;
 	private JLabel lb_money_content;
 	private JPanel panel_money;
+	private SpinnerModel spinerModel;
 
 	public Menu(PersonObserver personObserver, Subject subject, JPanel parentPanel) {
 		this.items = new ArrayList<>();
@@ -108,7 +109,7 @@ public class Menu extends JPanel {
 					gateway_payment = new CashOnDelivery();
 				}
 				if (personObserver instanceof Customer) {
-					orderController.pay(items, address, phone, personObserver, score, gateway_payment);
+					orderController.payByCustomer(items, address, phone, personObserver, score, gateway_payment);
 				} else {
 //					orderController.pay(items, address, phone, personObserver, subject, score);
 				}
@@ -206,20 +207,21 @@ public class Menu extends JPanel {
 		lblNewLabel_4.setBounds(422, 11, 97, 21);
 		panel_4.add(lblNewLabel_4);
 
-		orderController = new OrderController(this, subject.getProductManage(), parentPanel);
+		orderController = new OrderController(this, parentPanel);
 		recallDataProduct();
 		recallDataInList();
 
-//		if (personObserver instanceof Customer) {
-		initInforForCustomer(personObserver);
-//		} else {
-//			initInforForEmployee(personObserver);
-//		}
+		if (personObserver instanceof Customer) {
+			initInforForCustomer(personObserver);
+		} else {
+			initInforForEmployee(personObserver);
+		}
 	}
 
 	public void initInforForCustomer(PersonObserver personObserver) {
-		if (panel_infor_employee != null) {
+		if (panel_infor_employee != null && panel_infor_customer != null) {
 			panel.remove(panel_infor_employee);
+			panel.remove(panel_infor_customer);
 		}
 		panel_infor_customer = new JPanel();
 		panel_infor_customer.setBackground(SystemColor.window);
@@ -256,7 +258,7 @@ public class Menu extends JPanel {
 		lb_address_for_customer.setBounds(27, 59, 74, 30);
 		panel_infor_customer.add(lb_address_for_customer);
 
-		textArea = new JTextArea(personObserver.getPerson().getAddress());
+		textArea = new JTextArea();
 		textArea.setLineWrap(true);
 		textArea.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		textArea.setBorder(new LineBorder(new Color(192, 192, 192)));
@@ -314,7 +316,7 @@ public class Menu extends JPanel {
 		btnCancel.setBounds(50, 538, 126, 42);
 		panel.add(btnCancel);
 
-		SpinnerModel spinerModel = new SpinnerNumberModel(0, 0, Integer.MAX_VALUE, 1);
+		spinerModel = new SpinnerNumberModel(0, 0, ((Customer) personObserver).getScore(), 1);
 		spinner = new JSpinner(spinerModel);
 		spinner.setFont(new Font("Tahoma", Font.PLAIN, 17));
 		spinner.setBounds(428, 129, 54, 27);
@@ -328,7 +330,8 @@ public class Menu extends JPanel {
 	}
 
 	public void initInforForEmployee(PersonObserver personObserver) {
-		if (panel_infor_customer != null) {
+		if (panel_infor_employee != null && panel_infor_customer != null) {
+			panel.remove(panel_infor_employee);
 			panel.remove(panel_infor_customer);
 		}
 		panel_infor_employee = new JPanel();
@@ -367,6 +370,7 @@ public class Menu extends JPanel {
 		jt_customer.setBounds(158, 75, 321, 30);
 		panel_infor_employee.add(jt_customer);
 		jt_customer.setColumns(10);
+
 	}
 
 	public void recallDataProduct() {
@@ -400,6 +404,10 @@ public class Menu extends JPanel {
 		return this.items;
 	}
 
+	public PersonObserver getCustomer(PersonObserver customer) {
+		return this.subject.getCustomerManage().getCustomerObserver(customer);
+	}
+
 	public void addItem(Item item) {
 		if (this.items.size() == 0) {
 			this.items.add(item);
@@ -429,7 +437,8 @@ public class Menu extends JPanel {
 			}
 		}
 	}
+
 	public JLabel getLableMoneyContent() {
-		return lb_money;
+		return lb_money_content;
 	}
 }
