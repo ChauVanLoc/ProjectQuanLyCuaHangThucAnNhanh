@@ -4,4 +4,6 @@ public interface GatewayPayment {
 	boolean pay(double amount);
 	
 	double getMoney();
+	
+	boolean recharge(int amount);
 }

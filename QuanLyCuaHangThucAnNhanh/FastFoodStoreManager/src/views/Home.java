@@ -44,7 +44,7 @@ public class Home extends JPanel {
 		nav_panel.setBounds(10, 0, 78, 619);
 		primary_panel.add(nav_panel);
 
-		content_panel = new Menu(personObserver, subject);
+		content_panel = new Menu(personObserver, subject, parentPanel);
 		jp_content.add(content_panel, "Menu");
 
 		history_panel = new History();

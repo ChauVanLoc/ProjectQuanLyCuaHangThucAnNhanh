@@ -16,7 +16,7 @@ public class RegisterController {
 			CardLayout cardLayout, Subject subject, Register register) {
 		PersonObserver customer = register(name, email, password, phone, subject);
 		if (customer != null) {
-			JOptionPane.showMessageDialog(panel, "Sign up success", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
+			JOptionPane.showMessageDialog(panel, "Sign up success - Direct to Sign In Page", "Sign Up", JOptionPane.INFORMATION_MESSAGE);
 			register.reset();
 			cardLayout.show(panel, Frame.login);
 		} else {

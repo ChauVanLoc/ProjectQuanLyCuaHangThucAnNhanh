@@ -4,14 +4,7 @@ public class ShopXu implements GatewayPayment {
 	private double amount;
 
 	public ShopXu() {
-	}
-
-	public double getAmount() {
-		return amount;
-	}
-
-	public void recharge(double amount) {
-		this.amount += amount;
+		this.amount = 0;
 	}
 
 	@Override
@@ -26,6 +19,12 @@ public class ShopXu implements GatewayPayment {
 	@Override
 	public double getMoney() {
 		return this.amount;
+	}
+
+	@Override
+	public boolean recharge(int amount) {
+		this.amount += amount;
+		return true;
 	}
 
 }

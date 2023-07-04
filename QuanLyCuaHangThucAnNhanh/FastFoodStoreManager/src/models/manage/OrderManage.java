@@ -24,15 +24,13 @@ public class OrderManage {
 	public void deleteOrder(Order o) {
 		this.orders.remove(o);
 	}
-//
-//	public Order payment(Order order) {
-//		for (Order o : orders) {
-//			if (o.equal(order)) {
-//				o.setStatus(OrderStatus.success);
-//				return o;
-//			}
-//		}
-//		return null;
-//	}
 
+	public void payAgain(Order order) {
+		for (Order o : this.orders) {
+			if (o.equalOrder(order)) {
+				o.setStatus(OrderStatus.success);
+				break;
+			}
+		}
+	}
 }

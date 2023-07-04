@@ -9,7 +9,7 @@ import models.person.Order;
 
 public abstract class Customer extends PersonObserver {
 	protected int score;
-	protected GatewayPayment gateway;
+	protected GatewayPayment gateway = new ShopXu();
 
 	public GatewayPayment getGateway() {
 		return gateway;
@@ -35,29 +35,53 @@ public abstract class Customer extends PersonObserver {
 		setScore(this.score - score);
 	}
 
-	public boolean pay(List<Item> items, String adress, int score) {
-		Order order = new Order(items, adress, this, subject, score);
-		this.orders.add(order);
-		if (this.gateway.pay(order.getTotal())) {
+	public Order createOrder(List<Item> items, String address, String phone, int score) {
+		if (!address.equals("") && !phone.equals("")) {
+			double cost = 0;
+			for (Item i : items) {
+				cost += i.cost();
+			}
+			if (score > 0 && score <= cost * 0.3) {
+				return new Order(items, address, phone, this, super.subject, score);
+			}
+		}
+		return null;
+	}
+
+	public boolean pay(Order order, GatewayPayment gateway) {
+		if (order != null && gateway.pay(order.getTotal())) {
 			order.setStatus(OrderStatus.success);
 			decreaseScore(score);
 			incrementScore(this.calScore(order));
 			upgradeCustomer(this.score, this);
 			return true;
 		}
-		order.setStatus(OrderStatus.waiting_transaction);
 		return false;
 	}
 
 	public boolean payAgain(Order order) {
-		if (this.gateway.pay(order.getTotal())) {
-			order.setStatus(OrderStatus.success);
+		for (Order o : this.orders) {
+			if (o.equalOrder(order) && this.gateway.pay(order.getTotal())) {
+				order.setStatus(OrderStatus.success);
+				decreaseScore(score);
+				incrementScore(this.calScore(order));
+				upgradeCustomer(this.score, this);
+				super.subject.getOrderManage().payAgain(order);
+				return true;
+			}
 		}
 		return false;
 	}
 
 	public boolean cancelOrder(String note, Order order) {
-		return order.cancel(note);
+		for (Order o : this.orders) {
+			if (o.equalOrder(order) && o.getStatus().equals(OrderStatus.waiting_transaction)) {
+				order.setStatus(OrderStatus.cancel);
+				order.cancel(note);
+				return true;
+			}
+		}
+		return false;
 	}
 
 	public void updateAvatar(String image) {
@@ -68,12 +92,8 @@ public abstract class Customer extends PersonObserver {
 		return this.person.changePassword(currentPassword, newPassword);
 	}
 
-	public void addGatewayPayment(GatewayPayment gatewayPayment) {
-		this.gateway = gatewayPayment;
-	}
-
-	public void recharge(double amount) {
-		((Customer) this.gateway).recharge(amount);
+	public boolean recharge(int amount) {
+		return ((GatewayPayment) this.gateway).recharge(amount);
 	}
 
 	public abstract void upgradeCustomer(int score, Customer cus);
